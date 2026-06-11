@@ -10,13 +10,13 @@
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:#222;background:#fff}
 :root{--azul:#4DB8E8;--naranja:#F5A623}
-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:white;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:#1a1a1a;border-bottom:1px solid #333;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .logo-img{height:48px;width:auto}
-.nav-name{font-size:17px;font-weight:700;color:#222;line-height:1.1}
-.nav-sub{font-size:11px;color:#888;letter-spacing:0.05em;text-transform:uppercase}
+.nav-name{font-size:17px;font-weight:700;color:white;line-height:1.1}
+.nav-sub{font-size:11px;color:#aaa;letter-spacing:0.05em;text-transform:uppercase}
 .nav-links{display:flex;gap:24px;list-style:none}
-.nav-links a{font-size:14px;color:#444;text-decoration:none}
+.nav-links a{font-size:14px;color:#ccc;text-decoration:none}
 .nav-links a:hover{color:var(--azul)}
 .nav-cta{background:var(--naranja);color:white;border:none;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
 .hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden}
@@ -116,19 +116,13 @@ footer a{color:#aaa;text-decoration:none}
   <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📲 Presupuesto</a>
 </nav>
 
-<section class="hero">
-  <img src="hero.png" alt="Castaño Servicios Generales" class="hero-img">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-badge">CABA · Consorcios · Particulares</div>
-    <h1>Mantenimiento edilicio<br><span>integral y de confianza</span></h1>
-    <p>Plomería, electricidad, pintura, albañilería, impermeabilización y fumigación. Un solo proveedor para todo tu edificio.</p>
-    <div class="hero-btns">
-      <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">📲 Contactanos</a>
-      <a href="#servicios" class="btn-secondary">Ver servicios</a>
-    </div>
-  </div>
+<section class="hero" style="min-height:auto">
+  <img src="hero.png" alt="Castaño Servicios Generales — Mantenimiento Edilicio CABA" class="hero-img" style="position:relative;width:100%;height:auto;max-height:520px;object-fit:cover;display:block">
 </section>
+<div style="background:#1a1a1a;padding:16px 24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank" style="font-size:14px;padding:11px 22px">📲 Contactanos por WhatsApp</a>
+  <a href="#servicios" style="background:transparent;color:white;border:2px solid rgba(255,255,255,0.5);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none">Ver servicios</a>
+</div>
 
 <div class="stats">
   <div class="stat"><div class="stat-num">Integral</div><div class="stat-label">Servicios</div></div>
@@ -144,13 +138,13 @@ footer a{color:#aaa;text-decoration:none}
     <p class="section-sub">Resolvemos todo lo que necesita tu edificio o propiedad con un solo llamado.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card"><div class="service-icon">🔧</div><div><div class="service-name">Plomería</div><div class="service-desc">Cañerías, tanques de agua, desagotes, canillas y emergencias.</div></div></div>
+    <div class="service-card"><div class="service-icon">🔧</div><div><div class="service-name">Plomería</div><div class="service-desc">Cañerías, tanques de agua, desagotes, canillas y soldadura con plomo. Atención de emergencias.</div></div></div>
     <div class="service-card"><div class="service-icon">⚡</div><div><div class="service-name">Electricidad</div><div class="service-desc">Instalaciones, tableros, reparaciones y emergencias eléctricas.</div></div></div>
     <div class="service-card"><div class="service-icon">🖌️</div><div><div class="service-name">Pintura</div><div class="service-desc">Interior y exterior, enduídos, cielorrasos y reparación de paredes.</div></div></div>
     <div class="service-card"><div class="service-icon">🏗️</div><div><div class="service-name">Albañilería</div><div class="service-desc">Reparaciones estructurales, revestimientos y mampostería en general.</div></div></div>
     <div class="service-card"><div class="service-icon">💧</div><div><div class="service-name">Impermeabilización</div><div class="service-desc">Terrazas, techos y medianeras. Solución definitiva a la humedad.</div></div></div>
     <div class="service-card"><div class="service-icon">🐛</div><div><div class="service-name">Fumigación</div><div class="service-desc">Control de plagas con habilitación oficial. Cucarachas, ratas y más.</div></div></div>
-    <div class="service-card"><div class="service-icon">🔥</div><div><div class="service-name">Matafuegos</div><div class="service-desc">Instalación, recarga y control para edificios y consorcios.</div></div></div>
+
     <div class="service-card"><div class="service-icon">🏢</div><div><div class="service-name">Mantenimiento de consorcios</div><div class="service-desc">Abono mensual con visitas preventivas y atención prioritaria.</div></div></div>
   </div>
 </section>
@@ -171,7 +165,7 @@ footer a{color:#aaa;text-decoration:none}
       </ul>
     </div>
     <div class="nosotros-img">
-      <img src="foto4.jpg" alt="Equipo trabajando en terraza">
+      <img src="hero.png" alt="Castaño Servicios Generales">
     </div>
   </div>
 </section>
@@ -183,16 +177,16 @@ footer a{color:#aaa;text-decoration:none}
     <p class="section-sub">Algunos trabajos realizados en edificios y departamentos de CABA.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item" onclick="openLightbox('cocina_antes.jpg')"><img src="cocina_antes.jpg" alt="Cocina con humedad — antes"><div class="gallery-label">Cocina · Antes</div></div>
-    <div class="gallery-item" onclick="openLightbox('cocina_despues.jpg')"><img src="cocina_despues.jpg" alt="Cocina reparada — después"><div class="gallery-label">Cocina · Después ✓</div></div>
+    <div class="gallery-item" onclick="openLightbox('cocina_despues.jpg')"><img src="cocina_despues.jpg" alt="Cocina con humedad — antes"><div class="gallery-label">Cocina · Antes</div></div>
+    <div class="gallery-item" onclick="openLightbox('cocina_antes.jpg')"><img src="cocina_antes.jpg" alt="Cocina reparada — después"><div class="gallery-label">Cocina · Después ✓</div></div>
     <div class="gallery-item" onclick="openLightbox('terraza_antes.png')"><img src="terraza_antes.png" alt="Terraza — antes"><div class="gallery-label">Terraza · Antes</div></div>
     <div class="gallery-item" onclick="openLightbox('terraza_despues.jpg')"><img src="terraza_despues.jpg" alt="Terraza impermeabilizada — después"><div class="gallery-label">Terraza · Después ✓</div></div>
     <div class="gallery-item" onclick="openLightbox('tanques_terminado.jpg')"><img src="tanques_terminado.jpg" alt="Instalación tanques terminada"><div class="gallery-label">Plomería · Terminado ✓</div></div>
     <div class="gallery-item" onclick="openLightbox('tanques_terminado2.jpg')"><img src="tanques_terminado2.jpg" alt="Tanques de agua instalados"><div class="gallery-label">Plomería · Tanques ✓</div></div>
     <div class="gallery-item" onclick="openLightbox('tanques_terminado3.png')"><img src="tanques_terminado3.png" alt="Instalación plomería terminada"><div class="gallery-label">Plomería · Cañerías ✓</div></div>
     <div class="gallery-item" onclick="openLightbox('antesdespues.jpg')"><img src="antesdespues.jpg" alt="Antes y después pintura exterior"><div class="gallery-label">Pintura exterior · Antes/Después</div></div>
-    <div class="gallery-item" onclick="openLightbox('foto1.jpg')"><img src="foto1.jpg" alt="Matafuego instalado"><div class="gallery-label">Matafuegos ✓</div></div>
-    <div class="gallery-item" onclick="openLightbox('foto2.jpg')"><img src="foto2.jpg" alt="Matafuego en cochera"><div class="gallery-label">Matafuegos ✓</div></div>
+    
+    
     <div class="gallery-item" onclick="openLightbox('secuencia1.png')"><img src="secuencia1.png" alt="Reparación humedad en proceso"><div class="gallery-label">Humedad · En proceso</div></div>
     <div class="gallery-item" onclick="openLightbox('secuencia2.jpg')"><img src="secuencia2.jpg" alt="Pared terminada"><div class="gallery-label">Humedad · Terminado ✓</div></div>
   </div>
@@ -265,7 +259,7 @@ footer a{color:#aaa;text-decoration:none}
   <div class="contact-grid">
     <div class="contact-card"><div class="contact-card-icon">📱</div><div class="contact-card-title">WhatsApp</div><div class="contact-card-val">11 2296-7045</div></div>
     <div class="contact-card"><div class="contact-card-icon">🕐</div><div class="contact-card-title">Atención</div><div class="contact-card-val">24 horas</div></div>
-    <div class="contact-card"><div class="contact-card-icon">📧</div><div class="contact-card-title">Email</div><div class="contact-card-val" style="font-size:13px">casta.servicios.generales@gmail.com</div></div>
+    <div class="contact-card"><div class="contact-card-icon">📧</div><div class="contact-card-title">Email</div><div class="contact-card-val" style="font-size:11px;word-break:break-all">casta.servicios.generales@gmail.com</div></div>
     <div class="contact-card"><div class="contact-card-icon">📍</div><div class="contact-card-title">Zona</div><div class="contact-card-val">Toda CABA</div></div>
     <div class="contact-card"><div class="contact-card-icon">🧾</div><div class="contact-card-title">Facturación</div><div class="contact-card-val">Monotributista</div></div>
   </div>
