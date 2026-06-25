@@ -258,9 +258,9 @@ function ir(screen){
   ['screen-home','screen-presupuesto','screen-memoria'].forEach(id=>{ const el=g(id); if(el) el.style.display='none'; });
   ['prev-presupuesto','prev-memoria'].forEach(id=>{ const el=g(id); if(el) el.style.display='none'; });
   currentScreen = screen;
-  if(screen==='home'){ g('screen-home').style.display=''; }
-  else if(screen==='presupuesto'){ g('screen-presupuesto').style.display=''; }
-  else if(screen==='memoria'){ g('screen-memoria').style.display=''; }
+  if(screen==='home'){ g('screen-home').style.display='block'; }
+  else if(screen==='presupuesto'){ g('screen-presupuesto').style.display='block'; }
+  else if(screen==='memoria'){ g('screen-memoria').style.display='block'; }
   window.scrollTo(0,0);
 }
 
