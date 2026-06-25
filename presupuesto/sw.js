@@ -1,4 +1,4 @@
-const CACHE = 'castano-presupuesto-v2';
+const CACHE = 'castano-presupuesto-v3';
 const ASSETS = [
   '/presupuesto/',
   '/presupuesto/index.html',
