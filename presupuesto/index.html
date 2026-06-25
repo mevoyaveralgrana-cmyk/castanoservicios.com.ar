@@ -98,15 +98,30 @@ ul.items li::before{content:'•';position:absolute;left:0}
   <div class="field"><label>Monto total ($)</label><input type="number" id="f_monto" placeholder="Ej: 4500000"/></div>
   <div class="field"><label>Monto en letras</label><input type="text" id="f_letras" placeholder="Ej: cuatro millones quinientos mil"/></div>
 
-  <div class="sec-title">Opción 1 — Plan de pagos (%)</div>
-  <div class="row3">
-    <div class="field"><label>1er pago %</label><input type="number" id="f_p1" value="40"/></div>
-    <div class="field"><label>2do pago %</label><input type="number" id="f_p2" value="30"/></div>
-    <div class="field"><label>3er pago %</label><input type="number" id="f_p3" value="30"/></div>
+  <div class="sec-title">Condiciones de pago</div>
+  <div class="field">
+    <label>Tipo de pago</label>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <label style="display:flex;align-items:center;gap:6px;font-weight:400;cursor:pointer;background:#f5f5f5;padding:10px 14px;border-radius:8px;flex:1;border:1.5px solid #ddd" id="lbl_op1">
+        <input type="radio" name="tipo_pago" value="plan" id="r_plan" checked onchange="togglePago()" style="width:auto;padding:0;border:none"/> Plan %
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-weight:400;cursor:pointer;background:#f5f5f5;padding:10px 14px;border-radius:8px;flex:1;border:1.5px solid #ddd" id="lbl_op2">
+        <input type="radio" name="tipo_pago" value="cuotas" id="r_cuotas" onchange="togglePago()" style="width:auto;padding:0;border:none"/> Cuotas iguales
+      </label>
+    </div>
   </div>
 
-  <div class="sec-title">Opción 2 — Cuotas iguales</div>
-  <div class="field"><label>Cantidad de cuotas</label><input type="number" id="f_cuotas" value="3"/></div>
+  <div id="bloque_plan">
+    <div class="row3">
+      <div class="field"><label>1er pago %</label><input type="number" id="f_p1" value="40"/></div>
+      <div class="field"><label>2do pago %</label><input type="number" id="f_p2" value="30"/></div>
+      <div class="field"><label>3er pago %</label><input type="number" id="f_p3" value="30"/></div>
+    </div>
+  </div>
+
+  <div id="bloque_cuotas" style="display:none">
+    <div class="field"><label>Cantidad de cuotas</label><input type="number" id="f_cuotas" value="3"/></div>
+  </div>
 
   <div class="field"><label>Consideraciones técnicas</label><textarea id="f_obs" placeholder="Ej: No se incluyen terminaciones finas ni pintura..."></textarea></div>
 
@@ -149,6 +164,7 @@ ul.items li::before{content:'•';position:absolute;left:0}
       <ul class="items" id="p_op1"></ul>
       <div class="sec-head" id="p_op2_title" style="font-size:10px;font-weight:600;margin-top:10px"></div>
       <ul class="items" id="p_op2"></ul>
+
       <div id="p_obs_block">
         <hr class="sep"/>
         <div class="sec-head">CONSIDERACIONES TÉCNICAS</div>
@@ -167,6 +183,14 @@ ul.items li::before{content:'•';position:absolute;left:0}
 
 <script>
 function g(id){ return document.getElementById(id); }
+
+function togglePago(){
+  const esPlan = document.getElementById('r_plan').checked;
+  g('bloque_plan').style.display = esPlan ? '' : 'none';
+  g('bloque_cuotas').style.display = esPlan ? 'none' : '';
+  g('lbl_op1').style.borderColor = esPlan ? '#e87722' : '#ddd';
+  g('lbl_op2').style.borderColor = esPlan ? '#ddd' : '#e87722';
+}
 function v(id){ return g(id).value.trim(); }
 function fmtPeso(n){ return '$ ' + Number(n).toLocaleString('es-AR'); }
 
@@ -209,24 +233,33 @@ function generar(){
   g('p_monto').textContent = fmtPeso(monto);
   g('p_letras').textContent = v('f_letras') ? '(Pesos ' + v('f_letras') + ')' : '';
 
-  // Opción 1
-  g('p_op1_title').textContent = 'OPCIÓN 1 — Plan ' + p1 + ' % / ' + p2 + ' % / ' + p3 + ' %';
-  const desc1 = [
-    [p1, 'anticipo para inicio de obra y acopio de materiales'],
-    [p2, 'contra finalización de los trabajos'],
-    [p3, 'restante a los 30 días de finalizada la obra']
-  ];
-  g('p_op1').innerHTML = desc1.map(([pct,d])=>
-    '<li>' + pct + ' % ' + d + ': <strong>' + fmtPeso(Math.round(monto*pct/100)) + '</strong></li>'
-  ).join('');
+  const tipoPago = document.querySelector('input[name="tipo_pago"]:checked').value;
 
-  // Opción 2
-  const nombres = ['Primera','Segunda','Tercera','Cuarta','Quinta','Sexta'];
-  const montoCuota = fmtPeso(Math.round(monto/cuotas));
-  g('p_op2_title').textContent = 'OPCIÓN 2 — ' + cuotas + ' cuotas iguales';
-  g('p_op2').innerHTML = nombres.slice(0,cuotas).map(n=>
-    '<li>' + n + ' cuota: <strong>' + montoCuota + '</strong></li>'
-  ).join('');
+  if(tipoPago === 'plan'){
+    g('p_op1_title').textContent = 'CONDICIONES DE PAGO — Plan ' + p1 + ' % / ' + p2 + ' % / ' + p3 + ' %';
+    const desc1 = [
+      [p1, 'anticipo para inicio de obra y acopio de materiales'],
+      [p2, 'contra finalización de los trabajos'],
+      [p3, 'restante a los 30 días de finalizada la obra']
+    ];
+    g('p_op1').innerHTML = desc1.map(([pct,d])=>
+      '<li>' + pct + ' % ' + d + ': <strong>' + fmtPeso(Math.round(monto*pct/100)) + '</strong></li>'
+    ).join('');
+    g('p_op2_title').textContent = '';
+    g('p_op2').innerHTML = '';
+  } else {
+    const nombres = ['Primera','Segunda','Tercera','Cuarta','Quinta','Sexta'];
+    const montoConRecargo = Math.round(monto * 1.10);
+    const montoCuota = fmtPeso(Math.round(montoConRecargo/cuotas));
+    g('p_monto').textContent = fmtPeso(montoConRecargo);
+    g('p_letras').textContent = v('f_letras') ? '(Pesos ' + v('f_letras') + ' + 10% financiación)' : '(+10% por pago en cuotas)';
+    g('p_op1_title').textContent = 'CONDICIONES DE PAGO — ' + cuotas + ' cuotas iguales (incluye 10% por financiación)';
+    g('p_op1').innerHTML = nombres.slice(0,cuotas).map(n=>
+      '<li>' + n + ' cuota: <strong>' + montoCuota + '</strong></li>'
+    ).join('');
+    g('p_op2_title').textContent = '';
+    g('p_op2').innerHTML = '';
+  }
 
   // Observaciones
   const obs = v('f_obs').split('\n').filter(l=>l.trim());
