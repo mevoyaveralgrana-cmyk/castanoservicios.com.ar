@@ -1,0 +1,24 @@
+{
+  "name": "Castaño — Memoria de Obra",
+  "short_name": "Memoria",
+  "description": "Generador de memoria descriptiva de obra",
+  "start_url": "/memoria/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e87722",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "../presupuesto/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../presupuesto/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
