@@ -36,7 +36,6 @@
     min-height: 100vh;
   }
 
-  /* HEADER */
   header {
     background: var(--navy);
     padding: 0;
@@ -56,14 +55,10 @@
   }
 
   .header-logo {
-    width: 44px;
     height: 44px;
-    background: var(--orange);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
     flex-shrink: 0;
   }
 
@@ -80,7 +75,6 @@
     margin-top: 1px;
   }
 
-  /* URGENCY BANNER */
   .urgency-banner {
     max-width: 600px;
     margin: 20px auto 0;
@@ -109,19 +103,11 @@
   .urgency-btn .label { font-size: 13px; font-weight: 700; color: var(--text-light); }
   .urgency-btn .sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
 
-  .urgency-btn.selected-normal {
-    border-color: var(--orange);
-    background: #fff7f2;
-  }
+  .urgency-btn.selected-normal { border-color: var(--orange); background: #fff7f2; }
   .urgency-btn.selected-normal .label { color: var(--orange); }
-
-  .urgency-btn.selected-urgent {
-    border-color: var(--danger);
-    background: #fff2f2;
-  }
+  .urgency-btn.selected-urgent { border-color: var(--danger); background: #fff2f2; }
   .urgency-btn.selected-urgent .label { color: var(--danger); }
 
-  /* FORM */
   .form-card {
     background: var(--white);
     border-radius: var(--radius);
@@ -173,15 +159,9 @@
 
   .field input:focus,
   .field select:focus,
-  .field textarea:focus {
-    border-color: var(--orange);
-  }
+  .field textarea:focus { border-color: var(--orange); }
 
-  .field textarea {
-    resize: none;
-    min-height: 100px;
-    line-height: 1.5;
-  }
+  .field textarea { resize: none; min-height: 100px; line-height: 1.5; }
 
   .field select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6478' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -192,7 +172,6 @@
 
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-  /* PHOTO UPLOAD */
   .photo-upload {
     border: 2px dashed var(--border);
     border-radius: 10px;
@@ -204,10 +183,7 @@
     overflow: hidden;
   }
 
-  .photo-upload:hover, .photo-upload.has-photo {
-    border-color: var(--orange);
-    background: #fff7f2;
-  }
+  .photo-upload:hover, .photo-upload.has-photo { border-color: var(--orange); background: #fff7f2; }
 
   .photo-upload input[type="file"] {
     position: absolute;
@@ -231,7 +207,6 @@
     margin-top: 10px;
   }
 
-  /* SUBMIT */
   .submit-wrap {
     max-width: 600px;
     margin: 16px auto 32px;
@@ -260,37 +235,17 @@
   .btn-submit:active { transform: scale(0.98); }
   .btn-submit:hover { background: #1ebe5a; }
 
-  .btn-submit svg {
-    width: 22px;
-    height: 22px;
-    fill: white;
-    flex-shrink: 0;
-  }
+  .btn-submit svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
 
-  /* ERROR */
-  .error-msg {
-    color: var(--danger);
-    font-size: 12px;
-    margin-top: 5px;
-    display: none;
-  }
+  .error-msg { color: var(--danger); font-size: 12px; margin-top: 5px; display: none; }
 
   .field.has-error input,
   .field.has-error select,
-  .field.has-error textarea {
-    border-color: var(--danger);
-  }
+  .field.has-error textarea { border-color: var(--danger); }
 
   .field.has-error .error-msg { display: block; }
 
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    padding: 0 16px 24px;
-    font-size: 11px;
-    color: var(--text-light);
-  }
-
+  .footer { text-align: center; padding: 0 16px 24px; font-size: 11px; color: var(--text-light); }
   .footer a { color: var(--orange); text-decoration: none; }
 </style>
 </head>
@@ -298,7 +253,7 @@
 
 <header>
   <div class="header-inner">
-    <div class="header-logo">🔧</div>
+    <img class="header-logo" src="/logo.png" alt="Castaño Servicios Generales">
     <div class="header-text">
       <h1>Castaño Servicios Generales</h1>
       <p>Solicitud de urgencias y reparaciones</p>
@@ -308,11 +263,10 @@
 
 <div style="max-width:600px;margin:20px auto 0;padding:0 16px;">
   <p style="font-size:13px;color:var(--text-light);line-height:1.5;">
-    Completá el formulario y te contactamos a la brevedad. Para emergencias graves, llamanos directamente.
+    Completá el formulario y te contactamos a la brevedad. Para emergencias graves, llamános directamente.
   </p>
 </div>
 
-<!-- URGENCY -->
 <div class="urgency-banner">
   <div class="section-title" style="margin-bottom:10px;">Nivel de urgencia</div>
   <div class="urgency-selector">
@@ -329,10 +283,8 @@
   </div>
 </div>
 
-<!-- FORM -->
 <div class="form-card">
   <div class="section-title">Tus datos</div>
-
   <div class="field-row">
     <div class="field" id="f-nombre">
       <label>Nombre y apellido <span class="req">*</span></label>
@@ -345,11 +297,10 @@
       <div class="error-msg">Campo requerido</div>
     </div>
   </div>
-
   <div class="field" id="f-edificio">
     <label>Edificio <span class="req">*</span></label>
     <select id="edificio">
-      <option value="">Seleccioná tu edificio</option>
+      <option value="">Seleccióná tu edificio</option>
       <option>Bauness 2172</option>
       <option>Boulogne 639</option>
       <option>Boulogne Sur Mer</option>
@@ -361,14 +312,12 @@
       <option>Pringles</option>
       <option>Otro</option>
     </select>
-    <div class="error-msg">Seleccioná un edificio</div>
+    <div class="error-msg">Seleccióná un edificio</div>
   </div>
-
   <div id="otro-edificio-wrap" style="display:none;" class="field">
     <label>Nombre del edificio</label>
     <input type="text" id="otro-edificio" placeholder="Dirección o nombre del edificio">
   </div>
-
   <div class="field-row">
     <div class="field">
       <label>Piso</label>
@@ -383,13 +332,11 @@
 
 <div class="form-card" style="margin-top:12px;">
   <div class="section-title">El problema</div>
-
   <div class="field" id="f-descripcion">
     <label>Descripción <span class="req">*</span></label>
     <textarea id="descripcion" placeholder="Describí el problema con el mayor detalle posible: qué pasó, dónde, desde cuándo..."></textarea>
     <div class="error-msg">Describí el problema</div>
   </div>
-
   <div class="field">
     <label>Foto del problema (opcional)</label>
     <div class="photo-upload" id="photo-upload-area">
@@ -476,7 +423,6 @@ function enviar() {
     document.querySelector('.has-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
-
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
   const edificio = document.getElementById('edificio').value === 'Otro'
@@ -486,11 +432,8 @@ function enviar() {
   const depto = document.getElementById('depto').value.trim();
   const descripcion = document.getElementById('descripcion').value.trim();
   const tienesFoto = document.getElementById('foto').files.length > 0;
-
   const ubicacion = [piso && `Piso ${piso}`, depto && `Dpto ${depto}`].filter(Boolean).join(' ');
-
   const emoji = urgencia === 'urgente' ? '🚨 *URGENTE*' : '🔔 Normal';
-
   const msg = `${emoji} — Solicitud de reparación
 
 *Edificio:* ${edificio}${ubicacion ? `\n*Ubicación:* ${ubicacion}` : ''}
@@ -501,12 +444,10 @@ function enviar() {
 ${descripcion}${tienesFoto ? '\n\n📷 _Te envío la foto a continuación_' : ''}
 
 _Enviado desde castanoservicios.com.ar_`;
-
   const url = `https://wa.me/5491531606302?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 }
 
-// Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
