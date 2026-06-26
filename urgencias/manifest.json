@@ -1,0 +1,24 @@
+{
+  "name": "Castaño — Urgencias",
+  "short_name": "Urgencias",
+  "description": "Solicitud de reparaciones y urgencias edilicias",
+  "start_url": "/urgencias/",
+  "display": "standalone",
+  "background_color": "#12213a",
+  "theme_color": "#e87722",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "../presupuesto/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../presupuesto/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
