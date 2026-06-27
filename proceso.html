@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Proceso simple y transparente: contacto, visita sin costo, presupuesto detallado y ejecución con garantía." />
-  <title>Cómo trabajamos | Castaño Servicios Generales</title>
+  <meta name="description" content="Proceso simple y transparente: contacto, visita sin costo, presupuesto detallado y ejecuciÃ³n con garantÃ­a." />
+  <title>CÃ³mo trabajamos | CastaÃ±o Servicios Generales</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +34,7 @@ nav {
   font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s;
 }
 .nav-cta:hover { background: #c9651a; }
-@media (max-width: 640px) { .nav-links { display: none; } .nav-logo-text { font-size: 13px; } }
+
 footer {
   background: var(--gris-oscuro); color: rgba(255,255,255,0.6);
   text-align: center; padding: 24px 16px; font-size: 13px; line-height: 1.8;
@@ -72,13 +72,35 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
 .garantia-icon { font-size: 24px; color: var(--naranja); flex-shrink: 0; margin-top: 2px; }
 .garantia-titulo { color: var(--azul); font-weight: 700; font-size: 15px; margin-bottom: 4px; }
 .garantia-desc { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
+  
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;}
+.nav-hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .25s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:768px){
+  .nav-hamburger{display:flex;}
+  .nav-cta{font-size:12px;padding:6px 10px;}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;gap:0;padding:0 0 12px;list-style:none;z-index:99;}
+  .nav-links.open{display:flex;}
+  .nav-links li{margin:0;}
+  .nav-links a{display:block;padding:12px 24px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .nav-logo-text{font-size:13px;}
+}
   </style>
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <meta property="og:title" content="Cómo trabajamos | Castaño Servicios Generales" />
+  <meta property="og:description" content="Proceso simple: contacto, visita sin costo, presupuesto detallado y ejecución con garantía." />
+  <meta property="og:image" content="https://castanoservicios.com.ar/secuencia1.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://castanoservicios.com.ar/proceso.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="Castaño Servicios Generales" />
-    <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
+    <img src="/logo.png" alt="CastaÃ±o Servicios Generales" />
+    <div class="nav-logo-text">CastaÃ±o <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="/servicios.html">Servicios</a></li>
@@ -88,37 +110,53 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
     <li><a href="/urgencias.html">Reportar problema</a></li>
     <li><a href="/contacto.html">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📱 Presupuesto</a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">ð± Presupuesto</a>
+  <button class="nav-hamburger" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
   <p class="page-eyebrow">Proceso</p>
   <h1>Simple y transparente</h1>
-  <p>Así es cómo organizamos cada trabajo.</p>
+  <p>AsÃ­ es cÃ³mo organizamos cada trabajo.</p>
 </div>
 <div class="page-body">
   <div class="proceso-grid">
-    <div class="proceso-step"><div class="proceso-num">01</div><img src="/secuencia1.png" alt="Contacto" /><p>Nos contactás por WhatsApp o teléfono</p></div>
+    <div class="proceso-step"><div class="proceso-num">01</div><img src="/secuencia1.png" alt="Contacto" /><p>Nos contactÃ¡s por WhatsApp o telÃ©fono</p></div>
     <div class="proceso-step"><div class="proceso-num">02</div><img src="/secuencia2.jpg" alt="Visita" /><p>Coordinamos una visita sin costo</p></div>
     <div class="proceso-step"><div class="proceso-num">03</div><img src="/secuencia3.jpg" alt="Presupuesto" /><p>Enviamos presupuesto detallado</p></div>
-    <div class="proceso-step"><div class="proceso-num">04</div><img src="/secuencia4.jpg" alt="Trabajo" /><p>Ejecutamos el trabajo y entregamos garantía</p></div>
+    <div class="proceso-step"><div class="proceso-num">04</div><img src="/secuencia4.jpg" alt="Trabajo" /><p>Ejecutamos el trabajo y entregamos garantÃ­a</p></div>
   </div>
   <div class="garantias">
     <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-file-contract"></i></div><div><div class="garantia-titulo">Presupuesto sin cargo</div><div class="garantia-desc">Visitamos y cotizamos sin costo ni compromiso.</div></div></div>
-    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-shield-halved"></i></div><div><div class="garantia-titulo">Garantía por escrito</div><div class="garantia-desc">Entregamos garantía y memoria de obra en cada trabajo.</div></div></div>
-    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-receipt"></i></div><div><div class="garantia-titulo">Facturación siempre</div><div class="garantia-desc">Monotributistas registrados. Facturamos cada trabajo.</div></div></div>
-    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-clock"></i></div><div><div class="garantia-titulo">Disponibilidad 24 hs</div><div class="garantia-desc">Para emergencias y urgencias, estamos disponibles todo el día.</div></div></div>
+    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-shield-halved"></i></div><div><div class="garantia-titulo">GarantÃ­a por escrito</div><div class="garantia-desc">Entregamos garantÃ­a y memoria de obra en cada trabajo.</div></div></div>
+    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-receipt"></i></div><div><div class="garantia-titulo">FacturaciÃ³n siempre</div><div class="garantia-desc">Monotributistas registrados. Facturamos cada trabajo.</div></div></div>
+    <div class="garantia-card"><div class="garantia-icon"><i class="fa-solid fa-clock"></i></div><div><div class="garantia-titulo">Disponibilidad 24 hs</div><div class="garantia-desc">Para emergencias y urgencias, estamos disponibles todo el dÃ­a.</div></div></div>
   </div>
 </div>
 <div class="cta-bar">
-  <h3>¿Empezamos?</h3>
+  <h3>Â¿Empezamos?</h3>
   <a href="/contacto.html" class="btn-primary">Pedir presupuesto</a>
 </div>
 
 <footer>
-  <strong>Castaño Servicios Generales</strong><br>
-  Mantenimiento edilicio en CABA &middot; Tel: 11 2296-7045 &middot; info@castanoservicios.com.ar<br>
-  Monotributistas registrados &middot; Facturamos cada trabajo
+  <div style="max-width:1040px;margin:0 auto;display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px;">
+    <div><strong style="color:#fff;font-size:15px;">Castaño Servicios Generales</strong><br><span style="color:rgba(255,255,255,.5);font-size:13px;">Mantenimiento edilicio en CABA</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+      <a href="/servicios.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Servicios</a>
+      <a href="/nosotros.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Nosotros</a>
+      <a href="/trabajos.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Trabajos</a>
+      <a href="/consorcios/" style="color:rgba(255,255,255,.65);text-decoration:none;">Consorcios</a>
+      <a href="/contacto.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Contacto</a>
+    </div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);">
+      <div>📞 <a href="tel:+541122967045" style="color:rgba(255,255,255,.65);text-decoration:none;">11 2296-7045</a></div>
+      <div style="margin-top:4px;">✉️ <a href="mailto:info@castanoservicios.com.ar" style="color:rgba(255,255,255,.65);text-decoration:none;">info@castanoservicios.com.ar</a></div>
+      <div style="margin-top:12px;color:rgba(255,255,255,.4);">Monotributistas registrados · Facturamos</div>
+    </div>
+  </div>
+  <div style="text-align:center;color:rgba(255,255,255,.3);font-size:12px;max-width:1040px;margin:0 auto;">© 2025 Castaño Servicios Generales · CABA, Argentina</div>
 </footer>
+
+<script>!function(){var b=document.getElementById('navToggle'),l=document.querySelector('.nav-links');b&&l&&b.addEventListener('click',function(){b.classList.toggle('open');l.classList.toggle('open');})}();</script>
 </body>
 </html>
