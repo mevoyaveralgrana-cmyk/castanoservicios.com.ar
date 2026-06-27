@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Equipo de mantenimiento edilicio en CABA. Monotributistas registrados, con factura, garantía y experiencia." />
-  <title>Quiénes somos | Castaño Servicios Generales</title>
+  <meta name="description" content="Equipo de mantenimiento edilicio en CABA. Monotributistas registrados, con factura, garantÃ­a y experiencia." />
+  <title>QuiÃ©nes somos | CastaÃ±o Servicios Generales</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +34,7 @@ nav {
   font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s;
 }
 .nav-cta:hover { background: #c9651a; }
-@media (max-width: 640px) { .nav-links { display: none; } .nav-logo-text { font-size: 13px; } }
+
 footer {
   background: var(--gris-oscuro); color: rgba(255,255,255,0.6);
   text-align: center; padding: 24px 16px; font-size: 13px; line-height: 1.8;
@@ -77,13 +77,35 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
 .nosotros-item-desc { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
 .nosotros-foto { flex: 1; min-width: 280px; }
 .nosotros-foto img { width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); object-fit: cover; max-height: 420px; }
+  
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;}
+.nav-hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .25s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:768px){
+  .nav-hamburger{display:flex;}
+  .nav-cta{font-size:12px;padding:6px 10px;}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;gap:0;padding:0 0 12px;list-style:none;z-index:99;}
+  .nav-links.open{display:flex;}
+  .nav-links li{margin:0;}
+  .nav-links a{display:block;padding:12px 24px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .nav-logo-text{font-size:13px;}
+}
   </style>
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <meta property="og:title" content="Nosotros | Castaño Servicios Generales" />
+  <meta property="og:description" content="Conocé al equipo. Experiencia, seriedad y compromiso en cada trabajo edilicio en CABA." />
+  <meta property="og:image" content="https://castanoservicios.com.ar/equipo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://castanoservicios.com.ar/nosotros.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="Castaño Servicios Generales" />
-    <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
+    <img src="/logo.png" alt="CastaÃ±o Servicios Generales" />
+    <div class="nav-logo-text">CastaÃ±o <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="/servicios.html">Servicios</a></li>
@@ -93,40 +115,56 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
     <li><a href="/urgencias.html">Reportar problema</a></li>
     <li><a href="/contacto.html">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📱 Presupuesto</a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">ð± Presupuesto</a>
+  <button class="nav-hamburger" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
-  <p class="page-eyebrow">Quiénes somos</p>
-  <h1>Un equipo completo a tu disposición</h1>
+  <p class="page-eyebrow">QuiÃ©nes somos</p>
+  <h1>Un equipo completo a tu disposiciÃ³n</h1>
   <p>Experiencia, seriedad y compromiso en cada trabajo.</p>
 </div>
 <div class="page-body">
   <div class="nosotros-inner">
     <div class="nosotros-texto">
-      <p>Somos Castaño Servicios Generales, empresa de mantenimiento edilicio con base en CABA. Trabajamos con administradores de edificios, consorcios y particulares en toda la ciudad.</p>
-      <p>Nuestro equipo está formado por plomeros, electricistas, pintores y albañiles con experiencia. Somos monotributistas registrados y facturamos cada trabajo.</p>
+      <p>Somos CastaÃ±o Servicios Generales, empresa de mantenimiento edilicio con base en CABA. Trabajamos con administradores de edificios, consorcios y particulares en toda la ciudad.</p>
+      <p>Nuestro equipo estÃ¡ formado por plomeros, electricistas, pintores y albaÃ±iles con experiencia. Somos monotributistas registrados y facturamos cada trabajo.</p>
       <ul class="nosotros-lista">
-        <li><div class="nosotros-check">✓</div><div><div class="nosotros-item-titulo">Equipo propio y de confianza</div><div class="nosotros-item-desc">Personal estable con experiencia en mantenimiento edilicio en CABA.</div></div></li>
-        <li><div class="nosotros-check">✓</div><div><div class="nosotros-item-titulo">Presupuesto previo</div><div class="nosotros-item-desc">Cotizamos el trabajo antes de arrancar, sin sorpresas.</div></div></li>
-        <li><div class="nosotros-check">✓</div><div><div class="nosotros-item-titulo">Garantía por escrito y memoria de obra</div><div class="nosotros-item-desc">Entregamos garantía escrita y memoria de obra en cada trabajo realizado.</div></div></li>
-        <li><div class="nosotros-check">✓</div><div><div class="nosotros-item-titulo">Facturación en todos los trabajos</div><div class="nosotros-item-desc">Monotributistas registrados. Emitimos factura por cada trabajo.</div></div></li>
+        <li><div class="nosotros-check">â</div><div><div class="nosotros-item-titulo">Equipo propio y de confianza</div><div class="nosotros-item-desc">Personal estable con experiencia en mantenimiento edilicio en CABA.</div></div></li>
+        <li><div class="nosotros-check">â</div><div><div class="nosotros-item-titulo">Presupuesto previo</div><div class="nosotros-item-desc">Cotizamos el trabajo antes de arrancar, sin sorpresas.</div></div></li>
+        <li><div class="nosotros-check">â</div><div><div class="nosotros-item-titulo">GarantÃ­a por escrito y memoria de obra</div><div class="nosotros-item-desc">Entregamos garantÃ­a escrita y memoria de obra en cada trabajo realizado.</div></div></li>
+        <li><div class="nosotros-check">â</div><div><div class="nosotros-item-titulo">FacturaciÃ³n en todos los trabajos</div><div class="nosotros-item-desc">Monotributistas registrados. Emitimos factura por cada trabajo.</div></div></li>
       </ul>
     </div>
     <div class="nosotros-foto">
-      <img src="/nosotros.jpg" alt="Equipo Castaño Servicios Generales" />
+      <img src="/equipo.png" alt="Equipo CastaÃ±o Servicios Generales" />
     </div>
   </div>
 </div>
 <div class="cta-bar">
-  <h3>¿Querés trabajar con nosotros?</h3>
+  <h3>Â¿QuerÃ©s trabajar con nosotros?</h3>
   <a href="/contacto.html" class="btn-primary">Pedir presupuesto</a>
 </div>
 
 <footer>
-  <strong>Castaño Servicios Generales</strong><br>
-  Mantenimiento edilicio en CABA &middot; Tel: 11 2296-7045 &middot; info@castanoservicios.com.ar<br>
-  Monotributistas registrados &middot; Facturamos cada trabajo
+  <div style="max-width:1040px;margin:0 auto;display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px;">
+    <div><strong style="color:#fff;font-size:15px;">Castaño Servicios Generales</strong><br><span style="color:rgba(255,255,255,.5);font-size:13px;">Mantenimiento edilicio en CABA</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+      <a href="/servicios.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Servicios</a>
+      <a href="/nosotros.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Nosotros</a>
+      <a href="/trabajos.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Trabajos</a>
+      <a href="/consorcios/" style="color:rgba(255,255,255,.65);text-decoration:none;">Consorcios</a>
+      <a href="/contacto.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Contacto</a>
+    </div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);">
+      <div>📞 <a href="tel:+541122967045" style="color:rgba(255,255,255,.65);text-decoration:none;">11 2296-7045</a></div>
+      <div style="margin-top:4px;">✉️ <a href="mailto:info@castanoservicios.com.ar" style="color:rgba(255,255,255,.65);text-decoration:none;">info@castanoservicios.com.ar</a></div>
+      <div style="margin-top:12px;color:rgba(255,255,255,.4);">Monotributistas registrados · Facturamos</div>
+    </div>
+  </div>
+  <div style="text-align:center;color:rgba(255,255,255,.3);font-size:12px;max-width:1040px;margin:0 auto;">© 2025 Castaño Servicios Generales · CABA, Argentina</div>
 </footer>
+
+<script>!function(){var b=document.getElementById('navToggle'),l=document.querySelector('.nav-links');b&&l&&b.addEventListener('click',function(){b.classList.toggle('open');l.classList.toggle('open');})}();</script>
 </body>
 </html>
