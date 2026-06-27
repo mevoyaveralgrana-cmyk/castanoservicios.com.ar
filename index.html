@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, impermeabilización y fumigación para consorcios y particulares." />
+  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, destapación, carpintería, impermeabilización y fumigación. Atención 24 horas para consorcios y particulares." />
   <title>Castaño Servicios Generales | Mantenimiento Edilicio CABA</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
@@ -42,10 +42,50 @@
       transition: background 0.2s;
     }
     .nav-cta:hover { background: #c9651a; }
-    /* BIFURCACIÓN */
-    .bifurcacion {
-      background: #f5f5f5; padding: 48px 24px;
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-logo-text { font-size: 13px; }
     }
+
+    /* HERO */
+    .hero { position: relative; min-height: auto; padding-top: 64px; }
+    .hero-img {
+      position: relative; width: 100%; height: auto; max-height: 520px;
+      object-fit: cover; object-position: center; display: block;
+    }
+    .hero-overlay {
+      background: #1a1a1a; padding: 16px 24px;
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--naranja); color: var(--blanco);
+      padding: 11px 22px; border-radius: 8px; text-decoration: none;
+      font-size: 14px; font-weight: 600; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c9651a; }
+    .btn-secondary {
+      background: transparent; color: var(--blanco);
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 10px 22px; border-radius: 8px; text-decoration: none;
+      font-size: 14px; font-weight: 600; transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--blanco); }
+
+    /* STATS */
+    .stats {
+      background: #000000; padding: 24px;
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center; padding: 12px 28px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num { color: #29ABE2; font-size: 22px; font-weight: 800; }
+    .stat-label { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
+
+    /* BIFURCACIÓN */
+    .bifurcacion { background: #f5f5f5; padding: 48px 24px; }
     .bifurcacion h2 { font-size: 22px; text-align: center; color: var(--azul); margin-bottom: 8px; }
     .bifurcacion-sub { text-align: center; color: var(--gris-medio); font-size: 15px; margin-bottom: 32px; }
     .bifurcacion-grid {
@@ -73,13 +113,134 @@
     .bif-card.vecino .bif-btn { background: var(--azul); }
     @media (max-width: 520px) { .bifurcacion-grid { grid-template-columns: 1fr; } }
 
-    /* URGENCIAS EMBEBIDO */
-    #urgencias {
-      background: var(--azul); padding: 64px 24px;
+    /* ACORDEÓN */
+    .acordeon { border-top: 2px solid #e8e8e8; }
+    .ac-item { border-bottom: 1px solid #e0e0e0; }
+    .ac-header {
+      width: 100%; display: flex; align-items: center; gap: 16px;
+      padding: 22px 28px; background: var(--blanco); border: none;
+      cursor: pointer; text-align: left; transition: background 0.2s;
     }
-    #urgencias .section-eyebrow { color: var(--naranja); }
-    #urgencias h2 { color: var(--blanco); }
-    #urgencias .section-sub { color: rgba(255,255,255,0.65); }
+    .ac-header:hover { background: #fafafa; }
+    .ac-item.open > .ac-header { background: var(--azul); }
+    .ac-icon {
+      font-size: 18px; color: var(--naranja);
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(232,119,34,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.2s;
+    }
+    .ac-item.open > .ac-header .ac-icon { background: rgba(255,255,255,0.15); color: var(--naranja); }
+    .ac-title { flex: 1; font-size: 17px; font-weight: 700; color: var(--azul); }
+    .ac-item.open > .ac-header .ac-title { color: var(--blanco); }
+    .ac-chevron { font-size: 13px; color: #aaa; transition: transform 0.3s; flex-shrink: 0; }
+    .ac-item.open > .ac-header .ac-chevron { transform: rotate(180deg); color: rgba(255,255,255,0.7); }
+    .ac-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+    .ac-item.open > .ac-body { max-height: 6000px; }
+    .ac-content { padding: 48px 24px; }
+    .ac-content.bg-gris { background: var(--gris-claro); }
+    .ac-content.bg-azul { background: var(--azul); }
+
+    /* helpers secciones */
+    .section-eyebrow {
+      text-align: center; color: var(--naranja); font-size: 12px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    h2 {
+      text-align: center; color: var(--azul); font-size: 28px;
+      font-weight: 800; margin-bottom: 12px; line-height: 1.2;
+    }
+    .section-sub {
+      text-align: center; color: var(--gris-medio); font-size: 15px;
+      max-width: 560px; margin: 0 auto 40px;
+    }
+    .bg-azul h2, .bg-azul .section-eyebrow { color: var(--blanco); }
+    .bg-azul .section-sub { color: rgba(255,255,255,0.7); }
+
+    /* SERVICIOS */
+    .servicios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px; max-width: 1000px; margin: 0 auto;
+    }
+    .servicio-card {
+      background: var(--blanco); border-radius: 10px;
+      padding: 28px 22px; text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .servicio-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .servicio-icon { font-size: 36px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; height: 44px; color: #e87722; }
+    .servicio-card h3 { color: var(--azul); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .servicio-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
+
+    /* NOSOTROS */
+    .nosotros-inner {
+      display: flex; gap: 48px; align-items: center;
+      max-width: 960px; margin: 0 auto; flex-wrap: wrap;
+    }
+    .nosotros-texto { flex: 1; min-width: 280px; }
+    .nosotros-texto p { color: var(--gris-medio); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+    .nosotros-lista { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .nosotros-lista li { display: flex; gap: 12px; align-items: flex-start; }
+    .nosotros-check {
+      background: var(--naranja); color: var(--blanco);
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+    }
+    .nosotros-item-titulo { color: var(--azul); font-weight: 700; font-size: 14px; }
+    .nosotros-item-desc { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
+    .nosotros-foto { flex: 1; min-width: 280px; }
+    .nosotros-foto img {
+      width: 100%; border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      object-fit: cover; max-height: 420px;
+    }
+
+    /* TRABAJOS */
+    .trabajos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px; max-width: 1000px; margin: 0 auto;
+    }
+    .trabajo-card { position: relative; border-radius: 10px; overflow: hidden; cursor: pointer; }
+    .trabajo-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s; }
+    .trabajo-card:hover img { transform: scale(1.04); }
+    .trabajo-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: var(--blanco); padding: 20px 14px 12px;
+      font-size: 13px; font-weight: 600;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      color: var(--blanco); font-size: 32px; cursor: pointer; line-height: 1;
+    }
+
+    /* PROCESO */
+    .proceso-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px; max-width: 900px; margin: 0 auto;
+    }
+    .proceso-step { text-align: center; }
+    .proceso-num {
+      color: var(--naranja); font-size: 13px; font-weight: 800;
+      letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .proceso-step img {
+      width: 100%; height: 160px; object-fit: cover;
+      border-radius: 8px; margin-bottom: 10px;
+    }
+    .proceso-step p { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; }
+
+    /* URGENCIAS */
     .urg-form-wrap {
       max-width: 560px; margin: 0 auto;
       background: rgba(255,255,255,0.05);
@@ -123,154 +284,7 @@
     .urg-error { color: #ff6b6b; font-size: 11px; margin-top: 4px; display: none; }
     .urg-field.has-error .urg-error { display: block; }
 
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-logo-text { font-size: 13px; }
-    }
-
-    /* HERO */
-    .hero { position: relative; min-height: auto; padding-top: 64px; }
-    .hero-img {
-      position: relative; width: 100%; height: auto; max-height: 520px;
-      object-fit: cover; object-position: center; display: block;
-    }
-    .hero-overlay {
-      background: #1a1a1a; padding: 16px 24px;
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: var(--naranja); color: var(--blanco);
-      padding: 11px 22px; border-radius: 8px; text-decoration: none;
-      font-size: 14px; font-weight: 600; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #c9651a; }
-    .btn-secondary {
-      background: transparent; color: var(--blanco);
-      border: 2px solid rgba(255,255,255,0.5);
-      padding: 10px 22px; border-radius: 8px; text-decoration: none;
-      font-size: 14px; font-weight: 600; transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--blanco); }
-
-    /* STATS */
-    .stats {
-      background: #000000; padding: 24px;
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
-    }
-    .stat {
-      text-align: center; padding: 12px 28px;
-      border-right: 1px solid rgba(255,255,255,0.15);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num { color: #29ABE2; font-size: 22px; font-weight: 800; }
-    .stat-label { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
-
-    /* SECCIONES */
-    section { padding: 64px 24px; }
-    .section-eyebrow {
-      text-align: center; color: var(--naranja); font-size: 12px;
-      font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
-    }
-    h2 {
-      text-align: center; color: var(--azul); font-size: 28px;
-      font-weight: 800; margin-bottom: 12px; line-height: 1.2;
-    }
-    .section-sub {
-      text-align: center; color: var(--gris-medio); font-size: 15px;
-      max-width: 560px; margin: 0 auto 40px;
-    }
-
-    /* SERVICIOS */
-    #servicios { background: var(--gris-claro); }
-    .servicios-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px; max-width: 1000px; margin: 0 auto;
-    }
-    .servicio-card {
-      background: var(--blanco); border-radius: 10px;
-      padding: 28px 22px; text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .servicio-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
-    .servicio-icon { font-size: 36px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; height: 44px; color: #e87722; }
-    .servicio-card h3 { color: var(--azul); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .servicio-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
-
-    /* NOSOTROS */
-    #nosotros { background: var(--blanco); }
-    .nosotros-inner {
-      display: flex; gap: 48px; align-items: center;
-      max-width: 960px; margin: 0 auto; flex-wrap: wrap;
-    }
-    .nosotros-texto { flex: 1; min-width: 280px; }
-    .nosotros-texto p { color: var(--gris-medio); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
-    .nosotros-lista { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .nosotros-lista li { display: flex; gap: 12px; align-items: flex-start; }
-    .nosotros-check {
-      background: var(--naranja); color: var(--blanco);
-      width: 22px; height: 22px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-    }
-    .nosotros-item-titulo { color: var(--azul); font-weight: 700; font-size: 14px; }
-    .nosotros-item-desc { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
-    .nosotros-foto { flex: 1; min-width: 280px; }
-    .nosotros-foto img {
-      width: 100%; border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      object-fit: cover; max-height: 420px;
-    }
-
-    /* TRABAJOS */
-    #trabajos { background: var(--gris-claro); }
-    .trabajos-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px; max-width: 1000px; margin: 0 auto 48px;
-    }
-    .trabajo-card { position: relative; border-radius: 10px; overflow: hidden; cursor: pointer; }
-    .trabajo-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s; }
-    .trabajo-card:hover img { transform: scale(1.04); }
-    .trabajo-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      color: var(--blanco); padding: 20px 14px 12px;
-      font-size: 13px; font-weight: 600;
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
-    .lightbox-close {
-      position: absolute; top: 20px; right: 28px;
-      color: var(--blanco); font-size: 32px; cursor: pointer; line-height: 1;
-    }
-
-    /* PROCESO */
-    #proceso { background: var(--azul); }
-    #proceso h2, #proceso .section-eyebrow { color: var(--blanco); }
-    #proceso .section-sub { color: rgba(255,255,255,0.7); }
-    .proceso-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px; max-width: 900px; margin: 0 auto;
-    }
-    .proceso-step { text-align: center; }
-    .proceso-num {
-      color: var(--naranja); font-size: 13px; font-weight: 800;
-      letter-spacing: 1px; margin-bottom: 8px;
-    }
-    .proceso-step img {
-      width: 100%; height: 160px; object-fit: cover;
-      border-radius: 8px; margin-bottom: 10px;
-    }
-    .proceso-step p { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; }
-
     /* CONTACTO */
-    #contacto { background: var(--blanco); }
     .contacto-inner {
       display: flex; gap: 48px; max-width: 900px; margin: 0 auto; flex-wrap: wrap;
     }
@@ -293,7 +307,6 @@
       transition: background 0.2s;
     }
     .btn-whatsapp:hover { background: #1da851; }
-
     .contacto-info { flex: 1; min-width: 240px; }
     .contacto-info h3 { color: var(--azul); font-size: 20px; font-weight: 800; margin-bottom: 24px; }
     .info-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
@@ -328,12 +341,12 @@
     <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#trabajos">Trabajos</a></li>
-    <li><a href="consorcios/" style="color:#e87722;font-weight:700;">Consorcios</a></li>
-    <li><a href="#urgencias">Reportar problema</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="javascript:void(0)" onclick="abrirAc('ac-servicios')">Servicios</a></li>
+    <li><a href="javascript:void(0)" onclick="abrirAc('ac-nosotros')">Nosotros</a></li>
+    <li><a href="javascript:void(0)" onclick="abrirAc('ac-trabajos')">Trabajos</a></li>
+    <li><a href="consorcios/" style="color:var(--naranja);font-weight:700;">Consorcios</a></li>
+    <li><a href="javascript:void(0)" onclick="abrirAc('ac-urgencias')">Reportar problema</a></li>
+    <li><a href="javascript:void(0)" onclick="abrirAc('ac-contacto')">Contacto</a></li>
   </ul>
   <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📲 Presupuesto</a>
 </nav>
@@ -342,17 +355,17 @@
 <section class="hero">
   <img src="hero.png" alt="Castaño Servicios Generales — Mantenimiento Edilicio CABA" class="hero-img" />
   <div class="hero-overlay">
-    <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">📲 Contactanos por WhatsApp</a>
-    <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">Solicitar presupuesto</a>
+    <a href="javascript:void(0)" onclick="abrirAc('ac-servicios')" class="btn-secondary">Ver servicios</a>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-num">Integral</div><div class="stat-label">Servicios</div></div>
+  <div class="stat"><div class="stat-num">24 hs</div><div class="stat-label">Disponibilidad</div></div>
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Años de experiencia</div></div>
   <div class="stat"><div class="stat-num">CABA</div><div class="stat-label">Toda la ciudad</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Facturado</div></div>
-  <div class="stat"><div class="stat-num">Facturamos</div><div class="stat-label">Cada trabajo</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Con factura</div></div>
 </div>
 
 <!-- BIFURCACIÓN -->
@@ -360,13 +373,13 @@
   <h2>¿Qué necesitás?</h2>
   <p class="bifurcacion-sub">Elegí según quién sos</p>
   <div class="bifurcacion-grid">
-    <a href="#contacto" class="bif-card admin">
+    <a href="javascript:void(0)" onclick="abrirAc('ac-contacto')" class="bif-card admin">
       <div class="bif-icon">🏢</div>
       <div class="bif-titulo">Soy administrador o propietario</div>
       <div class="bif-desc">Quiero un presupuesto para mantenimiento, reparación o consorcio</div>
       <span class="bif-btn">Pedir presupuesto</span>
     </a>
-    <a href="#urgencias" class="bif-card vecino">
+    <a href="javascript:void(0)" onclick="abrirAc('ac-urgencias')" class="bif-card vecino">
       <div class="bif-icon">🚨</div>
       <div class="bif-titulo">Soy vecino de un edificio</div>
       <div class="bif-desc">Quiero reportar un problema en mi departamento o zona común</div>
@@ -375,386 +388,111 @@
   </div>
 </div>
 
-<!-- SERVICIOS -->
-<section id="servicios">
-  <p class="section-eyebrow">Lo que hacemos</p>
-  <h2>Servicios de mantenimiento completos</h2>
-  <p class="section-sub">Resolvemos todo lo que necesita tu edificio o propiedad con un solo llamado.</p>
-  <div class="servicios-grid">
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-wrench"></i></div>
-      <h3>Plomería</h3>
-      <p>Cañerías, tanques de agua, desagotes, canillas y soldadura con plomo. Atención de emergencias.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-bolt"></i></div>
-      <h3>Electricidad</h3>
-      <p>Instalaciones, tableros, reparaciones y emergencias eléctricas.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-paint-roller"></i></div>
-      <h3>Pintura</h3>
-      <p>Interior y exterior, enduídos, cielorrasos y reparación de paredes.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-trowel"></i></div>
-      <h3>Albañilería</h3>
-      <p>Reparaciones estructurales, revestimientos y mampostería en general.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-water"></i></div>
-      <h3>Impermeabilización</h3>
-      <p>Terrazas, techos y medianeras. Solución definitiva a la humedad.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-mosquito"></i></div>
-      <h3>Fumigación</h3>
-      <p>Control de plagas con habilitación oficial. Cucarachas, ratas y más.</p>
-    </div>
-    <div class="servicio-card">
-      <div class="servicio-icon"><i class="fa-solid fa-building"></i></div>
-      <h3>Mantenimiento de consorcios</h3>
-      <p>Abono mensual con visitas preventivas y atención prioritaria.</p>
-    </div>
-  </div>
-</section>
+<!-- ACORDEÓN -->
+<div class="acordeon">
 
-<!-- NOSOTROS -->
-<section id="nosotros">
-  <p class="section-eyebrow">Quiénes somos</p>
-  <h2>Un equipo completo a tu disposición</h2>
-  <div class="nosotros-inner">
-    <div class="nosotros-texto">
-      <p>Somos Castaño Servicios Generales, empresa de mantenimiento edilicio con base en CABA. Trabajamos con administradores de edificios, consorcios y particulares en toda la ciudad.</p>
-      <p>Nuestro equipo está formado por plomeros, electricistas, pintores y albañiles con experiencia. Somos monotributistas registrados y facturamos cada trabajo.</p>
-      <ul class="nosotros-lista">
-        <li>
-          <div class="nosotros-check">✓</div>
-          <div>
-            <div class="nosotros-item-titulo">Equipo propio y de confianza</div>
-            <div class="nosotros-item-desc">Personal estable con experiencia en mantenimiento edilicio en CABA.</div>
-          </div>
-        </li>
-        <li>
-          <div class="nosotros-check">✓</div>
-          <div>
-            <div class="nosotros-item-titulo">Presupuesto previo</div>
-            <div class="nosotros-item-desc">Cotizamos el trabajo antes de arrancar, sin sorpresas.</div>
-          </div>
-        </li>
-        <li>
-          <div class="nosotros-check">✓</div>
-          <div>
-            <div class="nosotros-item-titulo">Garantía por escrito y memoria de obra</div>
-            <div class="nosotros-item-desc">Entregamos garantía escrita y memoria de obra en cada trabajo realizado.</div>
-          </div>
-        </li>
-        <li>
-          <div class="nosotros-check">✓</div>
-          <div>
-            <div class="nosotros-item-titulo">Facturación en todos los trabajos</div>
-            <div class="nosotros-item-desc">Monotributistas registrados. Emitimos factura por cada trabajo.</div>
-          </div>
-        </li>
-        <li>
-          <div class="nosotros-check">✓</div>
-          <div>
-            <div class="nosotros-item-titulo">Respuesta rápida</div>
-            <div class="nosotros-item-desc">Atendemos de lunes a sábado y coordinamos por WhatsApp.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="nosotros-foto">
-      <img src="equipo.png" alt="Equipo Castaño Servicios Generales" />
-    </div>
-  </div>
-</section>
-
-<!-- TRABAJOS -->
-<section id="trabajos">
-  <p class="section-eyebrow">Nuestro trabajo</p>
-  <h2>Trabajos realizados</h2>
-  <p class="section-sub">Algunos trabajos realizados en edificios y departamentos de CABA.</p>
-  <div class="trabajos-grid">
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="cocina_despues.jpg" alt="Cocina con humedad — antes" />
-      <div class="trabajo-label">Cocina · Antes</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="cocina_antes.jpg" alt="Cocina reparada — después" />
-      <div class="trabajo-label">Cocina · Después ✓</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="terraza_antes.png" alt="Terraza — antes" />
-      <div class="trabajo-label">Terraza · Antes</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="terraza_despues.jpg" alt="Terraza impermeabilizada — después" />
-      <div class="trabajo-label">Terraza · Después ✓</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="tanques_terminado.jpg" alt="Instalación tanques terminada" />
-      <div class="trabajo-label">Plomería · Terminado ✓</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="tanques_terminado2.jpg" alt="Tanques de agua instalados" />
-      <div class="trabajo-label">Plomería · Tanques ✓</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="tanques_terminado3.png" alt="Instalación plomería terminada" />
-      <div class="trabajo-label">Plomería · Cañerías ✓</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="antesdespues.jpg" alt="Antes y después pintura exterior" />
-      <div class="trabajo-label">Pintura exterior · Antes/Después</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="secuencia1.png" alt="Reparación humedad en proceso" />
-      <div class="trabajo-label">Humedad · En proceso</div>
-    </div>
-    <div class="trabajo-card" onclick="abrirLightbox(this)">
-      <img src="secuencia2.jpg" alt="Pared terminada" />
-      <div class="trabajo-label">Humedad · Terminado ✓</div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="cerrarLightbox()">
-  <span class="lightbox-close">×</span>
-  <img src="" alt="Trabajo realizado" id="lightbox-img" />
-</div>
-
-<!-- PROCESO -->
-<section id="proceso">
-  <p class="section-eyebrow">Así trabajamos</p>
-  <h2>Del problema a la solución</h2>
-  <p class="section-sub">Reparación de humedad en departamento CABA — seguí el proceso completo.</p>
-  <div class="proceso-grid">
-    <div class="proceso-step">
-      <div class="proceso-num">1 · Diagnóstico</div>
-      <img src="secuencia4.jpg" alt="Pared con humedad severa" />
-    </div>
-    <div class="proceso-step">
-      <div class="proceso-num">2 · Preparación</div>
-      <img src="secuencia5.jpg" alt="Preparación de la pared" />
-    </div>
-    <div class="proceso-step">
-      <div class="proceso-num">3 · Reparación</div>
-      <img src="secuencia1.png" alt="Operario trabajando con uniforme Castaño" />
-    </div>
-    <div class="proceso-step">
-      <div class="proceso-num">4 · Terminación ✓</div>
-      <img src="secuencia2.jpg" alt="Pared terminada y pintada" />
-    </div>
-    <div class="proceso-step">
-      <div class="proceso-num">5 · Resultado final ✓</div>
-      <img src="secuencia3.jpg" alt="Ambiente completo terminado" />
-    </div>
-  </div>
-</section>
-
-<!-- URGENCIAS -->
-<section id="urgencias">
-  <p class="section-eyebrow">Vecinos de edificios</p>
-  <h2>Reportar un problema</h2>
-  <p class="section-sub">Completá el formulario y te contactamos por WhatsApp de inmediato.</p>
-  <div class="urg-form-wrap">
-    <div class="urg-urgency">
-      <button class="urg-btn sel-normal" id="u-btn-normal" onclick="urgSetTipo('normal',this)">
-        <span class="u-icon">🔔</span>
-        <span class="u-label">Normal</span>
-        <span class="u-sub">Puede esperar</span>
-      </button>
-      <button class="urg-btn" id="u-btn-urgente" onclick="urgSetTipo('urgente',this)">
-        <span class="u-icon">🚨</span>
-        <span class="u-label">Urgente</span>
-        <span class="u-sub">Necesito ayuda ya</span>
-      </button>
-    </div>
-    <div class="urg-field" id="uf-nombre">
-      <label>Nombre y apellido</label>
-      <input type="text" id="u-nombre" placeholder="Tu nombre">
-      <div class="urg-error">Campo obligatorio</div>
-    </div>
-    <div class="urg-field" id="uf-telefono">
-      <label>Teléfono</label>
-      <input type="tel" id="u-telefono" placeholder="11 1234-5678">
-      <div class="urg-error">Campo obligatorio</div>
-    </div>
-    <div class="urg-field" id="uf-edificio">
-      <label>Edificio</label>
-      <select id="u-edificio">
-        <option value="">Seleccioná tu edificio</option>
-        <option>Bauness 2172</option>
-        <option>Boulogne 639</option>
-        <option>Boulogne Sur Mer</option>
-        <option>Darwin 966</option>
-        <option>Forest</option>
-        <option>Lacroze 3697</option>
-        <option>Monroe 4285</option>
-        <option>Plaza 850</option>
-        <option>Pringles</option>
-        <option>Otro</option>
-      </select>
-      <div class="urg-error">Seleccioná tu edificio</div>
-    </div>
-    <div class="urg-row">
-      <div class="urg-field">
-        <label>Piso</label>
-        <input type="text" id="u-piso" placeholder="Ej: 3">
-      </div>
-      <div class="urg-field">
-        <label>Depto</label>
-        <input type="text" id="u-depto" placeholder="Ej: B">
-      </div>
-    </div>
-    <div class="urg-field" id="uf-descripcion">
-      <label>¿Qué pasó?</label>
-      <textarea id="u-descripcion" placeholder="Describí el problema con detalle..."></textarea>
-      <div class="urg-error">Campo obligatorio</div>
-    </div>
-    <button class="urg-submit" onclick="urgEnviar()">
-      <i class="fa-solid fa-paper-plane"></i> Enviar
+  <!-- SERVICIOS -->
+  <div class="ac-item open" id="ac-servicios">
+    <button class="ac-header" onclick="toggleAc('ac-servicios')">
+      <span class="ac-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+      <span class="ac-title">Nuestros servicios</span>
+      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
     </button>
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto">
-  <p class="section-eyebrow">Contacto</p>
-  <h2>Pedí tu presupuesto</h2>
-  <p class="section-sub">Completá el formulario y te respondemos a la brevedad.</p>
-  <div class="contacto-inner">
-    <div class="contacto-form">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" placeholder="Tu nombre" />
+    <div class="ac-body">
+      <div class="ac-content bg-gris">
+        <p class="section-eyebrow">Lo que hacemos</p>
+        <h2>Servicios de mantenimiento completos</h2>
+        <p class="section-sub">Resolvemos todo lo que necesita tu edificio o propiedad con un solo llamado.</p>
+        <div class="servicios-grid">
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-wrench"></i></div>
+            <h3>Plomería</h3>
+            <p>Cañerías, tanques de agua, desagotes, canillas y soldadura con plomo. Atención de emergencias.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Electricidad</h3>
+            <p>Instalaciones, tableros, reparaciones y emergencias eléctricas.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-paint-roller"></i></div>
+            <h3>Pintura</h3>
+            <p>Interior y exterior, enduídos, cielorrasos y reparación de paredes.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-trowel"></i></div>
+            <h3>Albañilería</h3>
+            <p>Reparaciones estructurales, revestimientos y mampostería en general.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-water"></i></div>
+            <h3>Impermeabilización</h3>
+            <p>Terrazas, techos y medianeras. Solución definitiva a la humedad.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-mosquito"></i></div>
+            <h3>Fumigación</h3>
+            <p>Control de plagas con habilitación oficial. Cucarachas, ratas y más.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-toilet"></i></div>
+            <h3>Destapación</h3>
+            <p>Destapación de cañerías, inodoros y desagotes. Servicio urgente disponible las 24 hs.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-door-open"></i></div>
+            <h3>Carpintería</h3>
+            <p>Puertas, ventanas, placares y muebles. Reparaciones y colocaciones en madera y aluminio.</p>
+          </div>
+          <div class="servicio-card">
+            <div class="servicio-icon"><i class="fa-solid fa-building"></i></div>
+            <h3>Mantenimiento de consorcios</h3>
+            <p>Abono mensual con visitas preventivas y atención prioritaria.</p>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" placeholder="Tu teléfono" />
-      </div>
-      <div class="form-group">
-        <label for="servicio">Tipo de trabajo</label>
-        <select id="servicio">
-          <option value="">Seleccionar...</option>
-          <option>Plomería</option>
-          <option>Electricidad</option>
-          <option>Pintura</option>
-          <option>Albañilería</option>
-          <option>Impermeabilización</option>
-          <option>Fumigación</option>
-          <option>Matafuegos</option>
-          <option>Mantenimiento de consorcio</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="barrio">Barrio</label>
-        <input type="text" id="barrio" placeholder="Barrio o dirección" />
-      </div>
-      <div class="form-group">
-        <label for="descripcion">Descripción del trabajo</label>
-        <textarea id="descripcion" placeholder="Contanos qué necesitás..."></textarea>
-      </div>
-      <button class="btn-whatsapp" onclick="enviarWhatsApp()"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-    </div>
-
-    <div class="contacto-info">
-      <h3>Estamos disponibles</h3>
-      <div class="info-item">
-        <div class="info-icon">📱</div>
-        <div><div class="info-label">WhatsApp</div><div class="info-value">11 2296-7045</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🕐</div>
-        <div><div class="info-label">Atención</div><div class="info-value">24 horas</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📧</div>
-        <div><div class="info-label">Email</div><div class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f1c1e0c0b1e510c1a0d09161c16100c51181a111a0d1e131a0c3f18121e1613511c1012">[email&#160;protected]</a></div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div><div class="info-label">Zona</div><div class="info-value">Toda CABA</div></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🧾</div>
-        <div><div class="info-label">Facturación</div><div class="info-value">Monotributista</div></div>
-      </div>
-      <a href="tel:+541122967045" class="btn-wa-grande"><i class="fa-solid fa-phone"></i> Llamanos ahora</a>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <strong>Castaño Servicios Generales</strong><br />
-  Mantenimiento edilicio integral en CABA · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b282a383f2a65382e393d2228222438652c2e252e392a272e380b2c262a222765282426">[email&#160;protected]</a> · 11 2296-7045<br />
-  © 2025 Castaño Servicios Generales
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function abrirLightbox(card) {
-    const img = card.querySelector('img');
-    document.getElementById('lightbox-img').src = img.src;
-    document.getElementById('lightbox').classList.add('active');
-  }
-  function cerrarLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightbox(); });
-
-  // URGENCIAS
-  let urgTipo = 'normal';
-  function urgSetTipo(tipo, el) {
-    urgTipo = tipo;
-    document.getElementById('u-btn-normal').className = 'urg-btn';
-    document.getElementById('u-btn-urgente').className = 'urg-btn';
-    el.className = 'urg-btn ' + (tipo === 'normal' ? 'sel-normal' : 'sel-urgente');
-  }
-  function urgEnviar() {
-    let ok = true;
-    [['u-nombre','uf-nombre'],['u-telefono','uf-telefono'],['u-descripcion','uf-descripcion']].forEach(([id,fid]) => {
-      const el = document.getElementById(id);
-      const f = document.getElementById(fid);
-      if (!el.value.trim()) { f.classList.add('has-error'); ok = false; }
-      else f.classList.remove('has-error');
-    });
-    const edif = document.getElementById('u-edificio');
-    const fedif = document.getElementById('uf-edificio');
-    if (!edif.value) { fedif.classList.add('has-error'); ok = false; }
-    else fedif.classList.remove('has-error');
-    if (!ok) { document.querySelector('#urgencias .has-error')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
-    const nombre = document.getElementById('u-nombre').value.trim();
-    const telefono = document.getElementById('u-telefono').value.trim();
-    const edificio = edif.value;
-    const piso = document.getElementById('u-piso').value.trim();
-    const depto = document.getElementById('u-depto').value.trim();
-    const descripcion = document.getElementById('u-descripcion').value.trim();
-    const ubicacion = [piso && 'Piso ' + piso, depto && 'Dpto ' + depto].filter(Boolean).join(' ');
-    const emoji = urgTipo === 'urgente' ? '🚨 *URGENTE*' : '🔔 Normal';
-    const msg = emoji + ' — Solicitud de reparación\n\n*Edificio:* ' + edificio + (ubicacion ? '\n*Ubicación:* ' + ubicacion : '') + '\n*Nombre:* ' + nombre + '\n*Teléfono:* ' + telefono + '\n\n*Problema:*\n' + descripcion + '\n\n_Enviado desde castanoservicios.com.ar_';
-    window.open('https://wa.me/5491531606302?text=' + encodeURIComponent(msg), '_blank');
-  }
-
-  function enviarWhatsApp() {
-    const nombre = document.getElementById('nombre').value;
-    const telefono = document.getElementById('telefono').value;
-    const servicio = document.getElementById('servicio').value;
-    const barrio = document.getElementById('barrio').value;
-    const descripcion = document.getElementById('descripcion').value;
-    let msg = 'Hola! Quisiera pedir un presupuesto.';
-    if (nombre) msg += '\nNombre: ' + nombre;
-    if (telefono) msg += '\nTeléfono: ' + telefono;
-    if (servicio) msg += '\nServicio: ' + servicio;
-    if (barrio) msg += '\nBarrio: ' + barrio;
-    if (descripcion) msg += '\nDescripción: ' + descripcion;
-    window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
-  }
-</script>
-
-</body>
-</html>
+  <!-- NOSOTROS -->
+  <div class="ac-item" id="ac-nosotros">
+    <button class="ac-header" onclick="toggleAc('ac-nosotros')">
+      <span class="ac-icon"><i class="fa-solid fa-users"></i></span>
+      <span class="ac-title">Quiénes somos</span>
+      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
+    </button>
+    <div class="ac-body">
+      <div class="ac-content">
+        <p class="section-eyebrow">Quiénes somos</p>
+        <h2>Un equipo completo a tu disposición</h2>
+        <div class="nosotros-inner">
+          <div class="nosotros-texto">
+            <p>Somos Castaño Servicios Generales, empresa de mantenimiento edilicio con base en CABA. Trabajamos con administradores de edificios, consorcios y particulares en toda la ciudad.</p>
+            <p>Nuestro equipo está formado por plomeros, electricistas, pintores y albañiles con experiencia. Somos monotributistas registrados y facturamos cada trabajo.</p>
+            <ul class="nosotros-lista">
+              <li>
+                <div class="nosotros-check">✓</div>
+                <div>
+                  <div class="nosotros-item-titulo">Equipo propio y de confianza</div>
+                  <div class="nosotros-item-desc">Personal estable con experiencia en mantenimiento edilicio en CABA.</div>
+                </div>
+              </li>
+              <li>
+                <div class="nosotros-check">✓</div>
+                <div>
+                  <div class="nosotros-item-titulo">Presupuesto previo</div>
+                  <div class="nosotros-item-desc">Cotizamos el trabajo antes de arrancar, sin sorpresas.</div>
+                </div>
+              </li>
+              <li>
+                <div class="nosotros-check">✓</div>
+                <div>
+                  <div class="nosotros-item-titulo">Garantía por escrito y memoria de obra</div>
+                  <div class="nosotros-item-desc">Entregamos garantía escrita y memoria de obra en cada trabajo realizado.</div>
+                </div>
+              </li>
+              <li>
+                <div class="nosotros-check">✓</div>
+                <div>
+                  <div class="nosotros-item-titulo">Facturación en todos los trabajos</div>
+                  <div class="nosotros-item-desc">Monotributistas registrados. Emitimos factura por cada t
