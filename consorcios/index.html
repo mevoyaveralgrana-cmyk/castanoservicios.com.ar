@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mantenimiento de consorcios en CABA. App propia para que los vecinos reporten problemas. Abono mensual, facturación garantizada." />
+  <title>Mantenimiento de Consorcios | Castaño Servicios Generales</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --azul: #0d2137; --naranja: #e87722; --naranja-dark: #c9651a;
+      --gris-claro: #f5f5f5; --gris-medio: #555; --blanco: #ffffff;
+      --texto: #333; --verde: #25D366;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--texto); background: var(--blanco); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(0,0,0,0.97); display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-logo-text { color: #fff; font-size: 15px; font-weight: 700; line-height: 1.2; }
+    .nav-logo-text span { display: block; font-weight: 400; font-size: 12px; opacity: 0.8; }
+    .nav-cta { background: var(--naranja); color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600; white-space: nowrap; }
+    .hero { background: var(--azul); padding: 100px 24px 64px; text-align: center; }
+    .hero-tag { display: inline-block; background: rgba(232,119,34,0.15); color: var(--naranja); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { color: #fff; font-size: clamp(26px,5vw,44px); font-weight: 800; line-height: 1.2; max-width: 700px; margin: 0 auto 20px; }
+    .hero h1 span { color: var(--naranja); }
+    .hero-sub { color: rgba(255,255,255,0.7); font-size: 17px; max-width: 520px; margin: 0 auto 36px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--naranja); color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 700; }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); padding: 13px 28px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; }
+    .stats { background: #000; padding: 28px 24px; display: flex; justify-content: center; flex-wrap: wrap; gap: 0; }
+    .stat { text-align: center; padding: 12px 32px; border-right: 1px solid rgba(255,255,255,0.15); }
+    .stat:last-child { border-right: none; }
+    .stat-num { color: #29ABE2; font-size: 24px; font-weight: 800; }
+    .stat-label { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 2px; }
+    section { padding: 64px 24px; }
+    .section-eyebrow { text-align: center; color: var(--naranja); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    h2 { text-align: center; color: var(--azul); font-size: clamp(22px,4vw,32px); font-weight: 800; margin-bottom: 14px; line-height: 1.25; }
+    .section-sub { text-align: center; color: var(--gris-medio); font-size: 16px; max-width: 560px; margin: 0 auto 48px; line-height: 1.6; }
+    .problema { background: var(--gris-claro); }
+    .problema-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .problema-card { background: #fff; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .problema-icon { font-size: 36px; margin-bottom: 12px; }
+    .problema-card h3 { color: var(--azul); font-size: 15px; margin-bottom: 8px; }
+    .problema-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
+    .app-section { background: var(--azul); }
+    .app-section h2 { color: #fff; }
+    .app-section .section-sub { color: rgba(255,255,255,0.7); }
+    .app-demo { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .app-mockup { background: #1e3257; border-radius: 20px; padding: 24px; border: 1px solid rgba(255,255,255,0.1); }
+    .mockup-header { background: #12213a; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .mockup-logo { width: 36px; height: 36px; background: var(--naranja); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; overflow: hidden; }
+    .mockup-logo img { width: 28px; height: 28px; object-fit: contain; }
+    .mockup-title { color: #fff; font-size: 13px; font-weight: 700; }
+    .mockup-sub { color: rgba(255,255,255,0.5); font-size: 11px; }
+    .mockup-field { background: #12213a; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; color: rgba(255,255,255,0.4); font-size: 13px; }
+    .mockup-field.filled { color: #fff; }
+    .mockup-field label { display: block; font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
+    .mockup-btn { width: 100%; background: var(--verde); color: #fff; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .app-features { list-style: none; }
+    .app-features li { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 28px; }
+    .feature-icon { width: 44px; height: 44px; flex-shrink: 0; background: rgba(232,119,34,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .feature-text h3 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .feature-text p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.5; }
+    .como-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .como-card { text-align: center; padding: 32px 20px; border-radius: 12px; background: var(--gris-claro); }
+    .como-num { width: 48px; height: 48px; background: var(--naranja); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; font-weight: 800; margin: 0 auto 16px; }
+    .como-card h3 { color: var(--azul); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .como-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
+    .servicios { background: var(--gris-claro); }
+    .servicios-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .servicio-card { background: #fff; border-radius: 12px; padding: 22px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .servicio-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+    .servicio-card h3 { color: var(--azul); font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .servicio-card p { color: var(--gris-medio); font-size: 12px; line-height: 1.4; }
+    .garantias-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .garantia-item { display: flex; gap: 14px; align-items: flex-start; padding: 20px; background: var(--gris-claro); border-radius: 12px; }
+    .garantia-check { width: 32px; height: 32px; flex-shrink: 0; background: var(--naranja); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
+    .garantia-item h3 { color: var(--azul); font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .garantia-item p { color: var(--gris-medio); font-size: 12px; line-height: 1.4; }
+    .cta-final { background: var(--naranja); padding: 64px 24px; text-align: center; }
+    .cta-final h2 { color: #fff; font-size: clamp(22px,4vw,34px); margin-bottom: 14px; }
+    .cta-final p { color: rgba(255,255,255,0.85); font-size: 16px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .btn-blanco { display: inline-block; background: #fff; color: var(--naranja); padding: 15px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 800; }
+    footer { background: #000; color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 13px; }
+    footer a { color: var(--naranja); text-decoration: none; }
+    @media (max-width: 640px) { .app-demo { grid-template-columns: 1fr; } .app-mockup { order: -1; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="https://castanoservicios.com.ar" class="nav-logo">
+    <img src="/logo.png" alt="Castaño Servicios Generales" />
+    <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
+  </a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quiero%20info%20sobre%20mantenimiento%20de%20consorcio" class="nav-cta" target="_blank">📲 Consultá ahora</a>
+</nav>
+<section class="hero">
+  <div class="hero-tag">Para administradores de edificios</div>
+  <h1>El consorcio que administrás merece un servicio <span>que responde</span></h1>
+  <p class="hero-sub">Mantenimiento integral, facturación en cada trabajo y una app propia para que los vecinos reporten problemas — sin llamados a deshora.</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/541122967045?text=Hola!%20Quiero%20info%20sobre%20mantenimiento%20de%20consorcio" class="btn-primary" target="_blank">📲 Hablar con Castaño</a>
+    <a href="#como-funciona" class="btn-outline">Ver cómo funciona</a>
+  </div>
+</section>
+<div class="stats">
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Trabajos facturados</div></div>
+  <div class="stat"><div class="stat-num">24 hs</div><div class="stat-label">Atención urgencias</div></div>
+  <div class="stat"><div class="stat-num">CABA</div><div class="stat-label">Toda la ciudad</div></div>
+  <div class="stat"><div class="stat-num">App</div><div class="stat-label">Propia para vecinos</div></div>
+</div>
+<section class="problema">
+  <p class="section-eyebrow">El problema de hoy</p>
+  <h2>Gestionar un edificio consume tu tiempo</h2>
+  <p class="section-sub">Sin un sistema claro, los reclamos de vecinos se pierden, los trabajos quedan sin seguimiento y vos terminás apagando incendios todo el día.</p>
+  <div class="problema-grid">
+    <div class="problema-card"><div class="problema-icon">📱</div><h3>Llamados a cualquier hora</h3><p>Los vecinos te llaman y te mandan mensajes a cualquier hora. Los reclamos se acumulan sin orden.</p></div>
+    <div class="problema-card"><div class="problema-icon">🔧</div><h3>Trabajos sin seguimiento</h3><p>Sin memoria de obra ni garantía escrita, es difícil saber qué se hizo, cuándo y con qué resultado.</p></div>
+    <div class="problema-card"><div class="problema-icon">🧾</div><h3>Proveedores que no facturan</h3><p>La falta de facturación complica la rendición de cuentas ante el consorcio y expone tu gestión.</p></div>
+  </div>
+</section>
+<section class="app-section">
+  <p class="section-eyebrow">La solución</p>
+  <h2>Una app para que tus vecinos reporten problemas</h2>
+  <p class="section-sub">Los edificios que trabajan con Castaño tienen acceso a una app donde cada vecino puede solicitar reparaciones. Vos recibís todo organizado por WhatsApp.</p>
+  <div class="app-demo">
+    <div class="app-mockup">
+      <div class="mockup-header">
+        <div class="mockup-logo"><img src="/logo.png" alt="Logo" onerror="this.parentElement.textContent='🔧'"></div>
+        <div><div class="mockup-title">Castaño Servicios Generales</div><div class="mockup-sub">Solicitud de urgencias y reparaciones</div></div>
+      </div>
+      <div class="mockup-field filled"><label>Edificio</label>Lacroze 3697</div>
+      <div class="mockup-field filled"><label>Nombre</label>María González · Piso 4 Dpto B</div>
+      <div class="mockup-field filled"><label>Problema</label>Pérdida de agua en el baño, gotea desde ayer a la tarde</div>
+      <button class="mockup-btn">📲 Enviar reclamo por WhatsApp</button>
+    </div>
+    <ul class="app-features">
+      <li><div class="feature-icon">📲</div><div class="feature-text"><h3>El vecino completa el formulario</h3><p>Desde el celular, en segundos. Sin llamar, sin buscar un número.</p></div></li>
+      <li><div class="feature-icon">💬</div><div class="feature-text"><h3>Vos recibís el reclamo organizado</h3><p>Llega por WhatsApp con edificio, ubicación, nombre y descripción del problema.</p></div></li>
+      <li><div class="feature-icon">🛠️</div><div class="feature-text"><h3>Coordinamos y resolvemos</h3><p>Nuestro equipo va al edificio, hace el trabajo y entrega garantía por escrito.</p></div></li>
+      <li><div class="feature-icon">🧾</div><div class="feature-text"><h3>Factura por cada trabajo</h3><p>Somos monotributistas registrados. Cada trabajo tiene su factura para tu rendición.</p></div></li>
+    </ul>
+  </div>
+</section>
+<section id="como-funciona">
+  <p class="section-eyebrow">Así trabajamos</p>
+  <h2>Simple para el administrador, profesional para el consorcio</h2>
+  <p class="section-sub">Tres pasos para tener tu edificio en orden.</p>
+  <div class="como-grid">
+    <div class="como-card"><div class="como-num">1</div><h3>Nos contactás</h3><p>Coordinamos una visita sin costo para conocer el edificio y armar un plan de mantenimiento.</p></div>
+    <div class="como-card"><div class="como-num">2</div><h3>Activamos la app</h3><p>Los vecinos reciben el link para reportar problemas. Vos empezás a recibir todo organizado.</p></div>
+    <div class="como-card"><div class="como-num">3</div><h3>Nosotros nos ocupamos</h3><p>Resolvemos cada reclamo, entregamos garantía escrita y facturamos cada trabajo realizado.</p></div>
+  </div>
+</section>
+<section class="servicios">
+  <p class="section-eyebrow">Lo que hacemos</p>
+  <h2>Todos los servicios que tu edificio necesita</h2>
+  <p class="section-sub">Un solo proveedor para todo el mantenimiento. Sin tener que buscar distintos gremios.</p>
+  <div class="servicios-grid">
+    <div class="servicio-card"><span class="servicio-icon">🔧</span><h3>Plomería</h3><p>Cañerías, tanques, pérdidas y emergencias.</p></div>
+    <div class="servicio-card"><span class="servicio-icon">⚡</span><h3>Electricidad</h3><p>Tableros, instalaciones y emergencias eléctricas.</p></div>
+    <div class="servicio-card"><span class="servicio-icon">🎨</span><h3>Pintura</h3><p>Interior, exterior, enduídos y cielorrasos.</p></div>
+    <div class="servicio-card"><span class="servicio-icon">🏗️</span><h3>Albañilería</h3><p>Reparaciones estructurales y revestimientos.</p></div>
+    <div class="servicio-card"><span class="servicio-icon">🌧️</span><h3>Impermeabilización</h3><p>Terrazas, techos y medianeras húmedas.</p></div>
+    <div class="servicio-card"><span class="servicio-icon">🐀</span><h3>Fumigación</h3><p>Con habilitación oficial. Cucarachas, ratas y más.</p></div>
+  </div>
+</section>
+<section>
+  <p class="section-eyebrow">Por qué elegir Castaño</p>
+  <h2>Lo que ningún otro proveedor te da junto</h2>
+  <p class="section-sub">Trabajamos con administradores que necesitan previsibilidad, documentación y un equipo que cumple.</p>
+  <div class="garantias-grid">
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>App de reclamos para vecinos</h3><p>Exclusiva para edificios que trabajan con nosotros. Sin costo adicional.</p></div></div>
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Factura por cada trabajo</h3><p>Monotributistas registrados. Rendí cuentas sin problemas.</p></div></div>
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Garantía escrita y memoria de obra</h3><p>Documentamos cada trabajo. Sabés qué se hizo, cuándo y con qué materiales.</p></div></div>
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Presupuesto antes de arrancar</h3><p>Sin sorpresas. Aprobás el monto antes de que empecemos.</p></div></div>
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Equipo propio y estable</h3><p>No tercerizamos. Siempre el mismo equipo que conoce tu edificio.</p></div></div>
+    <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Atención de urgencias 24 hs</h3><p>Los edificios con abono tienen prioridad ante cualquier emergencia.</p></div></div>
+  </div>
+</section>
+<section class="cta-final">
+  <h2>¿Querés probarlo sin compromiso?</h2>
+  <p>Coordinamos una visita al edificio, evaluamos el estado y te presentamos una propuesta de mantenimiento. Sin costo.</p>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quiero%20info%20sobre%20mantenimiento%20de%20consorcio%20para%20mi%20edificio" class="btn-blanco" target="_blank">📲 Escribinos por WhatsApp</a>
+</section>
+<footer>
+  <p><a href="https://castanoservicios.com.ar">castanoservicios.com.ar</a> · Castaño Servicios Generales · casta.servicios.generales@gmail.com · 11 2296-7045</p>
+  <p style="margin-top:8px">© 2025 Castaño Servicios Generales · Mantenimiento edilicio integral en CABA</p>
+</footer>
+</body>
+</html>
