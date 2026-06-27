@@ -3,364 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, destapación, carpintería, impermeabilización y fumigación. Atención 24 horas para consorcios y particulares." />
-  <title>Castaño Servicios Generales | Mantenimiento Edilicio CABA</title>
+  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, destapación, carpintería, impermeabilización y fumigación." />
+  <title>Mantenimiento Edilicio CABA | Castaño Servicios Generales</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --azul: #0d2137;
-      --azul-claro: #0d2137;
-      --naranja: #e87722;
-      --gris-oscuro: #1a1a1a;
-      --gris-medio: #444;
-      --gris-claro: #f5f5f5;
-      --blanco: #ffffff;
-      --texto: #333;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--texto); background: var(--blanco); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --azul: #0d2137; --azul-claro: #0d2137; --naranja: #e87722;
+  --gris-oscuro: #1a1a1a; --gris-medio: #444; --gris-claro: #f5f5f5;
+  --blanco: #ffffff; --texto: #333;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--texto); background: var(--blanco); }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(0,0,0,0.97);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; gap: 16px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 40px; width: auto; }
+.nav-logo-text { color: var(--blanco); font-size: 15px; font-weight: 700; line-height: 1.2; }
+.nav-logo-text span { display: block; font-weight: 400; font-size: 12px; opacity: 0.8; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--naranja); }
+.nav-cta {
+  background: var(--naranja); color: var(--blanco);
+  padding: 8px 18px; border-radius: 6px; text-decoration: none;
+  font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s;
+}
+.nav-cta:hover { background: #c9651a; }
+@media (max-width: 640px) { .nav-links { display: none; } .nav-logo-text { font-size: 13px; } }
+footer {
+  background: var(--gris-oscuro); color: rgba(255,255,255,0.6);
+  text-align: center; padding: 24px 16px; font-size: 13px; line-height: 1.8;
+}
+footer strong { color: var(--blanco); }
+.page-hero { background: var(--azul); padding: 100px 24px 48px; text-align: center; }
+.page-eyebrow { color: var(--naranja); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+.page-hero h1 { color: var(--blanco); font-size: 32px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+.page-hero p { color: rgba(255,255,255,0.7); font-size: 16px; max-width: 560px; margin: 0 auto; }
+.page-body { padding: 48px 24px; max-width: 1040px; margin: 0 auto; }
+h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+.section-sub { text-align: center; color: var(--gris-medio); font-size: 15px; max-width: 560px; margin: 0 auto 40px; }
+.btn-primary {
+  background: var(--naranja); color: var(--blanco);
+  padding: 12px 24px; border-radius: 8px; text-decoration: none;
+  font-size: 15px; font-weight: 600; transition: background 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: #c9651a; }
+.btn-wa {
+  background: #25D366; color: #fff; border: none;
+  border-radius: 8px; padding: 14px 28px; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: background 0.18s; display: inline-flex; align-items: center; gap: 10px;
+}
+.btn-wa:hover { background: #1ebe5a; }
+.cta-bar { text-align: center; margin-top: 40px; padding: 40px 24px; background: var(--gris-claro); }
+.cta-bar h3 { color: var(--azul); font-size: 20px; font-weight: 800; margin-bottom: 16px; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(0,0,0,0.97);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 24px; gap: 16px;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 40px; width: auto; }
-    .nav-logo-text { color: var(--blanco); font-size: 15px; font-weight: 700; line-height: 1.2; }
-    .nav-logo-text span { display: block; font-weight: 400; font-size: 12px; opacity: 0.8; }
-    .nav-links { display: flex; gap: 20px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--naranja); }
-    .nav-cta {
-      background: var(--naranja); color: var(--blanco);
-      padding: 8px 18px; border-radius: 6px; text-decoration: none;
-      font-size: 14px; font-weight: 600; white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: #c9651a; }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-logo-text { font-size: 13px; }
-    }
-
-    /* HERO */
-    .hero { position: relative; min-height: auto; padding-top: 64px; }
-    .hero-img {
-      position: relative; width: 100%; height: auto; max-height: 520px;
-      object-fit: cover; object-position: center; display: block;
-    }
-    .hero-overlay {
-      background: #1a1a1a; padding: 16px 24px;
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: var(--naranja); color: var(--blanco);
-      padding: 11px 22px; border-radius: 8px; text-decoration: none;
-      font-size: 14px; font-weight: 600; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #c9651a; }
-    .btn-secondary {
-      background: transparent; color: var(--blanco);
-      border: 2px solid rgba(255,255,255,0.5);
-      padding: 10px 22px; border-radius: 8px; text-decoration: none;
-      font-size: 14px; font-weight: 600; transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--blanco); }
-
-    /* STATS */
-    .stats {
-      background: #000000; padding: 24px;
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
-    }
-    .stat {
-      text-align: center; padding: 12px 28px;
-      border-right: 1px solid rgba(255,255,255,0.15);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num { color: #29ABE2; font-size: 22px; font-weight: 800; }
-    .stat-label { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
-
-    /* BIFURCACIÓN */
-    .bifurcacion { background: #f5f5f5; padding: 48px 24px; }
-    .bifurcacion h2 { font-size: 22px; text-align: center; color: var(--azul); margin-bottom: 8px; }
-    .bifurcacion-sub { text-align: center; color: var(--gris-medio); font-size: 15px; margin-bottom: 32px; }
-    .bifurcacion-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 20px; max-width: 700px; margin: 0 auto;
-    }
-    .bif-card {
-      background: var(--blanco); border-radius: 14px;
-      padding: 28px 24px; text-align: center;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-      text-decoration: none; border: 2px solid transparent;
-      transition: border-color 0.2s, transform 0.2s;
-      display: block;
-    }
-    .bif-card:hover { border-color: var(--naranja); transform: translateY(-2px); }
-    .bif-card .bif-icon { font-size: 40px; margin-bottom: 14px; }
-    .bif-card .bif-titulo { font-size: 16px; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
-    .bif-card .bif-desc { font-size: 13px; color: var(--gris-medio); line-height: 1.4; }
-    .bif-card .bif-btn {
-      display: inline-block; margin-top: 16px;
-      background: var(--naranja); color: var(--blanco);
-      padding: 9px 20px; border-radius: 7px;
-      font-size: 13px; font-weight: 700;
-    }
-    .bif-card.vecino .bif-btn { background: var(--azul); }
-    @media (max-width: 520px) { .bifurcacion-grid { grid-template-columns: 1fr; } }
-
-    /* ACORDEÓN */
-    .acordeon { border-top: 2px solid #e8e8e8; }
-    .ac-item { border-bottom: 1px solid #e0e0e0; }
-    .ac-header {
-      width: 100%; display: flex; align-items: center; gap: 16px;
-      padding: 22px 28px; background: var(--blanco); border: none;
-      cursor: pointer; text-align: left; transition: background 0.2s;
-    }
-    .ac-header:hover { background: #fafafa; }
-    .ac-item.open > .ac-header { background: var(--azul); }
-    .ac-icon {
-      font-size: 18px; color: var(--naranja);
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(232,119,34,0.1);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: background 0.2s;
-    }
-    .ac-item.open > .ac-header .ac-icon { background: rgba(255,255,255,0.15); color: var(--naranja); }
-    .ac-title { flex: 1; font-size: 17px; font-weight: 700; color: var(--azul); }
-    .ac-item.open > .ac-header .ac-title { color: var(--blanco); }
-    .ac-chevron { font-size: 13px; color: #aaa; transition: transform 0.3s; flex-shrink: 0; }
-    .ac-item.open > .ac-header .ac-chevron { transform: rotate(180deg); color: rgba(255,255,255,0.7); }
-    .ac-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
-    .ac-item.open > .ac-body { max-height: 6000px; }
-    .ac-content { padding: 48px 24px; }
-    .ac-content.bg-gris { background: var(--gris-claro); }
-    .ac-content.bg-azul { background: var(--azul); }
-
-    /* helpers secciones */
-    .section-eyebrow {
-      text-align: center; color: var(--naranja); font-size: 12px;
-      font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
-    }
-    h2 {
-      text-align: center; color: var(--azul); font-size: 28px;
-      font-weight: 800; margin-bottom: 12px; line-height: 1.2;
-    }
-    .section-sub {
-      text-align: center; color: var(--gris-medio); font-size: 15px;
-      max-width: 560px; margin: 0 auto 40px;
-    }
-    .bg-azul h2, .bg-azul .section-eyebrow { color: var(--blanco); }
-    .bg-azul .section-sub { color: rgba(255,255,255,0.7); }
-
-    /* SERVICIOS */
-    .servicios-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px; max-width: 1000px; margin: 0 auto;
-    }
-    .servicio-card {
-      background: var(--blanco); border-radius: 10px;
-      padding: 28px 22px; text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .servicio-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
-    .servicio-icon { font-size: 36px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; height: 44px; color: #e87722; }
-    .servicio-card h3 { color: var(--azul); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .servicio-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
-
-    /* NOSOTROS */
-    .nosotros-inner {
-      display: flex; gap: 48px; align-items: center;
-      max-width: 960px; margin: 0 auto; flex-wrap: wrap;
-    }
-    .nosotros-texto { flex: 1; min-width: 280px; }
-    .nosotros-texto p { color: var(--gris-medio); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
-    .nosotros-lista { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .nosotros-lista li { display: flex; gap: 12px; align-items: flex-start; }
-    .nosotros-check {
-      background: var(--naranja); color: var(--blanco);
-      width: 22px; height: 22px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-    }
-    .nosotros-item-titulo { color: var(--azul); font-weight: 700; font-size: 14px; }
-    .nosotros-item-desc { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
-    .nosotros-foto { flex: 1; min-width: 280px; }
-    .nosotros-foto img {
-      width: 100%; border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      object-fit: cover; max-height: 420px;
-    }
-
-    /* TRABAJOS */
-    .trabajos-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px; max-width: 1000px; margin: 0 auto;
-    }
-    .trabajo-card { position: relative; border-radius: 10px; overflow: hidden; cursor: pointer; }
-    .trabajo-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s; }
-    .trabajo-card:hover img { transform: scale(1.04); }
-    .trabajo-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      color: var(--blanco); padding: 20px 14px 12px;
-      font-size: 13px; font-weight: 600;
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
-    .lightbox-close {
-      position: absolute; top: 20px; right: 28px;
-      color: var(--blanco); font-size: 32px; cursor: pointer; line-height: 1;
-    }
-
-    /* PROCESO */
-    .proceso-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px; max-width: 900px; margin: 0 auto;
-    }
-    .proceso-step { text-align: center; }
-    .proceso-num {
-      color: var(--naranja); font-size: 13px; font-weight: 800;
-      letter-spacing: 1px; margin-bottom: 8px;
-    }
-    .proceso-step img {
-      width: 100%; height: 160px; object-fit: cover;
-      border-radius: 8px; margin-bottom: 10px;
-    }
-    .proceso-step p { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; }
-
-    /* URGENCIAS */
-    .urg-form-wrap {
-      max-width: 560px; margin: 0 auto;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px; padding: 28px;
-    }
-    .urg-urgency {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;
-    }
-    .urg-btn {
-      border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05);
-      border-radius: 10px; padding: 12px 10px; cursor: pointer;
-      text-align: center; transition: all 0.18s; color: rgba(255,255,255,0.7);
-    }
-    .urg-btn .u-icon { font-size: 22px; display: block; margin-bottom: 4px; }
-    .urg-btn .u-label { font-size: 13px; font-weight: 700; }
-    .urg-btn .u-sub { font-size: 11px; opacity: 0.7; }
-    .urg-btn.sel-normal { border-color: var(--naranja); background: rgba(232,119,34,0.12); color: #fff; }
-    .urg-btn.sel-urgente { border-color: #e83232; background: rgba(232,50,50,0.1); color: #fff; }
-    .urg-field { margin-bottom: 14px; }
-    .urg-field label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-    .urg-field input, .urg-field select, .urg-field textarea {
-      width: 100%; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15);
-      border-radius: 9px; padding: 11px 14px; font-size: 15px; font-family: inherit;
-      color: #fff; outline: none; transition: border-color 0.15s;
-      -webkit-appearance: none; appearance: none;
-    }
-    .urg-field input::placeholder, .urg-field textarea::placeholder { color: rgba(255,255,255,0.3); }
-    .urg-field input:focus, .urg-field select:focus, .urg-field textarea:focus { border-color: var(--naranja); }
-    .urg-field select option { background: #0d2137; color: #fff; }
-    .urg-field textarea { resize: none; min-height: 90px; line-height: 1.5; }
-    .urg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .urg-submit {
-      width: 100%; background: #25D366; color: #fff; border: none;
-      border-radius: 10px; padding: 15px; font-size: 15px; font-weight: 700;
-      cursor: pointer; margin-top: 6px; display: flex; align-items: center;
-      justify-content: center; gap: 10px; transition: background 0.18s;
-    }
-    .urg-submit:hover { background: #1ebe5a; }
-    .urg-field.has-error input, .urg-field.has-error select, .urg-field.has-error textarea { border-color: #e83232; }
-    .urg-error { color: #ff6b6b; font-size: 11px; margin-top: 4px; display: none; }
-    .urg-field.has-error .urg-error { display: block; }
-
-    /* CONTACTO */
-    .contacto-inner {
-      display: flex; gap: 48px; max-width: 900px; margin: 0 auto; flex-wrap: wrap;
-    }
-    .contacto-form { flex: 1; min-width: 280px; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--azul); margin-bottom: 6px; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 10px 14px; border: 1.5px solid #ddd;
-      border-radius: 7px; font-size: 14px; color: var(--texto);
-      transition: border-color 0.2s; font-family: inherit;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--azul-claro);
-    }
-    .form-group textarea { height: 90px; resize: vertical; }
-    .btn-whatsapp {
-      width: 100%; background: #25d366; color: var(--blanco);
-      border: none; padding: 13px; border-radius: 8px;
-      font-size: 15px; font-weight: 700; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-whatsapp:hover { background: #1da851; }
-    .contacto-info { flex: 1; min-width: 240px; }
-    .contacto-info h3 { color: var(--azul); font-size: 20px; font-weight: 800; margin-bottom: 24px; }
-    .info-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
-    .info-icon {
-      font-size: 20px; width: 40px; height: 40px;
-      background: var(--gris-claro); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .info-label { font-size: 11px; color: var(--gris-medio); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .info-value { font-size: 15px; color: var(--azul); font-weight: 700; margin-top: 2px; }
-    .btn-wa-grande {
-      display: block; background: var(--naranja); color: var(--blanco);
-      text-align: center; padding: 14px; border-radius: 8px; text-decoration: none;
-      font-size: 15px; font-weight: 700; margin-top: 24px; transition: background 0.2s;
-    }
-    .btn-wa-grande:hover { background: #c9651a; }
-
-    /* FOOTER */
-    footer {
-      background: var(--gris-oscuro); color: rgba(255,255,255,0.6);
-      text-align: center; padding: 24px 16px; font-size: 13px; line-height: 1.8;
-    }
-    footer strong { color: var(--blanco); }
+.hero { position: relative; min-height: auto; padding-top: 64px; }
+.hero-img { position: relative; width: 100%; height: auto; max-height: 520px; object-fit: cover; object-position: center; display: block; }
+.hero-overlay { background: #1a1a1a; padding: 16px 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-secondary {
+  background: transparent; color: var(--blanco);
+  border: 2px solid rgba(255,255,255,0.5);
+  padding: 10px 22px; border-radius: 8px; text-decoration: none;
+  font-size: 14px; font-weight: 600; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--blanco); }
+.stats { background: #000; padding: 24px; display: flex; justify-content: center; gap: 0; flex-wrap: wrap; }
+.stat { text-align: center; padding: 12px 28px; border-right: 1px solid rgba(255,255,255,0.15); }
+.stat:last-child { border-right: none; }
+.stat-num { color: #29ABE2; font-size: 22px; font-weight: 800; }
+.stat-label { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
+.bifurcacion { background: #f5f5f5; padding: 48px 24px; }
+.bifurcacion h2 { font-size: 22px; text-align: center; color: var(--azul); margin-bottom: 8px; }
+.bifurcacion-sub { text-align: center; color: var(--gris-medio); font-size: 15px; margin-bottom: 32px; }
+.bifurcacion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto; }
+.bif-card {
+  background: var(--blanco); border-radius: 14px;
+  padding: 28px 24px; text-align: center;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  text-decoration: none; border: 2px solid transparent;
+  transition: border-color 0.2s, transform 0.2s; display: block;
+}
+.bif-card:hover { border-color: var(--naranja); transform: translateY(-2px); }
+.bif-card .bif-icon { font-size: 40px; margin-bottom: 14px; }
+.bif-card .bif-titulo { font-size: 16px; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+.bif-card .bif-desc { font-size: 13px; color: var(--gris-medio); line-height: 1.4; }
+.bif-card .bif-btn { display: inline-block; margin-top: 16px; background: var(--naranja); color: var(--blanco); padding: 9px 20px; border-radius: 7px; font-size: 13px; font-weight: 700; }
+.bif-card.vecino .bif-btn { background: var(--azul); }
+@media (max-width: 520px) { .bifurcacion-grid { grid-template-columns: 1fr; } }
+.secciones { padding: 48px 24px; }
+.secciones h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.secciones-sub { text-align: center; color: var(--gris-medio); font-size: 15px; margin-bottom: 36px; }
+.secciones-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; max-width: 900px; margin: 0 auto;
+}
+.sec-card {
+  background: var(--gris-claro); border-radius: 12px; padding: 28px 24px;
+  text-decoration: none; border: 2px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; display: block;
+}
+.sec-card:hover { border-color: var(--naranja); box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.sec-icon { font-size: 28px; color: var(--naranja); margin-bottom: 12px; }
+.sec-titulo { font-size: 17px; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+.sec-desc { font-size: 13px; color: var(--gris-medio); line-height: 1.5; }
+.sec-arrow { display: block; margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--naranja); }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <img src="logo.png" alt="Castaño Servicios Generales" />
+  <a href="/" class="nav-logo">
+    <img src="/logo.png" alt="Castaño Servicios Generales" />
     <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="javascript:void(0)" onclick="abrirAc('ac-servicios')">Servicios</a></li>
-    <li><a href="javascript:void(0)" onclick="abrirAc('ac-nosotros')">Nosotros</a></li>
-    <li><a href="javascript:void(0)" onclick="abrirAc('ac-trabajos')">Trabajos</a></li>
-    <li><a href="consorcios/" style="color:var(--naranja);font-weight:700;">Consorcios</a></li>
-    <li><a href="javascript:void(0)" onclick="abrirAc('ac-urgencias')">Reportar problema</a></li>
-    <li><a href="javascript:void(0)" onclick="abrirAc('ac-contacto')">Contacto</a></li>
+    <li><a href="/servicios.html">Servicios</a></li>
+    <li><a href="/nosotros.html">Nosotros</a></li>
+    <li><a href="/trabajos.html">Trabajos</a></li>
+    <li><a href="/consorcios/" style="color:var(--naranja);font-weight:700;">Consorcios</a></li>
+    <li><a href="/urgencias.html">Reportar problema</a></li>
+    <li><a href="/contacto.html">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📲 Presupuesto</a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📱 Presupuesto</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <img src="hero.png" alt="Castaño Servicios Generales — Mantenimiento Edilicio CABA" class="hero-img" />
+  <img src="/hero.png" alt="Castaño Servicios Generales – Mantenimiento Edilicio CABA" class="hero-img" />
   <div class="hero-overlay">
-    <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">Solicitar presupuesto</a>
-    <a href="javascript:void(0)" onclick="abrirAc('ac-servicios')" class="btn-secondary">Ver servicios</a>
+    <a href="/contacto.html" class="btn-primary">Solicitar presupuesto</a>
+    <a href="/servicios.html" class="btn-secondary">Ver servicios</a>
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
   <div class="stat"><div class="stat-num">24 hs</div><div class="stat-label">Disponibilidad</div></div>
   <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Años de experiencia</div></div>
@@ -368,18 +146,17 @@
   <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Con factura</div></div>
 </div>
 
-<!-- BIFURCACIÓN -->
 <div class="bifurcacion">
   <h2>¿Qué necesitás?</h2>
   <p class="bifurcacion-sub">Elegí según quién sos</p>
   <div class="bifurcacion-grid">
-    <a href="javascript:void(0)" onclick="abrirAc('ac-contacto')" class="bif-card admin">
+    <a href="/contacto.html" class="bif-card admin">
       <div class="bif-icon">🏢</div>
       <div class="bif-titulo">Soy administrador o propietario</div>
       <div class="bif-desc">Quiero un presupuesto para mantenimiento, reparación o consorcio</div>
       <span class="bif-btn">Pedir presupuesto</span>
     </a>
-    <a href="javascript:void(0)" onclick="abrirAc('ac-urgencias')" class="bif-card vecino">
+    <a href="/urgencias.html" class="bif-card vecino">
       <div class="bif-icon">🚨</div>
       <div class="bif-titulo">Soy vecino de un edificio</div>
       <div class="bif-desc">Quiero reportar un problema en mi departamento o zona común</div>
@@ -388,344 +165,47 @@
   </div>
 </div>
 
-<!-- ACORDEÓN -->
-<div class="acordeon">
-
-  <!-- SERVICIOS -->
-  <div class="ac-item open" id="ac-servicios">
-    <button class="ac-header" onclick="toggleAc('ac-servicios')">
-      <span class="ac-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-      <span class="ac-title">Nuestros servicios</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content bg-gris">
-        <p class="section-eyebrow">Lo que hacemos</p>
-        <h2>Servicios de mantenimiento completos</h2>
-        <p class="section-sub">Resolvemos todo lo que necesita tu edificio o propiedad con un solo llamado.</p>
-        <div class="servicios-grid">
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-wrench"></i></div>
-            <h3>Plomería</h3>
-            <p>Cañerías, tanques de agua, desagotes, canillas y soldadura con plomo. Atención de emergencias.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-bolt"></i></div>
-            <h3>Electricidad</h3>
-            <p>Instalaciones, tableros, reparaciones y emergencias eléctricas.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-paint-roller"></i></div>
-            <h3>Pintura</h3>
-            <p>Interior y exterior, enduídos, cielorrasos y reparación de paredes.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-trowel"></i></div>
-            <h3>Albañilería</h3>
-            <p>Reparaciones estructurales, revestimientos y mampostería en general.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-water"></i></div>
-            <h3>Impermeabilización</h3>
-            <p>Terrazas, techos y medianeras. Solución definitiva a la humedad.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-mosquito"></i></div>
-            <h3>Fumigación</h3>
-            <p>Control de plagas con habilitación oficial. Cucarachas, ratas y más.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-toilet"></i></div>
-            <h3>Destapación</h3>
-            <p>Destapación de cañerías, inodoros y desagotes. Servicio urgente disponible las 24 hs.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-door-open"></i></div>
-            <h3>Carpintería</h3>
-            <p>Puertas, ventanas, placares y muebles. Reparaciones y colocaciones en madera y aluminio.</p>
-          </div>
-          <div class="servicio-card">
-            <div class="servicio-icon"><i class="fa-solid fa-building"></i></div>
-            <h3>Mantenimiento de consorcios</h3>
-            <p>Abono mensual con visitas preventivas y atención prioritaria.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="secciones">
+  <h2>Más información</h2>
+  <p class="secciones-sub">Todo lo que necesitás saber sobre nuestro trabajo</p>
+  <div class="secciones-grid">
+    <a href="/servicios.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+      <div class="sec-titulo">Nuestros servicios</div>
+      <div class="sec-desc">Plomería, electricidad, pintura, albañilería, fumigación y más.</div>
+      <span class="sec-arrow">Ver servicios →</span>
+    </a>
+    <a href="/nosotros.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="sec-titulo">Quiénes somos</div>
+      <div class="sec-desc">Equipo propio, con experiencia, facturation y garantía por escrito.</div>
+      <span class="sec-arrow">Conocernos →</span>
+    </a>
+    <a href="/trabajos.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-images"></i></div>
+      <div class="sec-titulo">Trabajos realizados</div>
+      <div class="sec-desc">Galería de trabajos recientes en edificios y propiedades de CABA.</div>
+      <span class="sec-arrow">Ver galería →</span>
+    </a>
+    <a href="/proceso.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-list-check"></i></div>
+      <div class="sec-titulo">Cómo trabajamos</div>
+      <div class="sec-desc">Proceso simple y transparente: contacto, visita, presupuesto, ejecución.</div>
+      <span class="sec-arrow">Ver proceso →</span>
+    </a>
+    <a href="/urgencias.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <div class="sec-titulo">Reportar urgencia</div>
+      <div class="sec-desc">¿Tenés un problema ahora? Completá el formulario y te contactamos.</div>
+      <span class="sec-arrow">Reportar →</span>
+    </a>
+    <a href="/contacto.html" class="sec-card">
+      <div class="sec-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div class="sec-titulo">Contacto y presupuesto</div>
+      <div class="sec-desc">Pedí tu presupuesto sin compromiso. Respondemos rápido.</div>
+      <span class="sec-arrow">Contactar →</span>
+    </a>
   </div>
-
-  <!-- NOSOTROS -->
-  <div class="ac-item" id="ac-nosotros">
-    <button class="ac-header" onclick="toggleAc('ac-nosotros')">
-      <span class="ac-icon"><i class="fa-solid fa-users"></i></span>
-      <span class="ac-title">Quiénes somos</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content">
-        <p class="section-eyebrow">Quiénes somos</p>
-        <h2>Un equipo completo a tu disposición</h2>
-        <div class="nosotros-inner">
-          <div class="nosotros-texto">
-            <p>Somos Castaño Servicios Generales, empresa de mantenimiento edilicio con base en CABA. Trabajamos con administradores de edificios, consorcios y particulares en toda la ciudad.</p>
-            <p>Nuestro equipo está formado por plomeros, electricistas, pintores y albañiles con experiencia. Somos monotributistas registrados y facturamos cada trabajo.</p>
-            <ul class="nosotros-lista">
-              <li>
-                <div class="nosotros-check">✓</div>
-                <div>
-                  <div class="nosotros-item-titulo">Equipo propio y de confianza</div>
-                  <div class="nosotros-item-desc">Personal estable con experiencia en mantenimiento edilicio en CABA.</div>
-                </div>
-              </li>
-              <li>
-                <div class="nosotros-check">✓</div>
-                <div>
-                  <div class="nosotros-item-titulo">Presupuesto previo</div>
-                  <div class="nosotros-item-desc">Cotizamos el trabajo antes de arrancar, sin sorpresas.</div>
-                </div>
-              </li>
-              <li>
-                <div class="nosotros-check">✓</div>
-                <div>
-                  <div class="nosotros-item-titulo">Garantía por escrito y memoria de obra</div>
-                  <div class="nosotros-item-desc">Entregamos garantía escrita y memoria de obra en cada trabajo realizado.</div>
-                </div>
-              </li>
-              <li>
-                <div class="nosotros-check">✓</div>
-                <div>
-                  <div class="nosotros-item-titulo">Facturación en todos los trabajos</div>
-                  <div class="nosotros-item-desc">Monotributistas registrados. Emitimos factura por cada trabajo.
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="nosotros-foto">
-            <img src="nosotros.jpg" alt="Equipo Castaño Servicios Generales" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TRABAJOS -->
-  <div class="ac-item" id="ac-trabajos">
-    <button class="ac-header" onclick="toggleAc('ac-trabajos')">
-      <span class="ac-icon"><i class="fa-solid fa-images"></i></span>
-      <span class="ac-title">Trabajos realizados</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content bg-gris">
-        <p class="section-eyebrow">Galería</p>
-        <h2>Trabajos realizados</h2>
-        <p class="section-sub">Algunos de nuestros trabajos recientes en edificios y propiedades de CABA.</p>
-        <div class="trabajos-grid">
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo1.jpg')">
-            <img src="trabajo1.jpg" alt="Trabajo 1" />
-            <div class="trabajo-label">Plomería</div>
-          </div>
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo2.jpg')">
-            <img src="trabajo2.jpg" alt="Trabajo 2" />
-            <div class="trabajo-label">Pintura</div>
-          </div>
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo3.jpg')">
-            <img src="trabajo3.jpg" alt="Trabajo 3" />
-            <div class="trabajo-label">Electric1dad</div>
-          </div>
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo4.jpg')">
-            <img src="trabajo4.jpg" alt="Trabajo 4" />
-            <div class="trabajo-label">Impermeabilización</div>
-          </div>
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo5.jpg')">
-            <img src="trabajo5.jpg" alt="Trabajo 5" />
-            <div class="trabajo-label">Albañilería</div>
-          </div>
-          <div class="trabajo-card" onclick="abrirLightbox('trabajo6.jpg')">
-            <img src="trabajo6.jpg" alt="Trabajo 6" />
-            <div class="trabajo-label">Fumigación</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROCESO -->
-  <div class="ac-item" id="ac-proceso">
-    <button class="ac-header" onclick="toggleAc('ac-proceso')">
-      <span class="ac-icon"><i class="fa-solid fa-list-check"></i></span>
-      <span class="ac-title">Cómo trabajamos</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content bg-azul">
-        <p class="section-eyebrow">Proceso</p>
-        <h2>Simple y transparente</h2>
-        <p class="section-sub">Así es cómo organizamos cada trabajo.</p>
-        <div class="proceso-grid">
-          <div class="proceso-step">
-            <div class="proceso-num">01</div>
-            <img src="proceso1.jpg" alt="Contacto" />
-            <p>Nos contactás por WhatsApp o teléfono</p>
-          </div>
-          <div class="proceso-step">
-            <div class="proceso-num">02</div>
-            <img src="proceso2.jpg" alt="Visita" />
-            <p>Coordinamos una visita sin costo</p>
-          </div>
-          <div class="proceso-step">
-            <div class="proceso-num">03</div>
-            <img src="proceso3.jpg" alt="Presupuesto" />
-            <p>Enviamos presupuesto detallado</p>
-          </div>
-          <div class="proceso-step">
-            <div class="proceso-num">04</div>
-            <img src="proceso4.jpg" alt="Trabajo" />
-            <p>Ejecutamos el trabajo y entregamos garantía</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- URGENCIAS -->
-  <div class="ac-item" id="ac-urgencias">
-    <button class="ac-header" onclick="toggleAc('ac-urgencias')">
-      <span class="ac-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
-      <span class="ac-title">Reportar problema urgente</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content bg-azul">
-        <p class="section-eyebrow">Urgencias 24hs</p>
-        <h2>¿Tenés un problema ahora?</h2>
-        <p class="section-sub">Completá el formulario y te contactamos de inmediato.</p>
-        <div class="urg-form-wrap">
-          <div class="urg-urgency">
-            <button type="button" class="urg-btn sel-normal" onclick="selUrgencia('normal')">
-              <span class="u-icon">🔧</span>
-              <span class="u-label">Normal</span>
-              <span class="u-sub">en el día</span>
-            </button>
-            <button type="button" class="urg-btn" onclick="selUrgencia('urgente')">
-              <span class="u-icon">🚨</span>
-              <span class="u-label">Urgente</span>
-              <span class="u-sub">ahora mismo</span>
-            </button>
-          </div>
-          <input type="hidden" id="urg-tipo" value="normal" />
-          <div class="urg-field" id="f-nombre">
-            <label>Nombre</label>
-            <input type="text" id="urg-nombre" placeholder="Tu nombre" />
-            <div class="urg-error">Campo requerido</div>
-          </div>
-          <div class="urg-row">
-            <div class="urg-field" id="f-piso">
-              <label>Piso / Dpto</label>
-              <input type="text" id="urg-piso" placeholder="Ej: 3°B" />
-              <div class="urg-error">Campo requerido</div>
-            </div>
-            <div class="urg-field" id="f-tel">
-              <label>Teléfono</label>
-              <input type="tel" id="urg-tel" placeholder="11 XXXX-XXXX" />
-              <div class="urg-error">Campo requerido</div>
-            </div>
-          </div>
-          <div class="urg-field" id="f-problema">
-            <label>¿Qué pasó?</label>
-            <textarea id="urg-problema" placeholder="Describí el problema brevemente..."></textarea>
-            <div class="urg-error">Campo requerido</div>
-          </div>
-          <button class="urg-submit" onclick="enviarUrgencia()">
-            <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTACTO -->
-  <div class="ac-item" id="ac-contacto">
-    <button class="ac-header" onclick="toggleAc('ac-contacto')">
-      <span class="ac-icon"><i class="fa-solid fa-envelope"></i></span>
-      <span class="ac-title">Contacto y presupuesto</span>
-      <span class="ac-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-    </button>
-    <div class="ac-body">
-      <div class="ac-content">
-        <p class="section-eyebrow">Contacto</p>
-        <h2>Pedí tu presupuesto</h2>
-        <div class="contacto-inner">
-          <div class="contacto-form">
-            <div class="form-group">
-              <label>Nombre</label>
-              <input type="text" id="ct-nombre" placeholder="Tu nombre" />
-            </div>
-            <div class="form-group">
-              <label>Teléfono</label>
-              <input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" />
-            </div>
-            <div class="form-group">
-              <label>Servicio</label>
-              <select id="ct-servicio">
-                <option value="">Seleccioná un servicio</option>
-                <option>Plomería</option>
-                <option>Electricidad</option>
-                <option>Pintura</option>
-                <option>Albañilería</option>
-                <option>Impermeabilización</option>
-                <option>Fumigación</option>
-                <option>Destapación</option>
-                <option>Carpintería</option>
-                <option>Mantenimiento de consorcio</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Mensaje</label>
-              <textarea id="ct-mensaje" placeholder="Contanos qué necesitás..."></textarea>
-            </div>
-            <button class="btn-whatsapp" onclick="enviarContacto()">
-              <i class="fa-brands fa-paper-plane"></i> Enviar por WhatsApp
-            </button>
-          </div>
-          <div class="contacto-info">
-            <h3>También podés contactarnos:</h3>
-            <div class="info-item">
-              <div class="info-icon"><i class="fa-solid fa-phone" style="color:var(--naranja)"></i></div>
-              <div>
-                <div class="info-label">Teléfono</div>
-                <div class="info-value">11 2296-7045</div>
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fa-solid fa-envelope" style="color:var(--naranja)"></i></div>
-              <div>
-                <div class="info-label">Email</div>
-                <div class="info-value">info@castanoservicios.com.ar</div>
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fa-solid fa-location-dot" style="color:var(--naranja)"></i></div>
-              <div>
-                <div class="info-label">Zona</div>
-                <div class="info-value">CABA y alrededores</div>
-              </div>
-            </div>
-            <a href="tel:+541122967045" class="btn-wa-grande">
-              <i class="fa-solid fa-phone"></i> Llamanos ahora
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /acordeon -->
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="cerrarLightbox()">
-  <span class="lightbox-close">&times;</span>
-  <img id="lightbox-img" src="" alt="" />
 </div>
 
 <footer>
@@ -733,56 +213,5 @@
   Mantenimiento edilicio en CABA &middot; Tel: 11 2296-7045 &middot; info@castanoservicios.com.ar<br>
   Monotributistas registrados &middot; Facturamos cada trabajo
 </footer>
-
-<script>
-  function toggleAc(id) {
-    var item = document.getElementById(id);
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.ac-item').forEach(function(i) { i.classList.remove('open'); });
-    if (!isOpen) {
-      item.classList.add('open');
-      setTimeout(function() { item.querySelector('.ac-header').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
-    }
-  }
-  function abrirAc(id) {
-    var item = document.getElementById(id);
-    document.querySelectorAll('.ac-item').forEach(function(i) { i.classList.remove('open'); });
-    item.classList.add('open');
-    setTimeout(function() { item.querySelector('.ac-header').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
-  }
-  function abrirLightbox(src) {
-    document.getElementById('lightbox').classList.add('active');
-    document.getElementById('lightbox-img').src = src;
-  }
-  function cerrarLightbox() { document.getElementById('lightbox').classList.remove('active'); }
-  function selUrgencia(tipo) {
-    document.getElementById('urg-tipo').value = tipo;
-    document.querySelectorAll('.urg-btn').forEach(function(b) { b.classList.remove('sel-normal','sel-urgente'); });
-    event.currentTarget.classList.add('sel-' + tipo);
-  }
-  function enviarUrgencia() {
-    var nombre = document.getElementById('urg-nombre').value.trim();
-    var piso = document.getElementById('urg-piso').value.trim();
-    var tel = document.getElementById('urg-tel').value.trim();
-    var problema = document.getElementById('urg-problema').value.trim();
-    var tipo = document.getElementById('urg-tipo').value;
-    var ok = true;
-    [['f-nombre',nombre],['f-piso',piso],['f-tel',tel],['f-problema',problema]].forEach(function(pair) {
-      var f = document.getElementById(pair[0]);
-      if (!pair[1]) { f.classList.add('has-error'); ok = false; } else { f.classList.remove('has-error'); }
-    });
-    if (!ok) return;
-    var msg = '🔧 *Reporte ' + (tipo === 'urgente' ? '🚨 URGENTE' : 'normal') + '*\n*Nombre:* ' + nombre + '\n*Piso/Dpto:* ' + piso + '\n*Tel:* ' + tel + '\n*Problema:* ' + problema;
-    window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
-  }
-  function enviarContacto() {
-    var nombre = document.getElementById('ct-nombre').value.trim();
-    var tel = document.getElementById('ct-tel').value.trim();
-    var servicio = document.getElementById('ct-servicio').value;
-    var mensaje = document.getElementById('ct-mensaje').value.trim();
-    var msg = '📋 *Consulta de presupuesto*\n*Nombre:* ' + nombre + '\n*Tel:* ' + tel + '\n*Servicio:* ' + (servicio || 'No especificado') + '\n*Mensaje:* ' + mensaje;
-    window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
-  }
-</script>
 </body>
 </html>
