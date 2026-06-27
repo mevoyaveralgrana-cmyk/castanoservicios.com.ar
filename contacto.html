@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pedí tu presupuesto sin cargo. Plomería, electricidad, pintura y más servicios en CABA." />
-  <title>Contacto y presupuesto | Castaño Servicios Generales</title>
+  <meta name="description" content="PedÃ­ tu presupuesto sin cargo. PlomerÃ­a, electricidad, pintura y mÃ¡s servicios en CABA." />
+  <title>Contacto y presupuesto | CastaÃ±o Servicios Generales</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +34,7 @@ nav {
   font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s;
 }
 .nav-cta:hover { background: #c9651a; }
-@media (max-width: 640px) { .nav-links { display: none; } .nav-logo-text { font-size: 13px; } }
+
 footer {
   background: var(--gris-oscuro); color: rgba(255,255,255,0.6);
   text-align: center; padding: 24px 16px; font-size: 13px; line-height: 1.8;
@@ -91,13 +91,35 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
   font-size: 15px; font-weight: 700; margin-top: 24px; transition: background 0.2s;
 }
 .btn-wa-grande:hover { background: #c9651a; }
+  
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;}
+.nav-hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .25s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:768px){
+  .nav-hamburger{display:flex;}
+  .nav-cta{font-size:12px;padding:6px 10px;}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(0,0,0,.97);flex-direction:column;gap:0;padding:0 0 12px;list-style:none;z-index:99;}
+  .nav-links.open{display:flex;}
+  .nav-links li{margin:0;}
+  .nav-links a{display:block;padding:12px 24px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .nav-logo-text{font-size:13px;}
+}
   </style>
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <meta property="og:title" content="Contacto | Castaño Servicios Generales" />
+  <meta property="og:description" content="Contactanos para presupuesto sin cargo. Tel: 11 2296-7045. info@castanoservicios.com.ar" />
+  <meta property="og:image" content="https://castanoservicios.com.ar/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://castanoservicios.com.ar/contacto.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="Castaño Servicios Generales" />
-    <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
+    <img src="/logo.png" alt="CastaÃ±o Servicios Generales" />
+    <div class="nav-logo-text">CastaÃ±o <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="/servicios.html">Servicios</a></li>
@@ -107,38 +129,39 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
     <li><a href="/urgencias.html">Reportar problema</a></li>
     <li><a href="/contacto.html">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📱 Presupuesto</a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">ð± Presupuesto</a>
+  <button class="nav-hamburger" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
   <p class="page-eyebrow">Contacto</p>
-  <h1>Pedí tu presupuesto</h1>
-  <p>Sin cargo ni compromiso. Respondemos rápido.</p>
+  <h1>PedÃ­ tu presupuesto</h1>
+  <p>Sin cargo ni compromiso. Respondemos rÃ¡pido.</p>
 </div>
 <div class="page-body">
   <div class="contacto-inner">
     <div class="contacto-form">
       <div class="form-group"><label>Nombre</label><input type="text" id="ct-nombre" placeholder="Tu nombre" /></div>
-      <div class="form-group"><label>Teléfono</label><input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" /></div>
+      <div class="form-group"><label>TelÃ©fono</label><input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" /></div>
       <div class="form-group">
         <label>Servicio</label>
         <select id="ct-servicio">
-          <option value="">Seleccioná un servicio</option>
-          <option>Plomería</option><option>Electricidad</option><option>Pintura</option>
-          <option>Albañilería</option><option>Impermeabilización</option><option>Fumigación</option>
-          <option>Destapación</option><option>Carpintería</option><option>Mantenimiento de consorcio</option>
+          <option value="">SeleccionÃ¡ un servicio</option>
+          <option>PlomerÃ­a</option><option>Electricidad</option><option>Pintura</option>
+          <option>AlbaÃ±ilerÃ­a</option><option>ImpermeabilizaciÃ³n</option><option>FumigaciÃ³n</option>
+          <option>DestapaciÃ³n</option><option>CarpinterÃ­a</option><option>Mantenimiento de consorcio</option>
         </select>
       </div>
-      <div class="form-group"><label>Mensaje</label><textarea id="ct-mensaje" placeholder="Contanos qué necesitás..."></textarea></div>
+      <div class="form-group"><label>Mensaje</label><textarea id="ct-mensaje" placeholder="Contanos quÃ© necesitÃ¡s..."></textarea></div>
       <button class="btn-whatsapp" onclick="enviarContacto()">
         <i class="fa-brands fa-paper-plane"></i> Enviar por WhatsApp
       </button>
     </div>
     <div class="contacto-info">
-      <h3>También podés contactarnos:</h3>
+      <h3>TambiÃ©n podÃ©s contactarnos:</h3>
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-phone" style="color:var(--naranja)"></i></div>
-        <div><div class="info-label">Teléfono</div><div class="info-value">11 2296-7045</div></div>
+        <div><div class="info-label">TelÃ©fono</div><div class="info-value">11 2296-7045</div></div>
       </div>
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-envelope" style="color:var(--naranja)"></i></div>
@@ -158,15 +181,30 @@ function enviarContacto() {
   var tel = document.getElementById('ct-tel').value.trim();
   var servicio = document.getElementById('ct-servicio').value;
   var mensaje = document.getElementById('ct-mensaje').value.trim();
-  var msg = '📋 *Consulta de presupuesto*\n*Nombre:* ' + nombre + '\n*Tel:* ' + tel + '\n*Servicio:* ' + (servicio || 'No especificado') + '\n*Mensaje:* ' + mensaje;
+  var msg = 'ð *Consulta de presupuesto*\n*Nombre:* ' + nombre + '\n*Tel:* ' + tel + '\n*Servicio:* ' + (servicio || 'No especificado') + '\n*Mensaje:* ' + mensaje;
   window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 
 <footer>
-  <strong>Castaño Servicios Generales</strong><br>
-  Mantenimiento edilicio en CABA &middot; Tel: 11 2296-7045 &middot; info@castanoservicios.com.ar<br>
-  Monotributistas registrados &middot; Facturamos cada trabajo
+  <div style="max-width:1040px;margin:0 auto;display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px;">
+    <div><strong style="color:#fff;font-size:15px;">Castaño Servicios Generales</strong><br><span style="color:rgba(255,255,255,.5);font-size:13px;">Mantenimiento edilicio en CABA</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+      <a href="/servicios.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Servicios</a>
+      <a href="/nosotros.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Nosotros</a>
+      <a href="/trabajos.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Trabajos</a>
+      <a href="/consorcios/" style="color:rgba(255,255,255,.65);text-decoration:none;">Consorcios</a>
+      <a href="/contacto.html" style="color:rgba(255,255,255,.65);text-decoration:none;">Contacto</a>
+    </div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);">
+      <div>📞 <a href="tel:+541122967045" style="color:rgba(255,255,255,.65);text-decoration:none;">11 2296-7045</a></div>
+      <div style="margin-top:4px;">✉️ <a href="mailto:info@castanoservicios.com.ar" style="color:rgba(255,255,255,.65);text-decoration:none;">info@castanoservicios.com.ar</a></div>
+      <div style="margin-top:12px;color:rgba(255,255,255,.4);">Monotributistas registrados · Facturamos</div>
+    </div>
+  </div>
+  <div style="text-align:center;color:rgba(255,255,255,.3);font-size:12px;max-width:1040px;margin:0 auto;">© 2025 Castaño Servicios Generales · CABA, Argentina</div>
 </footer>
+
+<script>!function(){var b=document.getElementById('navToggle'),l=document.querySelector('.nav-links');b&&l&&b.addEventListener('click',function(){b.classList.toggle('open');l.classList.toggle('open');})}();</script>
 </body>
 </html>
