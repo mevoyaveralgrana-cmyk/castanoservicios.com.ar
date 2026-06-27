@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PedÃ­ tu presupuesto sin cargo. PlomerÃ­a, electricidad, pintura y mÃ¡s servicios en CABA." />
-  <title>Contacto y presupuesto | CastaÃ±o Servicios Generales</title>
+  <meta name="description" content="Pedí tu presupuesto sin cargo. Plomería, electricidad, pintura y más servicios en CABA." />
+  <title>Contacto y presupuesto | Castaño Servicios Generales</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -118,8 +118,8 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
 <body>
 <nav>
   <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="CastaÃ±o Servicios Generales" />
-    <div class="nav-logo-text">CastaÃ±o <span>Servicios Generales</span></div>
+    <img src="/logo.png" alt="Castaño Servicios Generales" />
+    <div class="nav-logo-text">Castaño <span>Servicios Generales</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="/servicios.html">Servicios</a></li>
@@ -129,39 +129,39 @@ h2 { text-align: center; color: var(--azul); font-size: 26px; font-weight: 800; 
     <li><a href="/urgencias.html">Reportar problema</a></li>
     <li><a href="/contacto.html">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">ð± Presupuesto</a>
+  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📱 Presupuesto</a>
   <button class="nav-hamburger" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
   <p class="page-eyebrow">Contacto</p>
-  <h1>PedÃ­ tu presupuesto</h1>
-  <p>Sin cargo ni compromiso. Respondemos rÃ¡pido.</p>
+  <h1>Pedí tu presupuesto</h1>
+  <p>Sin cargo ni compromiso. Respondemos rápido.</p>
 </div>
 <div class="page-body">
   <div class="contacto-inner">
     <div class="contacto-form">
       <div class="form-group"><label>Nombre</label><input type="text" id="ct-nombre" placeholder="Tu nombre" /></div>
-      <div class="form-group"><label>TelÃ©fono</label><input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" /></div>
+      <div class="form-group"><label>Teléfono</label><input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" /></div>
       <div class="form-group">
         <label>Servicio</label>
         <select id="ct-servicio">
-          <option value="">SeleccionÃ¡ un servicio</option>
-          <option>PlomerÃ­a</option><option>Electricidad</option><option>Pintura</option>
-          <option>AlbaÃ±ilerÃ­a</option><option>ImpermeabilizaciÃ³n</option><option>FumigaciÃ³n</option>
-          <option>DestapaciÃ³n</option><option>CarpinterÃ­a</option><option>Mantenimiento de consorcio</option>
+          <option value="">Seleccioná un servicio</option>
+          <option>Plomería</option><option>Electricidad</option><option>Pintura</option>
+          <option>Albañilería</option><option>Impermeabilización</option><option>Fumigación</option>
+          <option>Destapación</option><option>Carpintería</option><option>Mantenimiento de consorcio</option>
         </select>
       </div>
-      <div class="form-group"><label>Mensaje</label><textarea id="ct-mensaje" placeholder="Contanos quÃ© necesitÃ¡s..."></textarea></div>
+      <div class="form-group"><label>Mensaje</label><textarea id="ct-mensaje" placeholder="Contanos qué necesitás..."></textarea></div>
       <button class="btn-whatsapp" onclick="enviarContacto()">
         <i class="fa-brands fa-paper-plane"></i> Enviar por WhatsApp
       </button>
     </div>
     <div class="contacto-info">
-      <h3>TambiÃ©n podÃ©s contactarnos:</h3>
+      <h3>También podés contactarnos:</h3>
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-phone" style="color:var(--naranja)"></i></div>
-        <div><div class="info-label">TelÃ©fono</div><div class="info-value">11 2296-7045</div></div>
+        <div><div class="info-label">Teléfono</div><div class="info-value">11 2296-7045</div></div>
       </div>
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-envelope" style="color:var(--naranja)"></i></div>
@@ -181,7 +181,7 @@ function enviarContacto() {
   var tel = document.getElementById('ct-tel').value.trim();
   var servicio = document.getElementById('ct-servicio').value;
   var mensaje = document.getElementById('ct-mensaje').value.trim();
-  var msg = 'ð *Consulta de presupuesto*\n*Nombre:* ' + nombre + '\n*Tel:* ' + tel + '\n*Servicio:* ' + (servicio || 'No especificado') + '\n*Mensaje:* ' + mensaje;
+  var msg = '📋 *Consulta de presupuesto*\n*Nombre:* ' + nombre + '\n*Tel:* ' + tel + '\n*Servicio:* ' + (servicio || 'No especificado') + '\n*Mensaje:* ' + mensaje;
   window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
