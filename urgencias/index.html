@@ -36,6 +36,7 @@
     min-height: 100vh;
   }
 
+  /* HEADER */
   header {
     background: var(--navy);
     padding: 0;
@@ -75,6 +76,7 @@
     margin-top: 1px;
   }
 
+  /* URGENCY BANNER */
   .urgency-banner {
     max-width: 600px;
     margin: 20px auto 0;
@@ -99,15 +101,22 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  .urgency-btn .icon { font-size: 26px; display: block; margin-bottom: 6px; }
-  .urgency-btn .label { font-size: 13px; font-weight: 700; color: var(--text-light); }
-  .urgency-btn .sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .urgency-btn .icon { font-size: 22px; display: block; margin-bottom: 8px; }
+  .urgency-btn .label { font-size: 14px; font-weight: 700; color: var(--text-light); letter-spacing: 0.2px; }
 
-  .urgency-btn.selected-normal { border-color: var(--orange); background: #fff7f2; }
+  .urgency-btn.selected-normal {
+    border-color: var(--orange);
+    background: #fff7f2;
+  }
   .urgency-btn.selected-normal .label { color: var(--orange); }
-  .urgency-btn.selected-urgent { border-color: var(--danger); background: #fff2f2; }
+
+  .urgency-btn.selected-urgent {
+    border-color: var(--danger);
+    background: #fff2f2;
+  }
   .urgency-btn.selected-urgent .label { color: var(--danger); }
 
+  /* FORM */
   .form-card {
     background: var(--white);
     border-radius: var(--radius);
@@ -159,9 +168,15 @@
 
   .field input:focus,
   .field select:focus,
-  .field textarea:focus { border-color: var(--orange); }
+  .field textarea:focus {
+    border-color: var(--orange);
+  }
 
-  .field textarea { resize: none; min-height: 100px; line-height: 1.5; }
+  .field textarea {
+    resize: none;
+    min-height: 100px;
+    line-height: 1.5;
+  }
 
   .field select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6478' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -172,6 +187,7 @@
 
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+  /* PHOTO UPLOAD */
   .photo-upload {
     border: 2px dashed var(--border);
     border-radius: 10px;
@@ -183,7 +199,10 @@
     overflow: hidden;
   }
 
-  .photo-upload:hover, .photo-upload.has-photo { border-color: var(--orange); background: #fff7f2; }
+  .photo-upload:hover, .photo-upload.has-photo {
+    border-color: var(--orange);
+    background: #fff7f2;
+  }
 
   .photo-upload input[type="file"] {
     position: absolute;
@@ -207,6 +226,7 @@
     margin-top: 10px;
   }
 
+  /* SUBMIT */
   .submit-wrap {
     max-width: 600px;
     margin: 16px auto 32px;
@@ -215,7 +235,7 @@
 
   .btn-submit {
     width: 100%;
-    background: #25D366;
+    background: var(--navy);
     color: white;
     border: none;
     border-radius: var(--radius);
@@ -229,23 +249,44 @@
     gap: 10px;
     transition: background 0.18s, transform 0.1s;
     -webkit-tap-highlight-color: transparent;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   .btn-submit:active { transform: scale(0.98); }
-  .btn-submit:hover { background: #1ebe5a; }
+  .btn-submit:hover { background: var(--navy-light); }
 
-  .btn-submit svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+  .btn-submit svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+    flex-shrink: 0;
+  }
 
-  .error-msg { color: var(--danger); font-size: 12px; margin-top: 5px; display: none; }
+  /* ERROR */
+  .error-msg {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
 
   .field.has-error input,
   .field.has-error select,
-  .field.has-error textarea { border-color: var(--danger); }
+  .field.has-error textarea {
+    border-color: var(--danger);
+  }
 
   .field.has-error .error-msg { display: block; }
 
-  .footer { text-align: center; padding: 0 16px 24px; font-size: 11px; color: var(--text-light); }
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 0 16px 24px;
+    font-size: 11px;
+    color: var(--text-light);
+  }
+
   .footer a { color: var(--orange); text-decoration: none; }
 </style>
 </head>
@@ -263,28 +304,29 @@
 
 <div style="max-width:600px;margin:20px auto 0;padding:0 16px;">
   <p style="font-size:13px;color:var(--text-light);line-height:1.5;">
-    Completá el formulario y te contactamos a la brevedad. Para emergencias graves, llamános directamente.
+    Completá el formulario y te contactamos a la brevedad. Para emergencias graves, llamanos directamente.
   </p>
 </div>
 
+<!-- URGENCY -->
 <div class="urgency-banner">
   <div class="section-title" style="margin-bottom:10px;">Nivel de urgencia</div>
   <div class="urgency-selector">
     <button class="urgency-btn selected-normal" onclick="selectUrgency('normal', this)" id="btn-normal">
-      <span class="icon">🔔</span>
-      <span class="label">Normal</span>
-      <span class="sub">Respuesta en 24-48 hs</span>
+      <span class="icon">📋</span>
+      <span class="label">Solicitud</span>
     </button>
     <button class="urgency-btn" onclick="selectUrgency('urgente', this)" id="btn-urgente">
       <span class="icon">🚨</span>
-      <span class="label">URGENTE</span>
-      <span class="sub">Riesgo inmediato</span>
+      <span class="label">Urgente</span>
     </button>
   </div>
 </div>
 
+<!-- FORM -->
 <div class="form-card">
   <div class="section-title">Tus datos</div>
+
   <div class="field-row">
     <div class="field" id="f-nombre">
       <label>Nombre y apellido <span class="req">*</span></label>
@@ -297,10 +339,11 @@
       <div class="error-msg">Campo requerido</div>
     </div>
   </div>
+
   <div class="field" id="f-edificio">
     <label>Edificio <span class="req">*</span></label>
     <select id="edificio">
-      <option value="">Seleccióná tu edificio</option>
+      <option value="">Seleccioná tu edificio</option>
       <option>Bauness 2172</option>
       <option>Boulogne 639</option>
       <option>Boulogne Sur Mer</option>
@@ -312,12 +355,14 @@
       <option>Pringles</option>
       <option>Otro</option>
     </select>
-    <div class="error-msg">Seleccióná un edificio</div>
+    <div class="error-msg">Seleccioná un edificio</div>
   </div>
+
   <div id="otro-edificio-wrap" style="display:none;" class="field">
     <label>Nombre del edificio</label>
     <input type="text" id="otro-edificio" placeholder="Dirección o nombre del edificio">
   </div>
+
   <div class="field-row">
     <div class="field">
       <label>Piso</label>
@@ -332,11 +377,13 @@
 
 <div class="form-card" style="margin-top:12px;">
   <div class="section-title">El problema</div>
+
   <div class="field" id="f-descripcion">
     <label>Descripción <span class="req">*</span></label>
     <textarea id="descripcion" placeholder="Describí el problema con el mayor detalle posible: qué pasó, dónde, desde cuándo..."></textarea>
     <div class="error-msg">Describí el problema</div>
   </div>
+
   <div class="field">
     <label>Foto del problema (opcional)</label>
     <div class="photo-upload" id="photo-upload-area">
@@ -353,15 +400,8 @@
 
 <div class="submit-wrap">
   <button class="btn-submit" onclick="enviar()">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.847L0 24l6.305-1.653A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.373l-.36-.213-3.727.977.994-3.634-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
-    </svg>
-    Enviar por WhatsApp
+    Enviar
   </button>
-  <p style="text-align:center;font-size:11px;color:var(--text-light);margin-top:10px;">
-    Se abrirá WhatsApp con el mensaje listo para enviar
-  </p>
 </div>
 
 <div class="footer">
@@ -423,6 +463,7 @@ function enviar() {
     document.querySelector('.has-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
+
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
   const edificio = document.getElementById('edificio').value === 'Otro'
@@ -432,8 +473,11 @@ function enviar() {
   const depto = document.getElementById('depto').value.trim();
   const descripcion = document.getElementById('descripcion').value.trim();
   const tienesFoto = document.getElementById('foto').files.length > 0;
+
   const ubicacion = [piso && `Piso ${piso}`, depto && `Dpto ${depto}`].filter(Boolean).join(' ');
-  const emoji = urgencia === 'urgente' ? '🚨 *URGENTE*' : '🔔 Normal';
+
+  const emoji = urgencia === 'urgente' ? '🚨 *URGENTE*' : '📋 Solicitud';
+
   const msg = `${emoji} — Solicitud de reparación
 
 *Edificio:* ${edificio}${ubicacion ? `\n*Ubicación:* ${ubicacion}` : ''}
@@ -444,10 +488,12 @@ function enviar() {
 ${descripcion}${tienesFoto ? '\n\n📷 _Te envío la foto a continuación_' : ''}
 
 _Enviado desde castanoservicios.com.ar_`;
+
   const url = `https://wa.me/5491531606302?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 }
 
+// Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
