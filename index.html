@@ -493,4 +493,318 @@
         <li>
           <div class="check-icon">✓</div>
           <div>
-       
+            <div class="check-titulo">Presupuesto previo sin costo</div>
+            <div class="check-desc">Cotizamos antes de arrancar, sin sorpresas.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <div class="check-titulo">Garantía escrita y memoria de obra</div>
+            <div class="check-desc">Documentación formal entregada en cada trabajo.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <div class="check-titulo">Facturación en todos los trabajos</div>
+            <div class="check-desc">Monotributistas registrados. Emitimos factura siempre.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-icon">✓</div>
+          <div>
+            <div class="check-titulo">Respuesta rápida</div>
+            <div class="check-desc">Coordinamos por WhatsApp, disponibles de lunes a sábado.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="nosotros-img">
+      <img src="equipo.png" alt="Equipo Castaño Servicios Generales trabajando" style="border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.25);width:100%;" />
+    </div>
+  </div>
+</section>
+
+<!-- BANNER CONSORCIOS -->
+<div class="banner-cons">
+  <div class="banner-texto">
+    <h3>¿Administrás un edificio?</h3>
+    <p>Servicio especial para consorcios: abono mensual, visitas preventivas, memoria de obra y atención prioritaria.</p>
+  </div>
+  <a href="consorcios/" class="btn-blanco">Ver plan para consorcios →</a>
+</div>
+
+<!-- CONTACTO -->
+<section class="section bg-azul" id="contacto">
+  <p class="section-eyebrow">Contacto</p>
+  <h2>Pedí tu presupuesto</h2>
+  <p class="section-sub">Completá el formulario y te respondemos a la brevedad.</p>
+  <div class="contacto-inner">
+    <div class="contacto-form">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="ct-nombre" placeholder="Tu nombre" />
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" id="ct-tel" placeholder="11 XXXX-XXXX" />
+      </div>
+      <div class="form-group">
+        <label>Servicio</label>
+        <select id="ct-servicio">
+          <option value="">Seleccioná un servicio</option>
+          <option>Plomería</option>
+          <option>Electricidad</option>
+          <option>Pintura</option>
+          <option>Albañilería</option>
+          <option>Impermeabilización</option>
+          <option>Fumigación</option>
+          <option>Destapación</option>
+          <option>Carpintería</option>
+          <option>Mantenimiento de consorcio</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Barrio</label>
+        <input type="text" id="ct-barrio" placeholder="Barrio o dirección" />
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea id="ct-mensaje" placeholder="Contanos qué necesitás..."></textarea>
+      </div>
+      <button class="btn-whatsapp" onclick="enviarPresupuesto()">
+        <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+      </button>
+    </div>
+    <div class="contacto-info">
+      <h3>Estamos disponibles</h3>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div><div class="info-label">WhatsApp</div><div class="info-value">11 2296-7045</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+        <div><div class="info-label">Atención</div><div class="info-value">24 horas</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div><div class="info-label">Email</div><div class="info-value">info@castanoservicios.com.ar</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div><div class="info-label">Zona</div><div class="info-value">Toda CABA</div></div>
+      </div>
+      <a href="tel:+541122967045" class="btn-llamar">
+        <i class="fa-solid fa-phone"></i> Llamanos ahora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIAS (vecinos) -->
+<section class="section bg-azul urgencias-sep" id="urgencias">
+  <p class="section-eyebrow">Vecinos del edificio</p>
+  <h2>Reportar un problema</h2>
+  <p class="section-sub">Completá el formulario y nos contactamos a la brevedad. Para emergencias graves, llamanos directo.</p>
+  <div class="urgencias-inner">
+    <div class="urg-tipos">
+      <button class="urg-btn sel-normal" onclick="urgTipo('normal',this)" id="u-btn-normal">
+        <span class="u-icon">🔔</span>
+        <span class="u-label">Normal</span>
+        <span class="u-sub">24-48 hs</span>
+      </button>
+      <button class="urg-btn" onclick="urgTipo('urgente',this)" id="u-btn-urgente">
+        <span class="u-icon">🚨</span>
+        <span class="u-label">URGENTE</span>
+        <span class="u-sub">Riesgo inmediato</span>
+      </button>
+    </div>
+    <div class="urg-row">
+      <div class="urg-field" id="uf-nombre">
+        <label>Nombre *</label>
+        <input type="text" id="u-nombre" placeholder="Juan García" autocomplete="name">
+        <div class="urg-error">Campo requerido</div>
+      </div>
+      <div class="urg-field" id="uf-tel">
+        <label>Teléfono *</label>
+        <input type="tel" id="u-tel" placeholder="11 1234-5678" autocomplete="tel">
+        <div class="urg-error">Campo requerido</div>
+      </div>
+    </div>
+    <div class="urg-field" id="uf-edificio">
+      <label>Edificio *</label>
+      <select id="u-edificio">
+        <option value="">Seleccioná tu edificio</option>
+        <option>Bauness 2172</option>
+        <option>Boulogne 639</option>
+        <option>Boulogne Sur Mer</option>
+        <option>Darwin 966</option>
+        <option>Forest</option>
+        <option>Lacroze 3697</option>
+        <option>Monroe 4285</option>
+        <option>Plaza 850</option>
+        <option>Pringles</option>
+        <option>Otro</option>
+      </select>
+      <div class="urg-error">Seleccioná un edificio</div>
+    </div>
+    <div class="urg-row">
+      <div class="urg-field">
+        <label>Piso</label>
+        <input type="text" id="u-piso" placeholder="3°">
+      </div>
+      <div class="urg-field">
+        <label>Departamento</label>
+        <input type="text" id="u-depto" placeholder="B">
+      </div>
+    </div>
+    <div class="urg-field" id="uf-desc">
+      <label>Descripción del problema *</label>
+      <textarea id="u-desc" placeholder="Describí el problema: qué pasó, dónde, desde cuándo..."></textarea>
+      <div class="urg-error">Describí el problema</div>
+    </div>
+    <div class="urg-field">
+      <label>Fotos del problema <span style="font-weight:400;opacity:.6">(opcional)</span></label>
+      <label class="urg-fotos-btn">
+        <i class="fa-solid fa-camera"></i> Seleccionar fotos
+        <input type="file" id="u-fotos" accept="image/*" multiple onchange="mostrarFotos(this)">
+      </label>
+      <div id="u-fotos-preview" class="urg-fotos-preview"></div>
+      <p class="urg-fotos-nota">Podés adjuntar varias fotos. En móvil se comparten directo a WhatsApp.</p>
+    </div>
+    <button class="urg-submit" onclick="urgEnviar()">
+      <i class="fa-solid fa-paper-plane"></i> Enviar reporte
+    </button>
+  </div>
+</section>
+
+<!-- Overlay recordatorio fotos (desktop) -->
+<div class="urg-overlay" id="urg-overlay">
+  <div class="urg-overlay-box">
+    <div class="ov-icon">📎</div>
+    <h3>WhatsApp abierto</h3>
+    <p>Tu mensaje ya está listo. Ahora <strong>adjuntá las fotos</strong> antes de enviarlo:</p>
+    <div class="urg-overlay-thumbs" id="ov-thumbs"></div>
+    <p style="font-size:12px;color:#888;margin-bottom:16px">Clip (📎) → Fotos → seleccioná estas imágenes → Enviar</p>
+    <button class="urg-overlay-ok" onclick="document.getElementById('urg-overlay').classList.remove('active')">
+      <i class="fa-brands fa-whatsapp"></i> Entendido, voy a adjuntarlas
+    </button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Castaño Servicios Generales</strong><br />
+  Mantenimiento edilicio integral en CABA &middot; <a href="tel:+541122967045">11 2296-7045</a> &middot; info@castanoservicios.com.ar<br />
+  © 2026 Castaño Servicios Generales
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="cerrarLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="Trabajo realizado" />
+</div>
+
+<script>
+  // LIGHTBOX
+  function abrirLightbox(card) {
+    document.getElementById('lightbox-img').src = card.querySelector('img').src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function cerrarLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightbox(); });
+
+  // PRESUPUESTO
+  function enviarPresupuesto() {
+    const nombre = document.getElementById('ct-nombre').value;
+    const tel = document.getElementById('ct-tel').value;
+    const servicio = document.getElementById('ct-servicio').value;
+    const barrio = document.getElementById('ct-barrio').value;
+    const mensaje = document.getElementById('ct-mensaje').value;
+    let msg = 'Hola! Quisiera pedir un presupuesto.';
+    if (nombre) msg += '\nNombre: ' + nombre;
+    if (tel) msg += '\nTeléfono: ' + tel;
+    if (servicio) msg += '\nServicio: ' + servicio;
+    if (barrio) msg += '\nBarrio: ' + barrio;
+    if (mensaje) msg += '\nDescripción: ' + mensaje;
+    window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
+  }
+
+  // URGENCIAS
+  let tipoUrgencia = 'normal';
+  function urgTipo(tipo, el) {
+    tipoUrgencia = tipo;
+    document.getElementById('u-btn-normal').className = 'urg-btn';
+    document.getElementById('u-btn-urgente').className = 'urg-btn';
+    el.className = 'urg-btn ' + (tipo === 'normal' ? 'sel-normal' : 'sel-urgente');
+  }
+  function mostrarFotos(input) {
+    const preview = document.getElementById('u-fotos-preview');
+    preview.innerHTML = '';
+    Array.from(input.files).forEach(f => {
+      const img = document.createElement('img');
+      img.className = 'urg-foto-thumb';
+      img.src = URL.createObjectURL(f);
+      preview.appendChild(img);
+    });
+  }
+
+  async function urgEnviar() {
+    let ok = true;
+    [['u-nombre','uf-nombre'],['u-tel','uf-tel'],['u-desc','uf-desc']].forEach(([id,fid]) => {
+      const el = document.getElementById(id);
+      const f = document.getElementById(fid);
+      if (!el.value.trim()) { f.classList.add('has-error'); ok = false; }
+      else f.classList.remove('has-error');
+    });
+    const edif = document.getElementById('u-edificio');
+    const fedif = document.getElementById('uf-edificio');
+    if (!edif.value) { fedif.classList.add('has-error'); ok = false; }
+    else fedif.classList.remove('has-error');
+    if (!ok) return;
+
+    const nombre = document.getElementById('u-nombre').value.trim();
+    const tel = document.getElementById('u-tel').value.trim();
+    const edificio = edif.value;
+    const piso = document.getElementById('u-piso').value.trim();
+    const depto = document.getElementById('u-depto').value.trim();
+    const desc = document.getElementById('u-desc').value.trim();
+    const fotos = document.getElementById('u-fotos').files;
+    const ubicacion = [piso && `Piso ${piso}`, depto && `Dpto ${depto}`].filter(Boolean).join(' ');
+    const emoji = tipoUrgencia === 'urgente' ? '🚨 *URGENTE*' : '🔔 Normal';
+    const fotosLinea = fotos.length > 0 ? `\n📎 Adjunto ${fotos.length} foto(s) del problema` : '';
+    const msg = `${emoji} — Solicitud de reparación\n\n*Edificio:* ${edificio}${ubicacion ? '\n*Ubicación:* ' + ubicacion : ''}\n*Nombre:* ${nombre}\n*Teléfono:* ${tel}\n\n*Problema:*\n${desc}${fotosLinea}\n\n_Enviado desde castanoservicios.com.ar_`;
+    const waUrl = 'https://wa.me/5491531606302?text=' + encodeURIComponent(msg);
+
+    // Móvil con fotos: intentar Web Share API (comparte texto + archivos directo a WhatsApp)
+    if (fotos.length > 0 && navigator.canShare && navigator.canShare({ files: Array.from(fotos) })) {
+      try {
+        await navigator.share({ title: 'Reporte Castaño', text: msg, files: Array.from(fotos) });
+        return;
+      } catch (e) {
+        // usuario canceló o el browser no lo soporta → fallback
+      }
+    }
+
+    // Desktop o sin fotos: abrir WhatsApp con texto
+    window.open(waUrl, '_blank');
+
+    // Si hay fotos en desktop, mostrar overlay recordatorio
+    if (fotos.length > 0) {
+      const thumbs = document.getElementById('ov-thumbs');
+      thumbs.innerHTML = '';
+      Array.from(fotos).forEach(f => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(f);
+        thumbs.appendChild(img);
+      });
+      document.getElementById('urg-overlay').classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>
