@@ -328,14 +328,14 @@
     <li><a href="#urgencias">Reportar problema</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📲 Presupuesto</a>
+  <a href="https://wa.me/5491131606302?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="nav-cta" target="_blank">📲 Presupuesto</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
   <img src="banner.png" alt="Castaño Servicios Generales — Mantenimiento Integral para Consorcios, Empresas y Particulares" class="hero-banner-img" />
   <div class="hero-ctas">
-    <a href="https://wa.me/541122967045?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">📲 Pedir presupuesto</a>
+    <a href="https://wa.me/5491131606302?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">📲 Pedir presupuesto</a>
     <a href="#servicios" class="btn-secondary">Ver servicios</a>
   </div>
 </section>
@@ -582,7 +582,7 @@
       <h3>Estamos disponibles</h3>
       <div class="info-item">
         <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
-        <div><div class="info-label">WhatsApp</div><div class="info-value">11 2296-7045</div></div>
+        <div><div class="info-label">WhatsApp</div><div class="info-value">11 3160-6302</div></div>
       </div>
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
@@ -596,7 +596,7 @@
         <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
         <div><div class="info-label">Zona</div><div class="info-value">Toda CABA</div></div>
       </div>
-      <a href="tel:+541122967045" class="btn-llamar">
+      <a href="tel:+5491131606302" class="btn-llamar">
         <i class="fa-solid fa-phone"></i> Llamanos ahora
       </a>
     </div>
@@ -697,7 +697,7 @@
 <!-- FOOTER -->
 <footer>
   <strong>Castaño Servicios Generales</strong><br />
-  Mantenimiento edilicio integral en CABA &middot; <a href="tel:+541122967045">11 2296-7045</a> &middot; info@castanoservicios.com.ar<br />
+  Mantenimiento edilicio integral en CABA &middot; <a href="tel:+5491131606302">11 3160-6302</a> &middot; info@castanoservicios.com.ar<br />
   © 2026 Castaño Servicios Generales
 </footer>
 
@@ -731,7 +731,7 @@
     if (servicio) msg += '\nServicio: ' + servicio;
     if (barrio) msg += '\nBarrio: ' + barrio;
     if (mensaje) msg += '\nDescripción: ' + mensaje;
-    window.open('https://wa.me/541122967045?text=' + encodeURIComponent(msg), '_blank');
+    window.open('https://wa.me/5491131606302?text=' + encodeURIComponent(msg), '_blank');
   }
 
   // URGENCIAS
@@ -778,7 +778,7 @@
     const emoji = tipoUrgencia === 'urgente' ? '🚨 *URGENTE*' : '🔔 Normal';
     const fotosLinea = fotos.length > 0 ? `\n📎 Adjunto ${fotos.length} foto(s) del problema` : '';
     const msg = `${emoji} — Solicitud de reparación\n\n*Edificio:* ${edificio}${ubicacion ? '\n*Ubicación:* ' + ubicacion : ''}\n*Nombre:* ${nombre}\n*Teléfono:* ${tel}\n\n*Problema:*\n${desc}${fotosLinea}\n\n_Enviado desde castanoservicios.com.ar_`;
-    const waUrl = 'https://wa.me/5491531606302?text=' + encodeURIComponent(msg);
+    const waUrl = 'https://wa.me/5491131606302?text=' + encodeURIComponent(msg);
 
     // Móvil con fotos: intentar Web Share API (comparte texto + archivos directo a WhatsApp)
     if (fotos.length > 0 && navigator.canShare && navigator.canShare({ files: Array.from(fotos) })) {
