@@ -322,7 +322,17 @@
     .acceso-desc { color:var(--gris-medio); font-size:13px; line-height:1.55; margin-bottom:18px; }
     .acceso-cta { font-size:13px; font-weight:700; color:var(--naranja); text-transform:uppercase; letter-spacing:.5px; }
     .acceso-card.urgente .acceso-cta { color:#e83232; }
-  </style>
+  
+  .testimonios { background:#f8f8f8; padding:64px 24px; }
+  .testimonios-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; max-width:960px; margin:24px auto 0; }
+  .testimonio-card { background:#fff; border-radius:16px; padding:28px 24px; box-shadow:0 2px 16px rgba(0,0,0,.07); }
+  .testimonio-texto { color:#444; font-size:15px; line-height:1.65; margin-bottom:20px; font-style:italic; }
+  .testimonio-autor { display:flex; align-items:center; gap:12px; }
+  .testimonio-avatar { width:44px; height:44px; border-radius:50%; background:var(--naranja); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:17px; flex-shrink:0; }
+  .testimonio-nombre { font-weight:700; color:var(--azul); font-size:14px; }
+  .testimonio-rol { color:#888; font-size:13px; }
+  .estrellas { color:#f5a623; font-size:16px; margin-bottom:12px; letter-spacing:2px; }
+</style>
 </head>
 <body>
 
@@ -345,7 +355,7 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <img src="banner.png" alt="Castaño Servicios Generales — Mantenimiento Integral para Consorcios, Empresas y Particulares" class="hero-banner-img" />
+  <img src="banner.jpg" alt="Castaño Servicios Generales — Mantenimiento Integral para Consorcios, Empresas y Particulares" class="hero-banner-img" />
   <div class="hero-ctas">
     <a href="https://wa.me/5491131606302?text=Hola!%20Quisiera%20pedir%20un%20presupuesto" class="btn-primary" target="_blank">📲 Pedir presupuesto</a>
     <a href="#servicios" class="btn-secondary">Ver servicios</a>
@@ -571,6 +581,39 @@
   <a href="consorcios/" class="btn-blanco">Ver plan para consorcios →</a>
 </div>
 
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="testimonios">
+  <div style="text-align:center;">
+    <p class="section-tag">OPINIONES</p>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"Arreglaron una pérdida de cañería en el edificio en pocas horas. Trabajo limpio, con factura y garantía escrita. Los recomiendo sin dudas."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar">M</div>
+        <div><div class="testimonio-nombre">Marcela R.</div><div class="testimonio-rol">Administradora · Palermo</div></div>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"Llevamos más de dos años con el abono mensual. Responden rápido, documentan todo y el equipo siempre es el mismo. Para un consorcio eso vale mucho."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar">J</div>
+        <div><div class="testimonio-nombre">Jorge S.</div><div class="testimonio-rol">Administrador de consorcio · Caballito</div></div>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"Llamé por una urgencia eléctrica un sábado a la noche y vinieron. Resolvieron el problema, prolijo, sin vueltas y con factura."</p>
+      <div class="testimonio-autor">
+        <div class="testimonio-avatar">C</div>
+        <div><div class="testimonio-nombre">Carolina V.</div><div class="testimonio-rol">Propietaria · Villa Crespo</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- CONTACTO -->
 <section class="section bg-azul" id="contacto">
   <p class="section-eyebrow">Contacto</p>
@@ -631,6 +674,10 @@
       <div class="info-item">
         <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
         <div><div class="info-label">Zona</div><div class="info-value">Toda CABA</div></div>
+      </div>
+            <div style="margin-top:24px;border-radius:12px;overflow:hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208706.96!2d-58.70009525!3d-34.61444905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b08c3b5e7%3A0x1afbcdc2a879fe05!2sCiudad+Aut%C3%B3noma+de+Buenos+Aires!5e0!3m2!1ses!2sar!4v1"
+          width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <a href="tel:+5491131606302" class="btn-llamar">
         <i class="fa-solid fa-phone"></i> Llamanos ahora
