@@ -86,6 +86,52 @@
     footer { background: #000; color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 13px; }
     footer a { color: var(--naranja); text-decoration: none; }
     @media (max-width: 640px) { .app-demo { grid-template-columns: 1fr; } .app-mockup { order: -1; } }
+
+    /* PLANES */
+    .planes-wrapper { max-width:820px; margin:0 auto; }
+    .plan-principal {
+      background:var(--azul); border-radius:20px; padding:40px 36px;
+      display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;
+      margin-bottom:20px;
+    }
+    @media(max-width:640px){ .plan-principal{ grid-template-columns:1fr; } }
+    .plan-header .plan-badge2 {
+      display:inline-block; background:var(--naranja); color:#fff;
+      font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px;
+      margin-bottom:16px; text-transform:uppercase; letter-spacing:.5px;
+    }
+    .plan-header h3 { color:#fff; font-size:26px; font-weight:800; margin-bottom:10px; }
+    .plan-header p { color:rgba(255,255,255,.7); font-size:14px; line-height:1.6; margin-bottom:24px; }
+    .plan-precio-block { display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
+    .plan-precio-label { color:rgba(255,255,255,.55); font-size:13px; }
+    .plan-precio-val { color:#fff; font-size:18px; font-weight:800; }
+    .plan-nota-precio { color:rgba(255,255,255,.5); font-size:11px; margin-bottom:28px; }
+    .plan-cta-wa {
+      display:inline-flex; align-items:center; gap:10px;
+      background:#25D366; color:#fff; padding:14px 24px; border-radius:10px;
+      text-decoration:none; font-size:15px; font-weight:700; transition:background .2s;
+    }
+    .plan-cta-wa:hover { background:#1ebe5a; }
+    .plan-items { list-style:none; }
+    .plan-items li {
+      display:flex; align-items:flex-start; gap:12px;
+      color:rgba(255,255,255,.85); font-size:13px; padding:10px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .plan-items li:last-child { border-bottom:none; }
+    .plan-check { color:var(--naranja); font-weight:700; flex-shrink:0; margin-top:1px; }
+    .plan-alterno {
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+      background:#f8f8f8; border-radius:14px; padding:22px 28px;
+    }
+    .plan-alterno-texto p:first-child { color:var(--azul); font-size:16px; font-weight:700; margin-bottom:4px; }
+    .plan-alterno-texto p:last-child { color:var(--gris-medio); font-size:13px; }
+    .plan-cta-outline2 {
+      border:2px solid var(--naranja); color:var(--naranja);
+      padding:11px 22px; border-radius:8px; text-decoration:none;
+      font-size:14px; font-weight:700; transition:all .2s; white-space:nowrap;
+    }
+    .plan-cta-outline2:hover { background:var(--naranja); color:#fff; }
   </style>
 </head>
 <body>
@@ -180,6 +226,50 @@
     <div class="garantia-item"><div class="garantia-check">✓</div><div><h3>Atención de urgencias 24 hs</h3><p>Los edificios con abono tienen prioridad ante cualquier emergencia.</p></div></div>
   </div>
 </section>
+
+<!-- PLANES -->
+<section>
+  <p class="section-eyebrow">Plan de trabajo</p>
+  <h2>Un solo plan, todo incluido</h2>
+  <p class="section-sub">Abono mensual con urgencias y reparaciones varias. Sin sorpresas, con factura.</p>
+  <div class="planes-wrapper">
+
+    <div class="plan-principal">
+      <div class="plan-header">
+        <div class="plan-badge2">Plan Mensual</div>
+        <h3>Abono mensual<br>con urgencias y reparaciones</h3>
+        <p>Un solo contacto para todas las necesidades del edificio. Coordinamos cada trabajo, documentamos y facturamos todo.</p>
+        <div class="plan-precio-block">
+          <span class="plan-precio-label">Precio:</span>
+          <span class="plan-precio-val">A convenir según edificio</span>
+        </div>
+        <p class="plan-nota-precio">Depende de la cantidad de unidades y trabajos habituales del consorcio.</p>
+        <a href="https://wa.me/541122967045?text=Hola!%20Quiero%20información%20sobre%20el%20abono%20mensual%20para%20consorcios" class="plan-cta-wa" target="_blank">
+          📲 Consultar por WhatsApp
+        </a>
+      </div>
+      <ul class="plan-items">
+        <li><span class="plan-check">✓</span><div><strong>Urgencias incluidas</strong><br>Pérdidas, cortes de luz, obstrucciones — respondemos el mismo día.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>Reparaciones varias</strong><br>Plomería, electricidad, pintura, albañilería, fumigación y más.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>Visita preventiva mensual</strong><br>Revisamos el edificio para anticipar problemas antes de que ocurran.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>Presupuesto previo siempre</strong><br>Aprobás el monto antes de que empecemos. Sin sorpresas.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>Factura por cada trabajo</strong><br>Monotributistas registrados. Rendís cuentas sin problemas.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>Memoria de obra fotográfica</strong><br>Documentación de cada trabajo: antes, durante y después.</div></li>
+        <li><span class="plan-check">✓</span><div><strong>App para vecinos</strong><br>Los vecinos reportan problemas directamente. Vos recibís todo organizado.</div></li>
+      </ul>
+    </div>
+
+    <div class="plan-alterno">
+      <div class="plan-alterno-texto">
+        <p>¿Necesitás un trabajo puntual?</p>
+        <p>También hacemos trabajos sin abono: presupuesto, ejecución, garantía y factura. Sin compromiso de continuidad.</p>
+      </div>
+      <a href="https://wa.me/541122967045?text=Hola!%20Quiero%20un%20presupuesto%20puntual%20para%20mi%20edificio" class="plan-cta-outline2" target="_blank">Pedir presupuesto</a>
+    </div>
+
+  </div>
+</section>
+
 <section class="cta-final">
   <h2>¿Querés probarlo sin compromiso?</h2>
   <p>Coordinamos una visita al edificio, evaluamos el estado y te presentamos una propuesta de mantenimiento. Sin costo.</p>
