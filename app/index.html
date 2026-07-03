@@ -163,17 +163,15 @@ ul.items li::before{content:'•';position:absolute;left:0}
       <div class="field"><label>Edificio / Dirección</label>
         <input type="text" id="m_edificio_i" placeholder="Ej: Bauness 2172" list="m_lista_edif"/>
         <datalist id="m_lista_edif">
-          <option value="Bauness 2172 — 7A"/>
-          <option value="Bauness 2172 — 6A"/>
-          <option value="Bauness 2172 — 1A"/>
-          <option value="Campana 4550"/>
-          <option value="Darwin 966"/>
-          <option value="Forest 462 UF 10"/>
+          <option value="Bauness 2172, CABA"/>
+          <option value="Campana 4550, CABA"/>
+          <option value="Darwin 966, CABA"/>
+          <option value="Forest 462, CABA"/>
         </datalist>
       </div>
       <div class="field"><label>Depto / Unidad</label><input type="text" id="m_depto_i" placeholder="Ej: 7A, PB"/></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="display:flex;flex-direction:column;gap:10px">
       <div class="field"><label>Fecha</label><input type="date" id="m_fecha_i"/></div>
       <div class="field"><label>Tipo de trabajo</label>
         <select id="m_tipo_i">
@@ -195,8 +193,8 @@ ul.items li::before{content:'•';position:absolute;left:0}
     <div class="field"><label>Cliente / Administración</label>
       <input type="text" id="m_cliente_i" placeholder="Ej: Adm. Claudio" list="m_lista_cli"/>
       <datalist id="m_lista_cli">
-        <option value="Adm. Claudio"/>
-        <option value="Adm. Griselda Encinas"/>
+        <option value="Claudio Alvarez"/>
+        <option value="Griselda Encinas"/>
       </datalist>
     </div>
     <div class="sec-title">Descripción</div>
@@ -335,16 +333,14 @@ function verPresupuesto(){
 
 function verMemoria(){
   g('pm_tipo').textContent=v('m_tipo_i');
-  g('pm_dir').textContent=v('m_dir_i');
+  g('pm_edificio').textContent=v('m_edificio_i');
+  g('pm_depto').textContent=v('m_depto_i');
   g('pm_cliente').textContent=v('m_cliente_i');
   const d=v('m_fecha_i'); g('pm_fecha').textContent=d?new Date(d+'T12:00').toLocaleDateString('es-AR',{day:'2-digit',month:'long',year:'numeric'}):'';
   function setBlq(blqId,pId,txt){ if(txt){ g(blqId).style.display=''; g(pId).innerHTML=fmtTexto(txt); } else { g(blqId).style.display='none'; } }
-  setBlq('pm_blq_objeto','pm_objeto',v('m_objeto_i'));
-  setBlq('pm_blq_alcance','pm_alcance',v('m_alcance_i'));
-  setBlq('pm_blq_metodologia','pm_metodologia',v('m_metodologia_i'));
+  setBlq('pm_blq_trabajos','pm_trabajos',v('m_trabajos_i'));
   setBlq('pm_blq_materiales','pm_materiales',v('m_materiales_i'));
-  setBlq('pm_blq_limitaciones','pm_limitaciones',v('m_limitaciones_i'));
-  setBlq('pm_blq_conclusion','pm_conclusion',v('m_conclusion_i'));
+  setBlq('pm_blq_obs','pm_obs',v('m_obs_i'));
   ['screen-home','screen-presupuesto','screen-memoria'].forEach(id=>{ const el=g(id); if(el) el.style.display='none'; });
   g('prev-memoria').style.display='block';
   printTarget='memoria';
