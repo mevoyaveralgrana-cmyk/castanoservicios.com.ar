@@ -1,4 +1,4 @@
-const CACHE = 'castano-app-v5';
+const CACHE = 'castano-app-v6';
 const ASSETS = [
   '/app/',
   '/app/index.html',
