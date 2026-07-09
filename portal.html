@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castaño Servicios Generales — Portal de Administradores</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0d2137;
+  --azul-claro:#16324f;
+  --naranja:#e87722;
+  --naranja-oscuro:#c9611a;
+  --verde:#2e9e5b;
+  --gris-fondo:#f4f6f9;
+  --gris-borde:#e2e7ee;
+  --gris-texto:#5a6b7f;
+  --blanco:#ffffff;
+  --rojo:#d64545;
+  --radio:14px;
+  --sombra:0 2px 10px rgba(13,33,55,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:var(--gris-fondo);color:var(--azul);min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:1rem}
+.hidden{display:none !important}
+
+/* ---------- LOGIN ---------- */
+#screen-login{
+  min-height:100vh;
+  background:linear-gradient(160deg,var(--azul) 0%,var(--azul-claro) 60%,#1d3d5e 100%);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.login-box{width:100%;max-width:400px;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:8px}
+.logo-icon{
+  width:58px;height:58px;border-radius:14px;background:var(--naranja);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;color:var(--blanco);box-shadow:0 6px 18px rgba(232,119,34,.4);
+}
+.logo-text{text-align:left;color:var(--blanco)}
+.logo-text strong{display:block;font-size:1.3rem;font-weight:800;letter-spacing:.5px}
+.logo-text span{font-size:.8rem;opacity:.75;font-weight:500}
+.login-sub{color:rgba(255,255,255,.7);font-size:.9rem;margin:10px 0 28px}
+.login-card{
+  background:var(--blanco);border-radius:var(--radio);padding:28px 24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);text-align:left;
+}
+.login-card h2{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.login-card p{font-size:.85rem;color:var(--gris-texto);margin-bottom:18px}
+.field-label{display:block;font-size:.78rem;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.input-wrap{position:relative}
+.input-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gris-texto);font-size:.9rem}
+#input-codigo{
+  width:100%;padding:13px 14px 13px 40px;border:1.5px solid var(--gris-borde);
+  border-radius:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;outline:none;
+  transition:border-color .15s;
+}
+#input-codigo:focus{border-color:var(--naranja)}
+#input-codigo.error{border-color:var(--rojo)}
+#login-error{
+  display:none;align-items:center;gap:6px;color:var(--rojo);
+  font-size:.82rem;font-weight:500;margin-top:8px;
+}
+#login-error.visible{display:flex}
+.btn-primary{
+  width:100%;margin-top:18px;padding:14px;border:none;border-radius:10px;
+  background:var(--naranja);color:var(--blanco);font-size:1rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .15s;
+}
+.btn-primary:hover{background:var(--naranja-oscuro)}
+.login-hint{margin-top:16px;font-size:.78rem;color:var(--gris-texto);text-align:center}
+.login-hint code{background:var(--gris-fondo);padding:2px 6px;border-radius:5px;font-weight:600}
+.login-footer{margin-top:26px;color:rgba(255,255,255,.55);font-size:.78rem}
+.login-footer i{margin-right:5px}
+
+/* ---------- HEADER APP ---------- */
+.app-header{
+  background:var(--azul);color:var(--blanco);
+  padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:sticky;top:0;z-index:10;
+}
+.app-header .logo-icon{width:38px;height:38px;font-size:1.05rem;border-radius:10px;box-shadow:none}
+.header-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.header-brand-text strong{display:block;font-size:.92rem;font-weight:700;line-height:1.2}
+.header-brand-text span{font-size:.7rem;opacity:.7}
+.header-right{display:flex;align-items:center;gap:12px}
+.header-admin{font-size:.8rem;opacity:.85;text-align:right;display:none}
+.btn-salir{
+  background:rgba(255,255,255,.12);border:none;color:var(--blanco);
+  padding:9px 14px;border-radius:9px;font-size:.82rem;font-weight:600;
+  display:flex;align-items:center;gap:7px;transition:background .15s;
+}
+.btn-salir:hover{background:rgba(255,255,255,.22)}
+
+.container{max-width:1080px;margin:0 auto;padding:22px 18px 48px}
+
+/* ---------- DASHBOARD ---------- */
+.dash-title{font-size:1.25rem;font-weight:800;margin-bottom:4px}
+.dash-sub{font-size:.88rem;color:var(--gris-texto);margin-bottom:22px}
+.cards-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.card-edificio{
+  background:var(--blanco);border:1px solid var(--gris-borde);border-radius:var(--radio);
+  padding:18px;box-shadow:var(--sombra);cursor:pointer;text-align:left;width:100%;
+  transition:transform .12s,box-shadow .12s,border-color .12s;
+}
+.card-edificio:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,33,55,.14);border-color:var(--naranja)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.card-nombre{font-size:1.02rem;font-weight:700}
+.card-dir{font-size:.83rem;color:var(--gris-texto);margin-bottom:14px}
+.card-dir i{margin-right:6px;color:var(--naranja)}
+.badge-plan{
+  font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:5px 10px;border-radius:999px;white-space:nowrap;
+}
+.plan-chico{background:#e8f0fa;color:#2b5c9e}
+.plan-mediano{background:#fdeede;color:var(--naranja-oscuro)}
+.plan-grande{background:#0d2137;color:#ffc99a}
+.card-row{display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--gris-texto);margin-top:7px}
+.card-row i{width:18px;text-align:center}
+.card-row.encurso{color:var(--naranja-oscuro);font-weight:600}
+.card-row.encurso i{color:var(--naranja)}
+.card-row .fa-calendar-days{color:#2b5c9e}
+.card-arrow{margin-top:14px;font-size:.8rem;font-weight:600;color:var(--naranja);display:flex;align-items:center;gap:6px}
+
+/* ---------- DETALLE ---------- */
+.btn-volver{
+  background:none;border:none;color:var(--gris-texto);font-size:.9rem;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;padding:6px 0;
+}
+.btn-volver:hover{color:var(--azul)}
+.detalle-header{margin-bottom:20px}
+.detalle-header h2{font-size:1.35rem;font-weight:800}
+.detalle-header p{font-size:.88rem;color:var(--gris-texto);margin-top:4px}
+.detalle-header p i{color:var(--naranja);margin-right:6px}
+
+.panel{
+  background:var(--blanco);border:1px solid var(--gris-borde);border-radius:var(--radio);
+  padding:20px;box-shadow:var(--sombra);margin-bottom:18px;
+}
+.panel h3{font-size:.95rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.panel h3 i{color:var(--naranja)}
+
+.plan-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.plan-info-left{display:flex;align-items:center;gap:14px}
+.plan-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--azul);color:var(--naranja);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+}
+.plan-nombre{font-weight:700;font-size:1rem}
+.plan-desc{font-size:.8rem;color:var(--gris-texto);margin-top:2px}
+.plan-precio{text-align:right}
+.plan-precio strong{font-size:1.35rem;font-weight:800;color:var(--azul)}
+.plan-precio span{display:block;font-size:.75rem;color:var(--gris-texto)}
+
+.tabs{display:flex;gap:6px;border-bottom:1.5px solid var(--gris-borde);margin-bottom:14px;overflow-x:auto}
+.tab-btn{
+  background:none;border:none;padding:10px 14px;font-size:.85rem;font-weight:600;
+  color:var(--gris-texto);border-bottom:2.5px solid transparent;margin-bottom:-1.5px;
+  white-space:nowrap;display:flex;align-items:center;gap:7px;
+}
+.tab-btn.active{color:var(--naranja);border-bottom-color:var(--naranja)}
+.tab-count{
+  background:var(--gris-fondo);border-radius:999px;font-size:.7rem;font-weight:700;
+  padding:2px 7px;color:var(--gris-texto);
+}
+.tab-btn.active .tab-count{background:#fdeede;color:var(--naranja-oscuro)}
+
+.trabajo-item{
+  display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--gris-borde);
+}
+.trabajo-item:last-child{border-bottom:none}
+.estado-icon{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.estado-completado .estado-icon{background:#e5f5ec;color:var(--verde)}
+.estado-en_curso .estado-icon{background:#fdeede;color:var(--naranja)}
+.estado-programado .estado-icon{background:#e8f0fa;color:#2b5c9e}
+.trabajo-body{flex:1;min-width:0}
+.trabajo-titulo{font-size:.9rem;font-weight:600}
+.trabajo-desc{font-size:.8rem;color:var(--gris-texto);margin-top:2px}
+.trabajo-meta{font-size:.75rem;color:var(--gris-texto);margin-top:5px;display:flex;flex-wrap:wrap;gap:12px}
+.estado-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:3px 8px;border-radius:999px;align-self:flex-start;white-space:nowrap}
+.estado-completado .estado-tag{background:#e5f5ec;color:var(--verde)}
+.estado-en_curso .estado-tag{background:#fdeede;color:var(--naranja-oscuro)}
+.estado-programado .estado-tag{background:#e8f0fa;color:#2b5c9e}
+.lista-vacia{padding:22px 4px;text-align:center;color:var(--gris-texto);font-size:.85rem}
+.lista-vacia i{display:block;font-size:1.4rem;margin-bottom:8px;opacity:.5}
+
+.visita-item{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--gris-borde)}
+.visita-item:last-child{border-bottom:none}
+.visita-fecha-box{
+  width:46px;height:46px;border-radius:11px;background:var(--azul);color:var(--blanco);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;
+}
+.visita-fecha-box strong{font-size:1rem;line-height:1;font-weight:800}
+.visita-fecha-box span{font-size:.6rem;text-transform:uppercase;letter-spacing:.5px;opacity:.8;margin-top:2px}
+.visita-info strong{display:block;font-size:.88rem;font-weight:600}
+.visita-info span{font-size:.78rem;color:var(--gris-texto)}
+.visita-info span i{margin-right:5px}
+
+.form-grupo{margin-bottom:14px}
+.form-grupo label{display:block;font-size:.8rem;font-weight:600;color:var(--gris-texto);margin-bottom:6px}
+.form-grupo select,.form-grupo textarea{
+  width:100%;padding:11px 12px;border:1.5px solid var(--gris-borde);border-radius:10px;
+  outline:none;background:var(--blanco);color:var(--azul);transition:border-color .15s;
+}
+.form-grupo select:focus,.form-grupo textarea:focus{border-color:var(--naranja)}
+.form-grupo select.error,.form-grupo textarea.error{border-color:var(--rojo)}
+.form-grupo textarea{min-height:90px;resize:vertical}
+.form-error{display:none;align-items:center;gap:6px;color:var(--rojo);font-size:.8rem;font-weight:500;margin-bottom:12px}
+.form-error.visible{display:flex}
+.btn-whatsapp{
+  width:100%;padding:14px;border:none;border-radius:10px;background:#25d366;color:var(--blanco);
+  font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:filter .15s;
+}
+.btn-whatsapp:hover{filter:brightness(.93)}
+.form-ok{display:none;align-items:center;gap:8px;color:var(--verde);font-size:.83rem;font-weight:600;margin-top:12px;justify-content:center}
+.form-ok.visible{display:flex}
+
+@media (min-width:640px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+  .header-admin{display:block}
+  .container{padding:28px 24px 56px}
+}
+@media (min-width:980px){
+  .cards-grid{grid-template-columns:repeat(3,1fr)}
+  .detalle-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:start}
+  .detalle-cols .panel{margin-bottom:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PANTALLA 1: LOGIN ============ -->
+<div id="screen-login">
+  <div class="login-box">
+    <div class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <div class="logo-text">
+        <strong>CASTAÑO</strong>
+        <span>Servicios Generales</span>
+      </div>
+    </div>
+    <p class="login-sub">Portal de seguimiento para administradores de consorcio</p>
+    <div class="login-card">
+      <h2>Ingresá a tu cuenta</h2>
+      <p>Usá el código de administrador que te asignamos.</p>
+      <label class="field-label" for="input-codigo">Código de administrador</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-key"></i>
+        <input type="text" id="input-codigo" placeholder="Ej: ADM001" autocomplete="off" maxlength="10">
+      </div>
+      <div id="login-error"><i class="fa-solid fa-circle-exclamation"></i><span id="login-error-text"></span></div>
+      <button class="btn-primary" id="btn-ingresar"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar</button>
+      <p class="login-hint">Demo: <code>ADM001</code> o <code>ADM002</code></p>
+    </div>
+    <p class="login-footer"><i class="fa-solid fa-screwdriver-wrench"></i>Mantenimiento edilicio integral · CABA</p>
+  </div>
+</div>
+
+<!-- ============ PANTALLA 2: DASHBOARD ============ -->
+<div id="screen-dashboard" class="hidden">
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <div class="header-brand-text">
+        <strong>CASTAÑO</strong>
+        <span>Servicios Generales</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-admin" id="dash-admin-nombre"></div>
+      <button class="btn-salir" data-salir><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
+    </div>
+  </header>
+  <main class="container">
+    <h1 class="dash-title" id="dash-saludo"></h1>
+    <p class="dash-sub" id="dash-resumen"></p>
+    <div class="cards-grid" id="cards-grid"></div>
+  </main>
+</div>
+
+<!-- ============ PANTALLA 3: DETALLE ============ -->
+<div id="screen-detalle" class="hidden">
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <div class="header-brand-text">
+        <strong>CASTAÑO</strong>
+        <span>Servicios Generales</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-admin" id="det-admin-nombre"></div>
+      <button class="btn-salir" data-salir><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
+    </div>
+  </header>
+  <main class="container">
+    <button class="btn-volver" id="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+    <div class="detalle-header">
+      <h2 id="det-nombre"></h2>
+      <p><i class="fa-solid fa-location-dot"></i><span id="det-direccion"></span></p>
+    </div>
+
+    <div class="panel plan-panel">
+      <div class="plan-info-left">
+        <div class="plan-icon"><i class="fa-solid fa-file-contract"></i></div>
+        <div>
+          <div class="plan-nombre" id="det-plan-nombre"></div>
+          <div class="plan-desc" id="det-plan-desc"></div>
+        </div>
+      </div>
+      <div class="plan-precio">
+        <strong id="det-plan-precio"></strong>
+        <span>por mes + IVA</span>
+      </div>
+    </div>
+
+    <div class="detalle-cols">
+      <div>
+        <div class="panel">
+          <h3><i class="fa-solid fa-clipboard-list"></i> Trabajos</h3>
+          <div class="tabs" id="tabs">
+            <button class="tab-btn active" data-tab="en_curso"><i class="fa-solid fa-person-digging"></i> En curso <span class="tab-count" id="count-en_curso">0</span></button>
+            <button class="tab-btn" data-tab="programado"><i class="fa-regular fa-calendar"></i> Programados <span class="tab-count" id="count-programado">0</span></button>
+            <button class="tab-btn" data-tab="completado"><i class="fa-solid fa-check"></i> Completados <span class="tab-count" id="count-completado">0</span></button>
+          </div>
+          <div id="lista-trabajos"></div>
+        </div>
+
+        <div class="panel">
+          <h3><i class="fa-solid fa-calendar-days"></i> Próximas visitas</h3>
+          <div id="lista-visitas"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <h3><i class="fa-brands fa-whatsapp"></i> Reportar un problema</h3>
+          <div class="form-grupo">
+            <label for="rep-tipo">Tipo de problema</label>
+            <select id="rep-tipo">
+              <option value="">Seleccioná una opción…</option>
+              <option value="Plomería">Plomería</option>
+              <option value="Electricidad">Electricidad</option>
+              <option value="Pintura / Albañilería">Pintura / Albañilería</option>
+              <option value="Ascensores">Ascensores</option>
+              <option value="Impermeabilización / Filtraciones">Impermeabilización / Filtraciones</option>
+              <option value="Espacios comunes">Espacios comunes</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-grupo">
+            <label for="rep-desc">Descripción</label>
+            <textarea id="rep-desc" placeholder="Contanos qué pasó, en qué piso o sector, y desde cuándo…"></textarea>
+          </div>
+          <div class="form-error" id="rep-error"><i class="fa-solid fa-circle-exclamation"></i><span id="rep-error-text"></span></div>
+          <button class="btn-whatsapp" id="btn-reportar"><i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp</button>
+          <div class="form-ok" id="rep-ok"><i class="fa-solid fa-circle-check"></i> Se abrió WhatsApp con tu reporte listo para enviar.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+"use strict";
+
+/* ==================== DATOS ==================== */
+const DATA = {
+  whatsapp: "5491131606302",
+  planes: {
+    chico:   { nombre: "Abono Chico",   precio: 150000, desc: "Hasta 8 unidades · 4 intervenciones/mes" },
+    mediano: { nombre: "Abono Mediano", precio: 200000, desc: "9 a 20 unidades · 6 intervenciones/mes" },
+    grande:  { nombre: "Abono Grande",  precio: 300000, desc: "21+ unidades · 8 intervenciones/mes" }
+  },
+  admins: {
+    ADM001: {
+      nombre: "Marcela Fontán",
+      edificios: [
+        {
+          id: "e1",
+          nombre: "Edificio Libertador 4520",
+          direccion: "Av. del Libertador 4520, Palermo",
+          plan: "grande",
+          trabajos: [
+            { titulo: "Impermeabilización de terraza", descripcion: "Membrana nueva en terraza norte y reparación de babetas.", estado: "en_curso", fecha: "2026-07-06", responsable: "Cuadrilla A" },
+            { titulo: "Reparación de bomba presurizadora", descripcion: "Recambio de rodamientos y sello mecánico en sala de máquinas.", estado: "en_curso", fecha: "2026-07-08", responsable: "R. Giménez" },
+            { titulo: "Pintura de palier planta baja", descripcion: "Enduido, lijado y dos manos de látex en hall de entrada.", estado: "programado", fecha: "2026-07-20", responsable: "Cuadrilla B" },
+            { titulo: "Destapación de pluvial 6º piso", descripcion: "Desobstrucción de bajada pluvial con máquina rotativa.", estado: "completado", fecha: "2026-06-24", responsable: "R. Giménez" },
+            { titulo: "Recambio de luminarias de emergencia", descripcion: "12 equipos autónomos nuevos en escaleras y cocheras.", estado: "completado", fecha: "2026-06-15", responsable: "L. Ferreyra" }
+          ],
+          visitas: [
+            { fecha: "2026-07-13", hora: "09:00", motivo: "Mantenimiento semanal de rutina" },
+            { fecha: "2026-07-16", hora: "14:00", motivo: "Control de avance — terraza" },
+            { fecha: "2026-07-20", hora: "08:30", motivo: "Inicio pintura de palier" }
+          ]
+        },
+        {
+          id: "e2",
+          nombre: "Consorcio Guardia Vieja 3308",
+          direccion: "Guardia Vieja 3308, Almagro",
+          plan: "mediano",
+          trabajos: [
+            { titulo: "Arreglo de portero eléctrico", descripcion: "Recambio de placa de audio y 4 teléfonos internos.", estado: "programado", fecha: "2026-07-15", responsable: "L. Ferreyra" },
+            { titulo: "Sellado de carpinterías 2º piso", descripcion: "Silicona neutra en ventanas del contrafrente por filtración.", estado: "completado", fecha: "2026-07-02", responsable: "Cuadrilla B" },
+            { titulo: "Revisión de tablero eléctrico general", descripcion: "Ajuste de borneras y termografía preventiva.", estado: "completado", fecha: "2026-06-18", responsable: "L. Ferreyra" }
+          ],
+          visitas: [
+            { fecha: "2026-07-14", hora: "10:30", motivo: "Mantenimiento semanal de rutina" },
+            { fecha: "2026-07-15", hora: "09:00", motivo: "Portero eléctrico — instalación" }
+          ]
+        },
+        {
+          id: "e3",
+          nombre: "Torre Belgrano R",
+          direccion: "Superí 1450, Belgrano R",
+          plan: "chico",
+          trabajos: [
+            { titulo: "Poda y mantenimiento de patio común", descripcion: "Poda de ligustrina y limpieza de canteros.", estado: "programado", fecha: "2026-07-22", responsable: "Cuadrilla A" },
+            { titulo: "Cambio de cerradura puerta de servicio", descripcion: "Cerradura de seguridad doble paleta + 10 copias.", estado: "completado", fecha: "2026-06-30", responsable: "R. Giménez" }
+          ],
+          visitas: [
+            { fecha: "2026-07-17", hora: "11:00", motivo: "Mantenimiento semanal de rutina" }
+          ]
+        }
+      ]
+    },
+    ADM002: {
+      nombre: "Gustavo Pereyra",
+      edificios: [
+        {
+          id: "e4",
+          nombre: "Edificio San Telmo Plaza",
+          direccion: "Defensa 980, San Telmo",
+          plan: "mediano",
+          trabajos: [
+            { titulo: "Reparación de medianera con filtración", descripcion: "Picado, hidrófugo y revoque en medianera oeste, 3º y 4º piso.", estado: "en_curso", fecha: "2026-07-07", responsable: "Cuadrilla B" },
+            { titulo: "Service de portón de cochera", descripcion: "Lubricación de guías y ajuste de motor corredizo.", estado: "programado", fecha: "2026-07-18", responsable: "R. Giménez" },
+            { titulo: "Recambio de flotante en tanque de reserva", descripcion: "Válvula flotante nueva y limpieza de tanque.", estado: "completado", fecha: "2026-06-26", responsable: "Cuadrilla A" }
+          ],
+          visitas: [
+            { fecha: "2026-07-13", hora: "13:00", motivo: "Control de avance — medianera" },
+            { fecha: "2026-07-18", hora: "09:30", motivo: "Service portón de cochera" }
+          ]
+        },
+        {
+          id: "e5",
+          nombre: "Consorcio Caballito Norte",
+          direccion: "Av. Rivadavia 5122, Caballito",
+          plan: "chico",
+          trabajos: [
+            { titulo: "Pintura de rejas de frente", descripcion: "Lijado, convertidor de óxido y esmalte sintético.", estado: "programado", fecha: "2026-07-24", responsable: "Cuadrilla B" },
+            { titulo: "Reparación de escalón de mármol", descripcion: "Pegado estructural y pulido de escalón de entrada.", estado: "completado", fecha: "2026-07-01", responsable: "Cuadrilla A" },
+            { titulo: "Destapación de rejilla de patio", descripcion: "Limpieza de rejilla y cámara de patio interno.", estado: "completado", fecha: "2026-06-20", responsable: "R. Giménez" }
+          ],
+          visitas: [
+            { fecha: "2026-07-16", hora: "15:00", motivo: "Mantenimiento semanal de rutina" }
+          ]
+        }
+      ]
+    }
+  }
+};
+
+/* ==================== HELPERS ==================== */
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const MESES_CORTO = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+
+function partesFecha(iso) {
+  const p = iso.split("-");
+  return { anio: parseInt(p[0], 10), mes: parseInt(p[1], 10) - 1, dia: parseInt(p[2], 10) };
+}
+function formatFecha(iso) {
+  const f = partesFecha(iso);
+  return f.dia + " de " + MESES[f.mes] + " de " + f.anio;
+}
+function formatFechaCorta(iso) {
+  const f = partesFecha(iso);
+  return f.dia + " " + MESES_CORTO[f.mes];
+}
+function formatPrecio(n) {
+  return "$" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+const ESTADOS = {
+  completado: { label: "Completado", icono: "fa-solid fa-circle-check" },
+  en_curso:   { label: "En curso",   icono: "fa-solid fa-person-digging" },
+  programado: { label: "Programado", icono: "fa-regular fa-calendar" }
+};
+
+/* ==================== ESTADO DE LA APP ==================== */
+let adminActual = null;
+let codigoActual = null;
+let edificioActual = null;
+let tabActual = "en_curso";
+
+const $ = (id) => document.getElementById(id);
+
+function mostrarPantalla(id) {
+  ["screen-login", "screen-dashboard", "screen-detalle"].forEach(function (s) {
+    $(s).classList.toggle("hidden", s !== id);
+  });
+  window.scrollTo(0, 0);
+}
+
+/* ==================== LOGIN ==================== */
+function intentarLogin() {
+  const input = $("input-codigo");
+  const errBox = $("login-error");
+  const codigo = input.value.trim().toUpperCase();
+
+  if (!codigo) {
+    $("login-error-text").textContent = "Ingresá tu código de administrador.";
+    errBox.classList.add("visible");
+    input.classList.add("error");
+    input.focus();
+    return;
+  }
+  if (!DATA.admins[codigo]) {
+    $("login-error-text").textContent = "Código no válido. Verificalo e intentá de nuevo.";
+    errBox.classList.add("visible");
+    input.classList.add("error");
+    input.focus();
+    return;
+  }
+  errBox.classList.remove("visible");
+  input.classList.remove("error");
+  adminActual = DATA.admins[codigo];
+  codigoActual = codigo;
+  input.value = "";
+  renderDashboard();
+  mostrarPantalla("screen-dashboard");
+}
+
+$("btn-ingresar").addEventListener("click", intentarLogin);
+$("input-codigo").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") intentarLogin();
+});
+$("input-codigo").addEventListener("input", function () {
+  $("login-error").classList.remove("visible");
+  this.classList.remove("error");
+});
+
+/* ==================== SALIR ==================== */
+document.querySelectorAll("[data-salir]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    adminActual = null;
+    codigoActual = null;
+    edificioActual = null;
+    mostrarPantalla("screen-login");
+    $("input-codigo").focus();
+  });
+});
+
+/* ==================== DASHBOARD ==================== */
+function renderDashboard() {
+  $("dash-admin-nombre").textContent = adminActual.nombre + " · " + codigoActual;
+  $("dash-saludo").textContent = "Hola, " + adminActual.nombre.split(" ")[0];
+
+  const total = adminActual.edificios.length;
+  let enCursoTotal = 0;
+  adminActual.edificios.forEach(function (ed) {
+    enCursoTotal += ed.trabajos.filter(function (t) { return t.estado === "en_curso"; }).length;
+  });
+  $("dash-resumen").textContent =
+    total + (total === 1 ? " edificio" : " edificios") + " con abono activo · " +
+    enCursoTotal + (enCursoTotal === 1 ? " trabajo en curso" : " trabajos en curso");
+
+  const grid = $("cards-grid");
+  grid.innerHTML = "";
+
+  adminActual.edificios.forEach(function (ed) {
+    const plan = DATA.planes[ed.plan];
+    const enCurso = ed.trabajos.filter(function (t) { return t.estado === "en_curso"; });
+    const proximaVisita = ed.visitas.length ? ed.visitas[0] : null;
+
+    const card = document.createElement("button");
+    card.className = "card-edificio";
+    card.type = "button";
+
+    let html =
+      '<div class="card-top">' +
+        '<div class="card-nombre">' + esc(ed.nombre) + '</div>' +
+        '<span class="badge-plan plan-' + ed.plan + '">' + esc(plan.nombre) + '</span>' +
+      '</div>' +
+      '<div class="card-dir"><i class="fa-solid fa-location-dot"></i>' + esc(ed.direccion) + '</div>';
+
+    if (enCurso.length > 0) {
+      html += '<div class="card-row encurso"><i class="fa-solid fa-person-digging"></i>' +
+        enCurso.length + (enCurso.length === 1 ? " trabajo en curso: " : " trabajos en curso: ") +
+        esc(enCurso[0].titulo) + (enCurso.length > 1 ? " y más" : "") + '</div>';
+    } else {
+      html += '<div class="card-row"><i class="fa-solid fa-circle-check"></i>Sin trabajos en curso</div>';
+    }
+
+    if (proximaVisita) {
+      html += '<div class="card-row"><i class="fa-solid fa-calendar-days"></i>Próxima visita: ' +
+        formatFecha(proximaVisita.fecha) + ", " + esc(proximaVisita.hora) + ' hs</div>';
+    } else {
+      html += '<div class="card-row"><i class="fa-solid fa-calendar-days"></i>Sin visitas programadas</div>';
+    }
+
+    html += '<div class="card-arrow">Ver detalle <i class="fa-solid fa-arrow-right"></i></div>';
+    card.innerHTML = html;
+    card.addEventListener("click", function () { abrirDetalle(ed.id); });
+    grid.appendChild(card);
+  });
+}
+
+/* ==================== DETALLE ==================== */
+function abrirDetalle(idEdificio) {
+  edificioActual = adminActual.edificios.find(function (e) { return e.id === idEdificio; });
+  if (!edificioActual) return;
+  tabActual = "en_curso";
+  renderDetalle();
+  mostrarPantalla("screen-detalle");
+}
+
+function renderDetalle() {
+  const ed = edificioActual;
+  const plan = DATA.planes[ed.plan];
+
+  $("det-admin-nombre").textContent = adminActual.nombre + " · " + codigoActual;
+  $("det-nombre").textContent = ed.nombre;
+  $("det-direccion").textContent = ed.direccion;
+  $("det-plan-nombre").textContent = plan.nombre;
+  $("det-plan-desc").textContent = plan.desc;
+  $("det-plan-precio").textContent = formatPrecio(plan.precio);
+
+  ["en_curso", "programado", "completado"].forEach(function (estado) {
+    $("count-" + estado).textContent = ed.trabajos.filter(function (t) { return t.estado === estado; }).length;
+  });
+
+  document.querySelectorAll("#tabs .tab-btn").forEach(function (b) {
+    b.classList.toggle("active", b.getAttribute("data-tab") === tabActual);
+  });
+
+  renderTrabajos();
+  renderVisitas();
+
+  $("rep-tipo").value = "";
+  $("rep-desc").value = "";
+  $("rep-tipo").classList.remove("error");
+  $("rep-desc").classList.remove("error");
+  $("rep-error").classList.remove("visible");
+  $("rep-ok").classList.remove("visible");
+}
+
+function renderTrabajos() {
+  const cont = $("lista-trabajos");
+  const trabajos = edificioActual.trabajos.filter(function (t) { return t.estado === tabActual; });
+
+  if (trabajos.length === 0) {
+    const textos = {
+      en_curso: "No hay trabajos en curso en este edificio.",
+      programado: "No hay trabajos programados por ahora.",
+      completado: "Todavía no hay trabajos completados registrados."
+    };
+    cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-folder-open"></i>' + textos[tabActual] + '</div>';
+    return;
+  }
+
+  cont.innerHTML = trabajos.map(function (t) {
+    const est = ESTADOS[t.estado];
+    return (
+      '<div class="trabajo-item estado-' + t.estado + '">' +
+        '<div class="estado-icon"><i class="' + est.icono + '"></i></div>' +
+        '<div class="trabajo-body">' +
+          '<div class="trabajo-titulo">' + esc(t.titulo) + '</div>' +
+          '<div class="trabajo-desc">' + esc(t.descripcion) + '</div>' +
+          '<div class="trabajo-meta">' +
+            '<span><i class="fa-regular fa-calendar" style="margin-right:5px"></i>' + formatFecha(t.fecha) + '</span>' +
+            '<span><i class="fa-regular fa-user" style="margin-right:5px"></i>' + esc(t.responsable) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<span class="estado-tag">' + est.label + '</span>' +
+      '</div>'
+    );
+  }).join("");
+}
+
+function renderVisitas() {
+  const cont = $("lista-visitas");
+  const visitas = edificioActual.visitas;
+
+  if (visitas.length === 0) {
+    cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-calendar"></i>No hay visitas programadas.</div>';
+    return;
+  }
+
+  cont.innerHTML = visitas.map(function (v) {
+    const f = partesFecha(v.fecha);
+    return (
+      '<div class="visita-item">' +
+        '<div class="visita-fecha-box"><strong>' + f.dia + '</strong><span>' + MESES_CORTO[f.mes] + '</span></div>' +
+        '<div class="visita-info">' +
+          '<strong>' + esc(v.motivo) + '</strong>' +
+          '<span><i class="fa-regular fa-clock"></i>' + formatFecha(v.fecha) + ' · ' + esc(v.hora) + ' hs</span>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join("");
+}
+
+/* Tabs */
+document.querySelectorAll("#tabs .tab-btn").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    tabActual = btn.getAttribute("data-tab");
+    document.querySelectorAll("#tabs .tab-btn").forEach(function (b) {
+      b.classList.toggle("active", b === btn);
+    });
+    renderTrabajos();
+  });
+});
+
+/* Volver */
+$("btn-volver").addEventListener("click", function () {
+  renderDashboard();
+  mostrarPantalla("screen-dashboard");
+});
+
+/* ==================== REPORTE WHATSAPP ==================== */
+$("btn-reportar").addEventListener("click", function () {
+  const tipo = $("rep-tipo").value;
+  const desc = $("rep-desc").value.trim();
+  const errBox = $("rep-error");
+
+  $("rep-tipo").classList.remove("error");
+  $("rep-desc").classList.remove("error");
+  $("rep-ok").classList.remove("visible");
+
+  if (!tipo) {
+    $("rep-error-text").textContent = "Elegí el tipo de problema.";
+    errBox.classList.add("visible");
+    $("rep-tipo").classList.add("error");
+    return;
+  }
+  if (!desc) {
+    $("rep-error-text").textContent = "Agregá una breve descripción del problema.";
+    errBox.classList.add("visible");
+    $("rep-desc").classList.add("error");
+    return;
+  }
+  errBox.classList.remove("visible");
+
+  const mensaje =
+    "Hola, soy " + adminActual.nombre + " (" + codigoActual + ").\n" +
+    "Quiero reportar un problema:\n\n" +
+    "🏢 Edificio: " + edificioActual.nombre + "\n" +
+    "📍 Dirección: " + edificioActual.direccion + "\n" +
+    "🔧 Tipo de problema: " + tipo + "\n" +
+    "📝 Descripción: " + desc;
+
+  const url = "https://wa.me/" + DATA.whatsapp + "?text=" + encodeURIComponent(mensaje);
+  window.open(url, "_blank", "noopener");
+
+  $("rep-ok").classList.add("visible");
+  $("rep-tipo").value = "";
+  $("rep-desc").value = "";
+});
+
+/* ==================== INICIO ==================== */
+mostrarPantalla("screen-login");
+</script>
+</body>
+</html>
