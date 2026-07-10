@@ -226,6 +226,17 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .form-ok{display:none;align-items:center;gap:8px;color:var(--verde);font-size:.83rem;font-weight:600;margin-top:12px;justify-content:center}
 .form-ok.visible{display:flex}
 
+/* ---------- RECLAMOS Y URGENCIAS ---------- */
+.ru-selector{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.ru-btn{border:2px solid var(--gris-borde);background:var(--gris-fondo);border-radius:11px;padding:12px 10px;cursor:pointer;text-align:center;transition:all .18s;color:var(--gris-texto);font-family:inherit}
+.ru-btn .ru-icon{font-size:1.3rem;display:block;margin-bottom:4px}
+.ru-btn .ru-label{font-size:.82rem;font-weight:700;display:block}
+.ru-btn .ru-sub{font-size:.72rem;opacity:.75;display:block;margin-top:2px}
+.ru-btn.sel-reclamo{border-color:var(--naranja);background:rgba(232,119,34,.08);color:var(--naranja-oscuro)}
+.ru-btn.sel-urgencia{border-color:var(--rojo);background:rgba(214,69,69,.07);color:var(--rojo)}
+.ru-badge{display:none;background:rgba(214,69,69,.1);border:1px solid rgba(214,69,69,.3);border-radius:8px;padding:10px 12px;margin-bottom:14px;color:var(--rojo);font-size:.8rem;font-weight:600;align-items:center;gap:8px}
+.ru-badge.visible{display:flex}
+
 @media (min-width:640px){
   .cards-grid{grid-template-columns:repeat(2,1fr)}
   .header-admin{display:block}
@@ -345,7 +356,23 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 
       <div>
         <div class="panel">
-          <h3><i class="fa-brands fa-whatsapp"></i> Reportar un problema</h3>
+          <h3><i class="fa-solid fa-triangle-exclamation"></i> Reclamos y Urgencias</h3>
+          <div class="ru-selector">
+            <button class="ru-btn" id="ru-btn-reclamo" onclick="selRU('reclamo')">
+              <span class="ru-icon">🔧</span>
+              <span class="ru-label">Reclamo</span>
+              <span class="ru-sub">Problema a resolver</span>
+            </button>
+            <button class="ru-btn" id="ru-btn-urgencia" onclick="selRU('urgencia')">
+              <span class="ru-icon">🚨</span>
+              <span class="ru-label">Urgencia</span>
+              <span class="ru-sub">Necesito respuesta HOY</span>
+            </button>
+          </div>
+          <div class="ru-badge" id="ru-badge">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Marcado como URGENTE — recibiremos tu mensaje como prioridad inmediata.
+          </div>
           <div class="form-grupo">
             <label for="rep-tipo">Tipo de problema</label>
             <select id="rep-tipo">
@@ -502,6 +529,7 @@ const ESTADOS = {
 };
 
 /* ==================== ESTADO DE LA APP ==================== */
+var modoRU = "reclamo";
 let adminActual = null;
 let codigoActual = null;
 let edificioActual = null;
@@ -514,6 +542,23 @@ function mostrarPantalla(id) {
     $(s).classList.toggle("hidden", s !== id);
   });
   window.scrollTo(0, 0);
+}
+
+/* ==================== RECLAMOS Y URGENCIAS ==================== */
+function selRU(modo) {
+  modoRU = modo;
+  $("ru-btn-reclamo").classList.remove("sel-reclamo", "sel-urgencia");
+  $("ru-btn-urgencia").classList.remove("sel-reclamo", "sel-urgencia");
+  $("ru-btn-" + modo).classList.add("sel-" + modo);
+  $("ru-badge").classList.toggle("visible", modo === "urgencia");
+  var btn = $("btn-reportar");
+  if (modo === "urgencia") {
+    btn.style.background = "#d64545";
+    btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Enviar urgencia por WhatsApp';
+  } else {
+    btn.style.background = "#25d366";
+    btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp';
+  }
 }
 
 /* ==================== LOGIN ==================== */
@@ -657,6 +702,14 @@ function renderDetalle() {
   $("rep-desc").classList.remove("error");
   $("rep-error").classList.remove("visible");
   $("rep-ok").classList.remove("visible");
+  // Reset reclamos/urgencias
+  modoRU = "reclamo";
+  $("ru-btn-reclamo").classList.remove("sel-reclamo", "sel-urgencia");
+  $("ru-btn-urgencia").classList.remove("sel-reclamo", "sel-urgencia");
+  $("ru-badge").classList.remove("visible");
+  var btnRep = $("btn-reportar");
+  btnRep.style.background = "#25d366";
+  btnRep.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp';
 }
 
 function renderTrabajos() {
@@ -683,97 +736,4 @@ function renderTrabajos() {
           '<div class="trabajo-desc">' + esc(t.descripcion) + '</div>' +
           '<div class="trabajo-meta">' +
             '<span><i class="fa-regular fa-calendar" style="margin-right:5px"></i>' + formatFecha(t.fecha) + '</span>' +
-            '<span><i class="fa-regular fa-user" style="margin-right:5px"></i>' + esc(t.responsable) + '</span>' +
-          '</div>' +
-        '</div>' +
-        '<span class="estado-tag">' + est.label + '</span>' +
-      '</div>'
-    );
-  }).join("");
-}
-
-function renderVisitas() {
-  const cont = $("lista-visitas");
-  const visitas = edificioActual.visitas;
-
-  if (visitas.length === 0) {
-    cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-calendar"></i>No hay visitas programadas.</div>';
-    return;
-  }
-
-  cont.innerHTML = visitas.map(function (v) {
-    const f = partesFecha(v.fecha);
-    return (
-      '<div class="visita-item">' +
-        '<div class="visita-fecha-box"><strong>' + f.dia + '</strong><span>' + MESES_CORTO[f.mes] + '</span></div>' +
-        '<div class="visita-info">' +
-          '<strong>' + esc(v.motivo) + '</strong>' +
-          '<span><i class="fa-regular fa-clock"></i>' + formatFecha(v.fecha) + ' · ' + esc(v.hora) + ' hs</span>' +
-        '</div>' +
-      '</div>'
-    );
-  }).join("");
-}
-
-/* Tabs */
-document.querySelectorAll("#tabs .tab-btn").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    tabActual = btn.getAttribute("data-tab");
-    document.querySelectorAll("#tabs .tab-btn").forEach(function (b) {
-      b.classList.toggle("active", b === btn);
-    });
-    renderTrabajos();
-  });
-});
-
-/* Volver */
-$("btn-volver").addEventListener("click", function () {
-  renderDashboard();
-  mostrarPantalla("screen-dashboard");
-});
-
-/* ==================== REPORTE WHATSAPP ==================== */
-$("btn-reportar").addEventListener("click", function () {
-  const tipo = $("rep-tipo").value;
-  const desc = $("rep-desc").value.trim();
-  const errBox = $("rep-error");
-
-  $("rep-tipo").classList.remove("error");
-  $("rep-desc").classList.remove("error");
-  $("rep-ok").classList.remove("visible");
-
-  if (!tipo) {
-    $("rep-error-text").textContent = "Elegí el tipo de problema.";
-    errBox.classList.add("visible");
-    $("rep-tipo").classList.add("error");
-    return;
-  }
-  if (!desc) {
-    $("rep-error-text").textContent = "Agregá una breve descripción del problema.";
-    errBox.classList.add("visible");
-    $("rep-desc").classList.add("error");
-    return;
-  }
-  errBox.classList.remove("visible");
-
-  const mensaje =
-    "Hola, soy " + adminActual.nombre + " (" + codigoActual + ").\n" +
-    "Quiero reportar un problema:\n\n" +
-    "🏢 Edificio: " + edificioActual.nombre + "\n" +
-    "📍 Dirección: " + edificioActual.direccion + "\n" +
-    "🔧 Tipo de problema: " + tipo + "\n" +
-    "📝 Descripción: " + desc;
-
-  const url = "https://wa.me/" + DATA.whatsapp + "?text=" + encodeURIComponent(mensaje);
-  window.open(url, "_blank", "noopener");
-
-  $("rep-ok").classList.add("visible");
-  $("rep-tipo").value = "";
-  $("rep-desc").value = "";
-});
-
-/* ==================== INICIO ==================== */
-mostrarPantalla("screen-login");
-</script>
-</body>
-</html>
+            '<span
