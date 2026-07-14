@@ -384,7 +384,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
           <div class="tabs" id="tabs">
             <button class="tab-btn active" data-tab="en_curso"><i class="fa-solid fa-person-digging"></i> En curso <span class="tab-count" id="count-en_curso">0</span></button>
             <button class="tab-btn" data-tab="programado"><i class="fa-regular fa-calendar"></i> Programados <span class="tab-count" id="count-programado">0</span></button>
-            <button class="tab-btn" data-tab="completado"><i class="fa-solid fa-check"></i> Completados <span class="tab-count" id="count-completado">0</span></button>
+            <button class="tab-btn" data-tab="completado"><i class="fa-solid fa-check"></i> Terminados <span class="tab-count" id="count-completado">0</span></button>
           </div>
           <div id="lista-trabajos"></div>
         </div>
@@ -604,7 +604,7 @@ function esc(s) {
 }
 
 const ESTADOS = {
-  completado: { label: "Completado", icono: "fa-solid fa-circle-check" },
+  completado: { label: "Terminado", icono: "fa-solid fa-circle-check" },
   en_curso:   { label: "En curso",   icono: "fa-solid fa-person-digging" },
   programado: { label: "Programado", icono: "fa-regular fa-calendar" }
 };
@@ -887,7 +887,7 @@ function renderTrabajos() {
     const textos = {
       en_curso: "No hay trabajos en curso en este edificio.",
       programado: "No hay trabajos programados por ahora.",
-      completado: "Todavía no hay trabajos completados registrados."
+      completado: "Todavía no hay trabajos terminados registrados."
     };
     cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-folder-open"></i>' + textos[tabActual] + '</div>';
     return;
