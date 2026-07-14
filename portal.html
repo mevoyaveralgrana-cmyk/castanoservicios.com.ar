@@ -183,6 +183,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .estado-completado .estado-icon{background:#e5f5ec;color:var(--verde)}
 .estado-en_curso .estado-icon{background:#fdeede;color:var(--naranja)}
 .estado-programado .estado-icon{background:#e8f0fa;color:#2b5c9e}
+.estado-previsto .estado-icon{background:#f3eefa;color:#7b3fbf}
 .trabajo-body{flex:1;min-width:0}
 .trabajo-titulo{font-size:.9rem;font-weight:600}
 .trabajo-desc{font-size:.8rem;color:var(--gris-texto);margin-top:2px}
@@ -191,6 +192,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .estado-completado .estado-tag{background:#e5f5ec;color:var(--verde)}
 .estado-en_curso .estado-tag{background:#fdeede;color:var(--naranja-oscuro)}
 .estado-programado .estado-tag{background:#e8f0fa;color:#2b5c9e}
+.estado-previsto .estado-tag{background:#f3eefa;color:#7b3fbf}
 .lista-vacia{padding:22px 4px;text-align:center;color:var(--gris-texto);font-size:.85rem}
 .lista-vacia i{display:block;font-size:1.4rem;margin-bottom:8px;opacity:.5}
 
@@ -384,6 +386,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
           <div class="tabs" id="tabs">
             <button class="tab-btn active" data-tab="en_curso"><i class="fa-solid fa-person-digging"></i> En curso <span class="tab-count" id="count-en_curso">0</span></button>
             <button class="tab-btn" data-tab="programado"><i class="fa-regular fa-calendar"></i> Programados <span class="tab-count" id="count-programado">0</span></button>
+            <button class="tab-btn" data-tab="previsto"><i class="fa-solid fa-lightbulb"></i> Previstos <span class="tab-count" id="count-previsto">0</span></button>
             <button class="tab-btn" data-tab="completado"><i class="fa-solid fa-check"></i> Terminados <span class="tab-count" id="count-completado">0</span></button>
           </div>
           <div id="lista-trabajos"></div>
@@ -506,7 +509,7 @@ const DATA = {
           plan: null,
           trabajos: [
             { titulo: "Pintura — Dpto. 1D", descripcion: "Pintura en unidad funcional 1D. En curso.", estado: "en_curso", fecha: "2026-07-03", responsable: "Brunaga" },
-            { titulo: "Plomería — Varios dptos.", descripcion: "Trabajos de plomería en curso. Múltiples intervenciones jun-jul.", estado: "en_curso", fecha: "2026-07-13", responsable: "Brunaga" },
+            { titulo: "Reparación mampostería", descripcion: "Reparación de mampostería en edificio. Revoque, salpicré. Presupuesto $800.000.", estado: "previsto", fecha: "2026-07-14", responsable: "" },
             { titulo: "Cloacal — Columna bajada 3er piso a azotea", descripcion: "Reemplazo integral columna cloacal principal. Presupuesto $7.800.000 (50% anticipo + saldo contra fin de obra).", estado: "en_curso", fecha: "2026-07-14", responsable: "Brunaga" },
             { titulo: "Impermeabilización — Terraza y muros perimetrales", descripcion: "Sistema acrílico elastomérico 180m². Incluye manta geotextil. Garantía 12 meses.", estado: "en_curso", fecha: "2026-07-14", responsable: "Brunaga" },
             { titulo: "Reparación pared — 8vo piso escalera", descripcion: "Revoque y salpicré en pared escalera y bajo ventana 8vo piso. Presupuesto $1.100.000.", estado: "en_curso", fecha: "2026-07-14", responsable: "Brunaga" },
@@ -606,7 +609,8 @@ function esc(s) {
 const ESTADOS = {
   completado: { label: "Terminado", icono: "fa-solid fa-circle-check" },
   en_curso:   { label: "En curso",   icono: "fa-solid fa-person-digging" },
-  programado: { label: "Programado", icono: "fa-regular fa-calendar" }
+  programado: { label: "Programado", icono: "fa-regular fa-calendar" },
+  previsto:   { label: "Previsto",   icono: "fa-solid fa-lightbulb" }
 };
 
 /* ==================== ESTADO DE LA APP ==================== */
@@ -760,7 +764,7 @@ function renderDetalle() {
   $("det-direccion").textContent = ed.direccion;
 
   const todosTrabajos = getTrabajosEdificio(ed);
-  ["en_curso", "programado", "completado"].forEach(function (estado) {
+  ["en_curso", "programado", "previsto", "completado"].forEach(function (estado) {
     $("count-" + estado).textContent = todosTrabajos.filter(function (t) { return t.estado === estado; }).length;
   });
 
@@ -887,6 +891,7 @@ function renderTrabajos() {
     const textos = {
       en_curso: "No hay trabajos en curso en este edificio.",
       programado: "No hay trabajos programados por ahora.",
+      previsto: "No hay trabajos previstos registrados.",
       completado: "Todavía no hay trabajos terminados registrados."
     };
     cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-folder-open"></i>' + textos[tabActual] + '</div>';
