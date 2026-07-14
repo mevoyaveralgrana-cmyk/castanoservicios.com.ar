@@ -109,14 +109,27 @@
     .servicio-card {
       background: var(--blanco); border-radius: 12px; padding: 28px 20px; text-align: center;
       box-shadow: 0 2px 12px rgba(0,0,0,.07); transition: transform .2s, box-shadow .2s;
-      overflow: hidden;
     }
     .servicio-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
     .servicio-card.destacado { border: 2px solid var(--naranja); }
     .servicio-icon { font-size: 36px; color: var(--naranja); margin-bottom: 14px; }
     .servicio-card h3 { color: var(--azul); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .servicio-card h3.con-galeria { cursor: pointer; text-decoration: underline dotted; }
+    .servicio-card h3.con-galeria:hover { color: var(--naranja); }
     .servicio-card p { color: var(--gris-medio); font-size: 13px; line-height: 1.5; }
-    .srv-foto { width: calc(100% + 40px); margin: -28px -20px 18px -20px; height: 160px; object-fit: cover; display: block; }
+    /* MODAL GALERIA */
+    .srv-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:9000; overflow-y:auto; padding:20px; }
+    .srv-modal-overlay.activo { display:flex; flex-direction:column; align-items:center; }
+    .srv-modal-header { width:100%; max-width:960px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+    .srv-modal-titulo { color:#fff; font-size:1.1rem; font-weight:700; }
+    .srv-modal-cerrar { background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer; line-height:1; }
+    .srv-modal-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:10px; width:100%; max-width:960px; }
+    .srv-modal-grid img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:8px; cursor:pointer; transition:opacity .2s; }
+    .srv-modal-grid img:hover { opacity:.85; }
+    .srv-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.95); z-index:9100; align-items:center; justify-content:center; }
+    .srv-lightbox.activo { display:flex; }
+    .srv-lightbox img { max-width:92vw; max-height:92vh; border-radius:6px; }
+    .srv-lightbox-cerrar { position:absolute; top:16px; right:20px; color:#fff; font-size:2rem; cursor:pointer; background:none; border:none; }
 
     /* GALERIA */
     .galeria-grid {
@@ -347,15 +360,13 @@
   <p class="section-sub">Un solo proveedor para todos los servicios. Sin buscar distintos operarios para cada problema.</p>
   <div class="servicios-grid">
     <div class="servicio-card destacado">
-      <img src="srv/srv_destapacion.jpg" alt="Destapacion" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-toilet"></i></div>
-      <h3>Destapacion</h3>
+      <h3 class="con-galeria" onclick="abrirGaleria('plomeria')">Destapacion</h3>
       <p>Columnas cloacales y pluviales, ramales, camaras. Servicio urgente 24hs.</p>
     </div>
     <div class="servicio-card destacado">
-      <img src="srv/srv_plomeria.jpg" alt="Plomeria" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-wrench"></i></div>
-      <h3>Plomeria</h3>
+      <h3 class="con-galeria" onclick="abrirGaleria('plomeria')">Plomeria</h3>
       <p>Canerias, tanques, desagotes, canillas y soldadura. Emergencias 24hs.</p>
     </div>
     <div class="servicio-card destacado">
@@ -364,21 +375,18 @@
       <p>Instalaciones, tableros, reparaciones y emergencias electricas.</p>
     </div>
     <div class="servicio-card destacado">
-      <img src="srv/srv_impermeabilizacion.jpg" alt="Impermeabilizacion" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-water"></i></div>
-      <h3>Impermeabilizacion</h3>
+      <h3 class="con-galeria" onclick="abrirGaleria('impermeabilizacion')">Impermeabilizacion</h3>
       <p>Terrazas, techos y medianeras. Solucion definitiva a la humedad.</p>
     </div>
     <div class="servicio-card">
-      <img src="srv/srv_pintura.jpg" alt="Pintura" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-paint-roller"></i></div>
-      <h3>Pintura</h3>
+      <h3 class="con-galeria" onclick="abrirGaleria('pintura')">Pintura</h3>
       <p>Interior y exterior, enduidos, cielorrasos y reparacion de paredes.</p>
     </div>
     <div class="servicio-card">
-      <img src="srv/srv_albanileria.jpg" alt="Albanileria" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-trowel"></i></div>
-      <h3>Albanileria</h3>
+      <h3 class="con-galeria" onclick="abrirGaleria('albanileria')">Albanileria</h3>
       <p>Reparaciones estructurales, revestimientos y mamposteria.</p>
     </div>
     <div class="servicio-card">
@@ -392,7 +400,6 @@
       <p>Control de plagas con habilitacion oficial.</p>
     </div>
     <div class="servicio-card">
-      <img src="srv/srv_consorcios.jpg" alt="Consorcios" class="srv-foto" loading="lazy" />
       <div class="servicio-icon"><i class="fa-solid fa-building"></i></div>
       <h3>Consorcios</h3>
       <p>Abono mensual con visitas preventivas y atencion prioritaria.</p>
@@ -811,6 +818,79 @@ Descripcion: " + desc;
       if (a.getAttribute("href") === "#" + current) a.classList.add("activo");
     });
   });
+
+/* ========== GALERIA DE SERVICIOS ========== */
+const GALERIAS = {
+  impermeabilizacion: {
+    titulo: "Impermeabilizacion",
+    fotos: ["srv/imp_1.jpg","srv/imp_2.jpg","srv/imp_3.jpg","srv/imp_4.jpg","srv/imp_5.jpg","srv/imp_6.jpg","srv/imp_7.jpg","srv/imp_8.jpg"]
+  },
+  plomeria: {
+    titulo: "Plomeria y Destapacion",
+    fotos: ["srv/plo_1.jpg","srv/plo_2.jpg","srv/plo_3.jpg","srv/plo_4.jpg"]
+  },
+  pintura: {
+    titulo: "Pintura",
+    fotos: ["srv/pin_1.jpg","srv/pin_2.jpg","srv/pin_3.jpg"]
+  },
+  albanileria: {
+    titulo: "Albanileria",
+    fotos: ["srv/alb_1.jpg"]
+  }
+};
+
+function abrirGaleria(servicio) {
+  const data = GALERIAS[servicio];
+  if (!data) return;
+  const overlay = document.getElementById("srv-modal");
+  document.getElementById("srv-modal-titulo").textContent = data.titulo;
+  const grid = document.getElementById("srv-modal-grid");
+  grid.innerHTML = "";
+  data.fotos.forEach(function(src) {
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy";
+    img.onclick = function() { abrirSrvLightbox(src); };
+    grid.appendChild(img);
+  });
+  overlay.classList.add("activo");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarGaleria() {
+  document.getElementById("srv-modal").classList.remove("activo");
+  document.body.style.overflow = "";
+}
+
+function abrirSrvLightbox(src) {
+  const lb = document.getElementById("srv-lightbox");
+  document.getElementById("srv-lightbox-img").src = src;
+  lb.classList.add("activo");
+}
+
+function cerrarSrvLightbox() {
+  document.getElementById("srv-lightbox").classList.remove("activo");
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") { cerrarGaleria(); cerrarSrvLightbox(); }
+});
 </script>
+
+<!-- MODAL GALERIA SERVICIOS -->
+<div class="srv-modal-overlay" id="srv-modal" onclick="if(event.target===this)cerrarGaleria()">
+  <div class="srv-modal-header">
+    <span class="srv-modal-titulo" id="srv-modal-titulo"></span>
+    <button class="srv-modal-cerrar" onclick="cerrarGaleria()">&#x2715;</button>
+  </div>
+  <div class="srv-modal-grid" id="srv-modal-grid"></div>
+</div>
+
+<!-- LIGHTBOX INDIVIDUAL -->
+<div class="srv-lightbox" id="srv-lightbox" onclick="cerrarSrvLightbox()">
+  <button class="srv-lightbox-cerrar" onclick="cerrarSrvLightbox()">&#x2715;</button>
+  <img id="srv-lightbox-img" src="" alt="" />
+</div>
+
 </body>
 </html>
