@@ -423,7 +423,7 @@ const DATA = {
           id: "e1",
           nombre: "Bauness 2172",
           direccion: "Bauness 2172, CABA",
-          plan: "mediano",
+          plan: null,
           trabajos: [
             { titulo: "Albañilería / Mosaicos — Dpto. 7A", descripcion: "Trabajo de albañilería y colocación de mosaicos. Cerámica en proceso.", estado: "completado", fecha: "2026-07-12", responsable: "Brunaga" },
             { titulo: "Albañilería — Dpto. 6A", descripcion: "Mano de obra y materiales. Obra terminada.", estado: "completado", fecha: "2026-06-29", responsable: "Brunaga" },
@@ -435,7 +435,7 @@ const DATA = {
           id: "e2",
           nombre: "Darwin 966",
           direccion: "Darwin 966, CABA",
-          plan: "mediano",
+          plan: null,
           trabajos: [
             { titulo: "Plomería / Desagüe Pluvial", descripcion: "Trabajo de plomería y desagüe pluvial. En curso.", estado: "en_curso", fecha: "2026-07-03", responsable: "Ricardo" },
             { titulo: "Fumigación", descripcion: "Fumigación completa del edificio. Saldada.", estado: "completado", fecha: "2026-06-23", responsable: "Brunaga" }
@@ -446,7 +446,7 @@ const DATA = {
           id: "e3",
           nombre: "Forest",
           direccion: "Forest, CABA",
-          plan: "chico",
+          plan: null,
           trabajos: [
             { titulo: "Trabajos varios — UF 10", descripcion: "Obra terminada y saldada.", estado: "completado", fecha: "2026-06-25", responsable: "Brunaga / Giardina" }
           ],
@@ -456,7 +456,7 @@ const DATA = {
           id: "e4",
           nombre: "Cabezón y Bolivia",
           direccion: "Cabezón y Bolivia, CABA",
-          plan: "chico",
+          plan: null,
           trabajos: [
             { titulo: "Trabajos varios", descripcion: "Obra programada para el 15 de julio. Por cobrar saldo.", estado: "programado", fecha: "2026-07-15", responsable: "Brunaga" }
           ],
@@ -472,7 +472,7 @@ const DATA = {
           id: "e5",
           nombre: "Campana 4550",
           direccion: "Campana 4550, CABA",
-          plan: "mediano",
+          plan: null,
           trabajos: [
             { titulo: "Durlock / Pintura — 5to y 6to D", descripcion: "Presupuesto unificado dptos 5D y 6D. En curso.", estado: "en_curso", fecha: "2026-06-29", responsable: "Brunaga" }
           ],
@@ -618,14 +618,14 @@ function renderDashboard() {
     enCursoTotal += ed.trabajos.filter(function (t) { return t.estado === "en_curso"; }).length;
   });
   $("dash-resumen").textContent =
-    total + (total === 1 ? " edificio" : " edificios") + " con abono activo · " +
+    total + (total === 1 ? " edificio" : " edificios") + " · " +
     enCursoTotal + (enCursoTotal === 1 ? " trabajo en curso" : " trabajos en curso");
 
   const grid = $("cards-grid");
   grid.innerHTML = "";
 
   adminActual.edificios.forEach(function (ed) {
-    const plan = DATA.planes[ed.plan];
+    const plan = ed.plan ? DATA.planes[ed.plan] : null;
     const enCurso = ed.trabajos.filter(function (t) { return t.estado === "en_curso"; });
     const proximaVisita = ed.visitas.length ? ed.visitas[0] : null;
 
@@ -633,10 +633,11 @@ function renderDashboard() {
     card.className = "card-edificio";
     card.type = "button";
 
+    const badgePlan = plan ? '<span class="badge-plan plan-' + ed.plan + '">' + esc(plan.nombre) + '</span>' : '';
     let html =
       '<div class="card-top">' +
         '<div class="card-nombre">' + esc(ed.nombre) + '</div>' +
-        '<span class="badge-plan plan-' + ed.plan + '">' + esc(plan.nombre) + '</span>' +
+        badgePlan +
       '</div>' +
       '<div class="card-dir"><i class="fa-solid fa-location-dot"></i>' + esc(ed.direccion) + '</div>';
 
