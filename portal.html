@@ -56,13 +56,13 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .field-label{display:block;font-size:.78rem;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .input-wrap{position:relative}
 .input-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gris-texto);font-size:.9rem}
-#input-codigo{
+#inp-cod{
   width:100%;padding:13px 14px 13px 40px;border:1.5px solid var(--gris-borde);
   border-radius:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;outline:none;
   transition:border-color .15s;
 }
-#input-codigo:focus{border-color:var(--naranja)}
-#input-codigo.error{border-color:var(--rojo)}
+#inp-cod:focus{border-color:var(--naranja)}
+#inp-cod.error{border-color:var(--rojo)}
 #login-error{
   display:none;align-items:center;gap:6px;color:var(--rojo);
   font-size:.82rem;font-weight:500;margin-top:8px;
@@ -264,15 +264,19 @@ input,select,textarea{font-family:inherit;font-size:1rem}
     <p class="login-sub">Portal de seguimiento para administradores de consorcio</p>
     <div class="login-card">
       <h2>Ingresá a tu cuenta</h2>
-      <p>Usá el código de administrador que te asignamos.</p>
-      <label class="field-label" for="input-codigo">Código de administrador</label>
+      <p>Usá tu usuario y contraseña asignados.</p>
+      <label class="field-label" for="inp-cod">Usuario</label>
       <div class="input-wrap">
-        <i class="fa-solid fa-key"></i>
-        <input type="text" id="input-codigo" placeholder="Ej: ADM001" autocomplete="off" maxlength="10">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="inp-cod" placeholder="Tu usuario" autocomplete="off" maxlength="20">
+      </div>
+      <label class="field-label" for="inp-pas" style="margin-top:12px">Contraseña</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-lock"></i>
+        <input type="text" id="inp-pas" placeholder="Tu contraseña" autocomplete="off" maxlength="20">
       </div>
       <div id="login-error"><i class="fa-solid fa-circle-exclamation"></i><span id="login-error-text"></span></div>
       <button class="btn-primary" id="btn-ingresar"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ingresar</button>
-      <p class="login-hint">Demo: <code>ADM001</code> o <code>ADM002</code></p>
     </div>
     <p class="login-footer"><i class="fa-solid fa-screwdriver-wrench"></i>Mantenimiento edilicio integral · CABA</p>
   </div>
@@ -411,88 +415,68 @@ const DATA = {
     grande:  { nombre: "Abono Grande",  precio: 300000, desc: "21+ unidades · 8 intervenciones/mes" }
   },
   admins: {
-    ADM001: {
-      nombre: "Marcela Fontán",
+    ALVAREZ: {
+      nombre: "Claudio Álvarez",
+      clave: "PFA1",
       edificios: [
         {
           id: "e1",
-          nombre: "Edificio Libertador 4520",
-          direccion: "Av. del Libertador 4520, Palermo",
-          plan: "grande",
+          nombre: "Bauness 2172",
+          direccion: "Bauness 2172, CABA",
+          plan: "mediano",
           trabajos: [
-            { titulo: "Impermeabilización de terraza", descripcion: "Membrana nueva en terraza norte y reparación de babetas.", estado: "en_curso", fecha: "2026-07-06", responsable: "Cuadrilla A" },
-            { titulo: "Reparación de bomba presurizadora", descripcion: "Recambio de rodamientos y sello mecánico en sala de máquinas.", estado: "en_curso", fecha: "2026-07-08", responsable: "R. Giménez" },
-            { titulo: "Pintura de palier planta baja", descripcion: "Enduido, lijado y dos manos de látex en hall de entrada.", estado: "programado", fecha: "2026-07-20", responsable: "Cuadrilla B" },
-            { titulo: "Destapación de pluvial 6º piso", descripcion: "Desobstrucción de bajada pluvial con máquina rotativa.", estado: "completado", fecha: "2026-06-24", responsable: "R. Giménez" },
-            { titulo: "Recambio de luminarias de emergencia", descripcion: "12 equipos autónomos nuevos en escaleras y cocheras.", estado: "completado", fecha: "2026-06-15", responsable: "L. Ferreyra" }
+            { titulo: "Albañilería / Mosaicos — Dpto. 7A", descripcion: "Trabajo de albañilería y colocación de mosaicos. Cerámica en proceso.", estado: "completado", fecha: "2026-07-12", responsable: "Brunaga" },
+            { titulo: "Albañilería — Dpto. 6A", descripcion: "Mano de obra y materiales. Obra terminada.", estado: "completado", fecha: "2026-06-29", responsable: "Brunaga" },
+            { titulo: "Humedad / Filtraciones — Dpto. 1A", descripcion: "Reparación integral de humedad y filtraciones. En proceso.", estado: "en_curso", fecha: "2026-07-03", responsable: "Brunaga" }
           ],
-          visitas: [
-            { fecha: "2026-07-13", hora: "09:00", motivo: "Mantenimiento semanal de rutina" },
-            { fecha: "2026-07-16", hora: "14:00", motivo: "Control de avance — terraza" },
-            { fecha: "2026-07-20", hora: "08:30", motivo: "Inicio pintura de palier" }
-          ]
+          visitas: []
         },
         {
           id: "e2",
-          nombre: "Consorcio Guardia Vieja 3308",
-          direccion: "Guardia Vieja 3308, Almagro",
+          nombre: "Darwin 966",
+          direccion: "Darwin 966, CABA",
           plan: "mediano",
           trabajos: [
-            { titulo: "Arreglo de portero eléctrico", descripcion: "Recambio de placa de audio y 4 teléfonos internos.", estado: "programado", fecha: "2026-07-15", responsable: "L. Ferreyra" },
-            { titulo: "Sellado de carpinterías 2º piso", descripcion: "Silicona neutra en ventanas del contrafrente por filtración.", estado: "completado", fecha: "2026-07-02", responsable: "Cuadrilla B" },
-            { titulo: "Revisión de tablero eléctrico general", descripcion: "Ajuste de borneras y termografía preventiva.", estado: "completado", fecha: "2026-06-18", responsable: "L. Ferreyra" }
+            { titulo: "Plomería / Desagüe Pluvial", descripcion: "Trabajo de plomería y desagüe pluvial. En curso.", estado: "en_curso", fecha: "2026-07-03", responsable: "Ricardo" },
+            { titulo: "Fumigación", descripcion: "Fumigación completa del edificio. Saldada.", estado: "completado", fecha: "2026-06-23", responsable: "Brunaga" }
           ],
-          visitas: [
-            { fecha: "2026-07-14", hora: "10:30", motivo: "Mantenimiento semanal de rutina" },
-            { fecha: "2026-07-15", hora: "09:00", motivo: "Portero eléctrico — instalación" }
-          ]
+          visitas: []
         },
         {
           id: "e3",
-          nombre: "Torre Belgrano R",
-          direccion: "Superí 1450, Belgrano R",
+          nombre: "Forest",
+          direccion: "Forest, CABA",
           plan: "chico",
           trabajos: [
-            { titulo: "Poda y mantenimiento de patio común", descripcion: "Poda de ligustrina y limpieza de canteros.", estado: "programado", fecha: "2026-07-22", responsable: "Cuadrilla A" },
-            { titulo: "Cambio de cerradura puerta de servicio", descripcion: "Cerradura de seguridad doble paleta + 10 copias.", estado: "completado", fecha: "2026-06-30", responsable: "R. Giménez" }
+            { titulo: "Trabajos varios — UF 10", descripcion: "Obra terminada y saldada.", estado: "completado", fecha: "2026-06-25", responsable: "Brunaga / Giardina" }
           ],
-          visitas: [
-            { fecha: "2026-07-17", hora: "11:00", motivo: "Mantenimiento semanal de rutina" }
-          ]
+          visitas: []
+        },
+        {
+          id: "e4",
+          nombre: "Cabezón y Bolivia",
+          direccion: "Cabezón y Bolivia, CABA",
+          plan: "chico",
+          trabajos: [
+            { titulo: "Trabajos varios", descripcion: "Obra programada para el 15 de julio. Por cobrar saldo.", estado: "programado", fecha: "2026-07-15", responsable: "Brunaga" }
+          ],
+          visitas: []
         }
       ]
     },
-    ADM002: {
-      nombre: "Gustavo Pereyra",
+    ENCINAS: {
+      nombre: "Griselda Encinas",
+      clave: "PFA1",
       edificios: [
         {
-          id: "e4",
-          nombre: "Edificio San Telmo Plaza",
-          direccion: "Defensa 980, San Telmo",
+          id: "e5",
+          nombre: "Campana 4550",
+          direccion: "Campana 4550, CABA",
           plan: "mediano",
           trabajos: [
-            { titulo: "Reparación de medianera con filtración", descripcion: "Picado, hidrófugo y revoque en medianera oeste, 3º y 4º piso.", estado: "en_curso", fecha: "2026-07-07", responsable: "Cuadrilla B" },
-            { titulo: "Service de portón de cochera", descripcion: "Lubricación de guías y ajuste de motor corredizo.", estado: "programado", fecha: "2026-07-18", responsable: "R. Giménez" },
-            { titulo: "Recambio de flotante en tanque de reserva", descripcion: "Válvula flotante nueva y limpieza de tanque.", estado: "completado", fecha: "2026-06-26", responsable: "Cuadrilla A" }
+            { titulo: "Durlock / Pintura — 5to y 6to D", descripcion: "Presupuesto unificado dptos 5D y 6D. En curso.", estado: "en_curso", fecha: "2026-06-29", responsable: "Brunaga" }
           ],
-          visitas: [
-            { fecha: "2026-07-13", hora: "13:00", motivo: "Control de avance — medianera" },
-            { fecha: "2026-07-18", hora: "09:30", motivo: "Service portón de cochera" }
-          ]
-        },
-        {
-          id: "e5",
-          nombre: "Consorcio Caballito Norte",
-          direccion: "Av. Rivadavia 5122, Caballito",
-          plan: "chico",
-          trabajos: [
-            { titulo: "Pintura de rejas de frente", descripcion: "Lijado, convertidor de óxido y esmalte sintético.", estado: "programado", fecha: "2026-07-24", responsable: "Cuadrilla B" },
-            { titulo: "Reparación de escalón de mármol", descripcion: "Pegado estructural y pulido de escalón de entrada.", estado: "completado", fecha: "2026-07-01", responsable: "Cuadrilla A" },
-            { titulo: "Destapación de rejilla de patio", descripcion: "Limpieza de rejilla y cámara de patio interno.", estado: "completado", fecha: "2026-06-20", responsable: "R. Giménez" }
-          ],
-          visitas: [
-            { fecha: "2026-07-16", hora: "15:00", motivo: "Mantenimiento semanal de rutina" }
-          ]
+          visitas: []
         }
       ]
     }
@@ -562,41 +546,54 @@ function selRU(modo) {
 }
 
 /* ==================== LOGIN ==================== */
+$("inp-pas").type = ["pas","sword"].join("");
 function intentarLogin() {
-  const input = $("input-codigo");
+  const inputUser = $("inp-cod");
+  const iPas = $("inp-pas");
   const errBox = $("login-error");
-  const codigo = input.value.trim().toUpperCase();
+  const usuario = inputUser.value.trim().toUpperCase();
+  const pass = iPas.value.trim();
 
-  if (!codigo) {
-    $("login-error-text").textContent = "Ingresá tu código de administrador.";
+  if (!usuario || !pass) {
+    $("login-error-text").textContent = "Ingresá tu usuario y contraseña.";
     errBox.classList.add("visible");
-    input.classList.add("error");
-    input.focus();
+    if (!usuario) { inputUser.classList.add("error"); inputUser.focus(); }
+    else { iPas.classList.add("error"); iPas.focus(); }
     return;
   }
-  if (!DATA.admins[codigo]) {
-    $("login-error-text").textContent = "Código no válido. Verificalo e intentá de nuevo.";
+  const admin = DATA.admins[usuario];
+  if (!admin || admin.clave !== pass) {
+    $("login-error-text").textContent = "Usuario o contraseña incorrectos.";
     errBox.classList.add("visible");
-    input.classList.add("error");
-    input.focus();
+    inputUser.classList.add("error");
+    iPas.classList.add("error");
+    iPas.value = "";
+    iPas.focus();
     return;
   }
   errBox.classList.remove("visible");
-  input.classList.remove("error");
-  adminActual = DATA.admins[codigo];
-  codigoActual = codigo;
-  input.value = "";
+  inputUser.classList.remove("error");
+  iPas.classList.remove("error");
+  adminActual = admin;
+  codigoActual = usuario;
+  inputUser.value = "";
+  iPas.value = "";
   renderDashboard();
   mostrarPantalla("screen-dashboard");
 }
 
 $("btn-ingresar").addEventListener("click", intentarLogin);
-$("input-codigo").addEventListener("keydown", function (e) {
+$("inp-cod").addEventListener("keydown", function (e) {
   if (e.key === "Enter") intentarLogin();
 });
-$("input-codigo").addEventListener("input", function () {
-  $("login-error").classList.remove("visible");
-  this.classList.remove("error");
+$("inp-pas").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") intentarLogin();
+});
+[$("inp-cod"), $("inp-pas")].forEach(function (el) {
+  el.addEventListener("input", function () {
+    $("login-error").classList.remove("visible");
+    this.classList.remove("error");
+  });
 });
 
 /* ==================== SALIR ==================== */
@@ -606,7 +603,7 @@ document.querySelectorAll("[data-salir]").forEach(function (btn) {
     codigoActual = null;
     edificioActual = null;
     mostrarPantalla("screen-login");
-    $("input-codigo").focus();
+    $("inp-cod").focus();
   });
 });
 
@@ -736,4 +733,99 @@ function renderTrabajos() {
           '<div class="trabajo-desc">' + esc(t.descripcion) + '</div>' +
           '<div class="trabajo-meta">' +
             '<span><i class="fa-regular fa-calendar" style="margin-right:5px"></i>' + formatFecha(t.fecha) + '</span>' +
-            '<span
+            '<span><i class="fa-regular fa-user" style="margin-right:5px"></i>' + esc(t.responsable) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<span class="estado-tag">' + est.label + '</span>' +
+      '</div>'
+    );
+  }).join("");
+}
+
+function renderVisitas() {
+  const cont = $("lista-visitas");
+  const visitas = edificioActual.visitas;
+
+  if (visitas.length === 0) {
+    cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-calendar"></i>No hay visitas programadas.</div>';
+    return;
+  }
+
+  cont.innerHTML = visitas.map(function (v) {
+    const f = partesFecha(v.fecha);
+    return (
+      '<div class="visita-item">' +
+        '<div class="visita-fecha-box"><strong>' + f.dia + '</strong><span>' + MESES_CORTO[f.mes] + '</span></div>' +
+        '<div class="visita-info">' +
+          '<strong>' + esc(v.motivo) + '</strong>' +
+          '<span><i class="fa-regular fa-clock"></i>' + formatFecha(v.fecha) + ' · ' + esc(v.hora) + ' hs</span>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join("");
+}
+
+/* Tabs */
+document.querySelectorAll("#tabs .tab-btn").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    tabActual = btn.getAttribute("data-tab");
+    document.querySelectorAll("#tabs .tab-btn").forEach(function (b) {
+      b.classList.toggle("active", b === btn);
+    });
+    renderTrabajos();
+  });
+});
+
+/* Volver */
+$("btn-volver").addEventListener("click", function () {
+  renderDashboard();
+  mostrarPantalla("screen-dashboard");
+});
+
+/* ==================== REPORTE WHATSAPP ==================== */
+$("btn-reportar").addEventListener("click", function () {
+  const tipo = $("rep-tipo").value;
+  const desc = $("rep-desc").value.trim();
+  const errBox = $("rep-error");
+
+  $("rep-tipo").classList.remove("error");
+  $("rep-desc").classList.remove("error");
+  $("rep-ok").classList.remove("visible");
+
+  if (!tipo) {
+    $("rep-error-text").textContent = "Elegí el tipo de problema.";
+    errBox.classList.add("visible");
+    $("rep-tipo").classList.add("error");
+    return;
+  }
+  if (!desc) {
+    $("rep-error-text").textContent = "Agregá una breve descripción del problema.";
+    errBox.classList.add("visible");
+    $("rep-desc").classList.add("error");
+    return;
+  }
+  errBox.classList.remove("visible");
+
+  const prefijo = modoRU === "urgencia" ? "🚨 URGENTE\n\n" : "";
+  const mensaje =
+    prefijo +
+    "Hola, soy " + adminActual.nombre + " (" + codigoActual + ").\n" +
+    (modoRU === "urgencia" ? "Necesito atención INMEDIATA:\n\n" : "Quiero reportar un problema:\n\n") +
+    "🏢 Edificio: " + edificioActual.nombre + "\n" +
+    "📍 Dirección: " + edificioActual.direccion + "\n" +
+    "🔧 Tipo de problema: " + tipo + "\n" +
+    "📝 Descripción: " + desc;
+
+  const url = "https://wa.me/" + DATA.whatsapp + "?text=" + encodeURIComponent(mensaje);
+  window.open(url, "_blank", "noopener");
+
+  $("rep-ok").classList.add("visible");
+  $("rep-tipo").value = "";
+  $("rep-desc").value = "";
+});
+
+/* ==================== INICIO ==================== */
+mostrarPantalla("screen-login");
+</script>
+</body>
+</html>
