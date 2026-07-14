@@ -226,16 +226,64 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .form-ok{display:none;align-items:center;gap:8px;color:var(--verde);font-size:.83rem;font-weight:600;margin-top:12px;justify-content:center}
 .form-ok.visible{display:flex}
 
-/* ---------- RECLAMOS Y URGENCIAS ---------- */
-.ru-selector{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.ru-btn{border:2px solid var(--gris-borde);background:var(--gris-fondo);border-radius:11px;padding:12px 10px;cursor:pointer;text-align:center;transition:all .18s;color:var(--gris-texto);font-family:inherit}
-.ru-btn .ru-icon{font-size:1.3rem;display:block;margin-bottom:4px}
-.ru-btn .ru-label{font-size:.82rem;font-weight:700;display:block}
-.ru-btn .ru-sub{font-size:.72rem;opacity:.75;display:block;margin-top:2px}
-.ru-btn.sel-reclamo{border-color:var(--naranja);background:rgba(232,119,34,.08);color:var(--naranja-oscuro)}
-.ru-btn.sel-urgencia{border-color:var(--rojo);background:rgba(214,69,69,.07);color:var(--rojo)}
-.ru-badge{display:none;background:rgba(214,69,69,.1);border:1px solid rgba(214,69,69,.3);border-radius:8px;padding:10px 12px;margin-bottom:14px;color:var(--rojo);font-size:.8rem;font-weight:600;align-items:center;gap:8px}
-.ru-badge.visible{display:flex}
+/* ---------- PANEL HEADER CON BOTON ---------- */
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.panel-header h3{margin-bottom:0}
+.btn-nuevo{
+  background:var(--naranja);color:var(--blanco);border:none;border-radius:8px;
+  padding:7px 13px;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:6px;
+  transition:background .15s;white-space:nowrap;
+}
+.btn-nuevo:hover{background:var(--naranja-oscuro)}
+
+/* ---------- RECLAMO ITEM ---------- */
+.reclamo-item{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--gris-borde)}
+.reclamo-item:last-child{border-bottom:none}
+.reclamo-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.reclamo-pendiente .reclamo-dot{background:var(--naranja)}
+.reclamo-en_curso .reclamo-dot{background:#2b5c9e}
+.reclamo-resuelto .reclamo-dot{background:var(--verde)}
+.reclamo-body{flex:1;min-width:0}
+.reclamo-tipo{font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.reclamo-desc{font-size:.8rem;color:var(--gris-texto);margin-top:3px}
+.reclamo-meta{font-size:.73rem;color:var(--gris-texto);margin-top:5px}
+.badge-urg{background:rgba(214,69,69,.12);color:var(--rojo);font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:999px;text-transform:uppercase}
+.badge-est{font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:999px;text-transform:uppercase}
+.badge-pendiente{background:#fdeede;color:var(--naranja-oscuro)}
+.badge-en_curso{background:#e8f0fa;color:#2b5c9e}
+.badge-resuelto{background:#e5f5ec;color:var(--verde)}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.visible{display:flex}
+.modal{
+  background:var(--blanco);border-radius:var(--radio);padding:24px;width:100%;max-width:440px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);max-height:90vh;overflow-y:auto;
+}
+.modal h3{font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.modal h3 i{color:var(--naranja)}
+.modal-footer{display:flex;gap:10px;margin-top:18px}
+.btn-cancel{
+  flex:1;padding:12px;border:1.5px solid var(--gris-borde);background:var(--blanco);
+  border-radius:10px;font-weight:600;font-size:.9rem;color:var(--gris-texto);
+}
+.btn-cancel:hover{background:var(--gris-fondo)}
+.btn-guardar{
+  flex:2;padding:12px;border:none;border-radius:10px;background:var(--naranja);
+  color:var(--blanco);font-weight:700;font-size:.9rem;
+}
+.btn-guardar:hover{background:var(--naranja-oscuro)}
+.form-grupo input[type="text"],.form-grupo input[type="date"]{
+  width:100%;padding:11px 12px;border:1.5px solid var(--gris-borde);border-radius:10px;
+  outline:none;background:var(--blanco);color:var(--azul);font-size:.9rem;
+  transition:border-color .15s;
+}
+.form-grupo input[type="text"]:focus,.form-grupo input[type="date"]:focus{border-color:var(--naranja)}
+.check-urg{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;cursor:pointer;margin-bottom:14px;color:var(--rojo)}
+.check-urg input{width:16px;height:16px;accent-color:var(--rojo)}
 
 @media (min-width:640px){
   .cards-grid{grid-template-columns:repeat(2,1fr)}
@@ -326,24 +374,13 @@ input,select,textarea{font-family:inherit;font-size:1rem}
       <p><i class="fa-solid fa-location-dot"></i><span id="det-direccion"></span></p>
     </div>
 
-    <div class="panel plan-panel">
-      <div class="plan-info-left">
-        <div class="plan-icon"><i class="fa-solid fa-file-contract"></i></div>
-        <div>
-          <div class="plan-nombre" id="det-plan-nombre"></div>
-          <div class="plan-desc" id="det-plan-desc"></div>
-        </div>
-      </div>
-      <div class="plan-precio">
-        <strong id="det-plan-precio"></strong>
-        <span>por mes + IVA</span>
-      </div>
-    </div>
-
     <div class="detalle-cols">
       <div>
         <div class="panel">
-          <h3><i class="fa-solid fa-clipboard-list"></i> Trabajos</h3>
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-clipboard-list"></i> Trabajos</h3>
+            <button class="btn-nuevo" id="btn-nuevo-trabajo"><i class="fa-solid fa-plus"></i> Nuevo</button>
+          </div>
           <div class="tabs" id="tabs">
             <button class="tab-btn active" data-tab="en_curso"><i class="fa-solid fa-person-digging"></i> En curso <span class="tab-count" id="count-en_curso">0</span></button>
             <button class="tab-btn" data-tab="programado"><i class="fa-regular fa-calendar"></i> Programados <span class="tab-count" id="count-programado">0</span></button>
@@ -360,47 +397,90 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 
       <div>
         <div class="panel">
-          <h3><i class="fa-solid fa-triangle-exclamation"></i> Reclamos y Urgencias</h3>
-          <div class="ru-selector">
-            <button class="ru-btn" id="ru-btn-reclamo" onclick="selRU('reclamo')">
-              <span class="ru-icon">🔧</span>
-              <span class="ru-label">Reclamo</span>
-              <span class="ru-sub">Problema a resolver</span>
-            </button>
-            <button class="ru-btn" id="ru-btn-urgencia" onclick="selRU('urgencia')">
-              <span class="ru-icon">🚨</span>
-              <span class="ru-label">Urgencia</span>
-              <span class="ru-sub">Necesito respuesta HOY</span>
-            </button>
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Reclamos</h3>
+            <button class="btn-nuevo" id="btn-nuevo-reclamo"><i class="fa-solid fa-plus"></i> Nuevo</button>
           </div>
-          <div class="ru-badge" id="ru-badge">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            Marcado como URGENTE — recibiremos tu mensaje como prioridad inmediata.
-          </div>
-          <div class="form-grupo">
-            <label for="rep-tipo">Tipo de problema</label>
-            <select id="rep-tipo">
-              <option value="">Seleccioná una opción…</option>
-              <option value="Plomería">Plomería</option>
-              <option value="Electricidad">Electricidad</option>
-              <option value="Pintura / Albañilería">Pintura / Albañilería</option>
-              <option value="Ascensores">Ascensores</option>
-              <option value="Impermeabilización / Filtraciones">Impermeabilización / Filtraciones</option>
-              <option value="Espacios comunes">Espacios comunes</option>
-              <option value="Otro">Otro</option>
-            </select>
-          </div>
-          <div class="form-grupo">
-            <label for="rep-desc">Descripción</label>
-            <textarea id="rep-desc" placeholder="Contanos qué pasó, en qué piso o sector, y desde cuándo…"></textarea>
-          </div>
-          <div class="form-error" id="rep-error"><i class="fa-solid fa-circle-exclamation"></i><span id="rep-error-text"></span></div>
-          <button class="btn-whatsapp" id="btn-reportar"><i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp</button>
-          <div class="form-ok" id="rep-ok"><i class="fa-solid fa-circle-check"></i> Se abrió WhatsApp con tu reporte listo para enviar.</div>
+          <div id="lista-reclamos"></div>
         </div>
       </div>
     </div>
   </main>
+</div>
+
+<!-- MODAL: NUEVO RECLAMO -->
+<div class="modal-overlay" id="modal-reclamo">
+  <div class="modal">
+    <h3><i class="fa-solid fa-triangle-exclamation"></i> Nuevo reclamo</h3>
+    <label class="check-urg"><input type="checkbox" id="mr-urgente"> Marcar como URGENTE</label>
+    <div class="form-grupo">
+      <label>Tipo</label>
+      <select id="mr-tipo">
+        <option value="">Seleccioná…</option>
+        <option>Plomería</option>
+        <option>Electricidad</option>
+        <option>Pintura / Albañilería</option>
+        <option>Ascensores</option>
+        <option>Filtraciones / Humedad</option>
+        <option>Espacios comunes</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="form-grupo">
+      <label>UF / Sector</label>
+      <input type="text" id="mr-uf" placeholder="Ej: 3B, PB, Entrada">
+    </div>
+    <div class="form-grupo">
+      <label>Descripción</label>
+      <textarea id="mr-desc" placeholder="Qué pasó, desde cuándo, detalles…"></textarea>
+    </div>
+    <div class="form-grupo">
+      <label>Estado</label>
+      <select id="mr-estado">
+        <option value="pendiente">Pendiente</option>
+        <option value="en_curso">En curso</option>
+        <option value="resuelto">Resuelto</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="mr-cancel">Cancelar</button>
+      <button class="btn-guardar" id="mr-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: NUEVO TRABAJO -->
+<div class="modal-overlay" id="modal-trabajo">
+  <div class="modal">
+    <h3><i class="fa-solid fa-person-digging"></i> Nuevo trabajo</h3>
+    <div class="form-grupo">
+      <label>Título</label>
+      <input type="text" id="mt-titulo" placeholder="Ej: Pintura escalera">
+    </div>
+    <div class="form-grupo">
+      <label>Descripción</label>
+      <textarea id="mt-desc" placeholder="Detalle del trabajo…"></textarea>
+    </div>
+    <div class="form-grupo">
+      <label>Responsable</label>
+      <input type="text" id="mt-resp" placeholder="Ej: Brunaga">
+    </div>
+    <div class="form-grupo">
+      <label>Estado</label>
+      <select id="mt-estado">
+        <option value="en_curso">En curso</option>
+        <option value="programado">Programado</option>
+      </select>
+    </div>
+    <div class="form-grupo">
+      <label>Fecha</label>
+      <input type="date" id="mt-fecha">
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="mt-cancel">Cancelar</button>
+      <button class="btn-guardar" id="mt-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -513,7 +593,6 @@ const ESTADOS = {
 };
 
 /* ==================== ESTADO DE LA APP ==================== */
-var modoRU = "reclamo";
 let adminActual = null;
 let codigoActual = null;
 let edificioActual = null;
@@ -528,22 +607,6 @@ function mostrarPantalla(id) {
   window.scrollTo(0, 0);
 }
 
-/* ==================== RECLAMOS Y URGENCIAS ==================== */
-function selRU(modo) {
-  modoRU = modo;
-  $("ru-btn-reclamo").classList.remove("sel-reclamo", "sel-urgencia");
-  $("ru-btn-urgencia").classList.remove("sel-reclamo", "sel-urgencia");
-  $("ru-btn-" + modo).classList.add("sel-" + modo);
-  $("ru-badge").classList.toggle("visible", modo === "urgencia");
-  var btn = $("btn-reportar");
-  if (modo === "urgencia") {
-    btn.style.background = "#d64545";
-    btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Enviar urgencia por WhatsApp';
-  } else {
-    btn.style.background = "#25d366";
-    btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp';
-  }
-}
 
 /* ==================== LOGIN ==================== */
 $("inp-pas").type = ["pas","sword"].join("");
@@ -674,17 +737,14 @@ function abrirDetalle(idEdificio) {
 
 function renderDetalle() {
   const ed = edificioActual;
-  const plan = DATA.planes[ed.plan];
 
   $("det-admin-nombre").textContent = adminActual.nombre + " · " + codigoActual;
   $("det-nombre").textContent = ed.nombre;
   $("det-direccion").textContent = ed.direccion;
-  $("det-plan-nombre").textContent = plan.nombre;
-  $("det-plan-desc").textContent = plan.desc;
-  $("det-plan-precio").textContent = formatPrecio(plan.precio);
 
+  const todosTrabajos = getTrabajosEdificio(ed);
   ["en_curso", "programado", "completado"].forEach(function (estado) {
-    $("count-" + estado).textContent = ed.trabajos.filter(function (t) { return t.estado === estado; }).length;
+    $("count-" + estado).textContent = todosTrabajos.filter(function (t) { return t.estado === estado; }).length;
   });
 
   document.querySelectorAll("#tabs .tab-btn").forEach(function (b) {
@@ -693,26 +753,118 @@ function renderDetalle() {
 
   renderTrabajos();
   renderVisitas();
-
-  $("rep-tipo").value = "";
-  $("rep-desc").value = "";
-  $("rep-tipo").classList.remove("error");
-  $("rep-desc").classList.remove("error");
-  $("rep-error").classList.remove("visible");
-  $("rep-ok").classList.remove("visible");
-  // Reset reclamos/urgencias
-  modoRU = "reclamo";
-  $("ru-btn-reclamo").classList.remove("sel-reclamo", "sel-urgencia");
-  $("ru-btn-urgencia").classList.remove("sel-reclamo", "sel-urgencia");
-  $("ru-badge").classList.remove("visible");
-  var btnRep = $("btn-reportar");
-  btnRep.style.background = "#25d366";
-  btnRep.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp';
+  renderReclamos();
 }
+
+/* ==================== LOCAL STORAGE ==================== */
+function lsKey(tipo) {
+  return "csg_" + tipo + "_" + codigoActual + "_" + edificioActual.id;
+}
+function lsGet(tipo) {
+  try { return JSON.parse(localStorage.getItem(lsKey(tipo)) || "[]"); } catch(e) { return []; }
+}
+function lsSet(tipo, arr) {
+  try { localStorage.setItem(lsKey(tipo), JSON.stringify(arr)); } catch(e) {}
+}
+function getTrabajosEdificio(ed) {
+  return (ed.trabajos || []).concat(lsGet("trabajos"));
+}
+
+/* ==================== RECLAMOS ==================== */
+function renderReclamos() {
+  const cont = $("lista-reclamos");
+  const reclamos = lsGet("reclamos");
+  if (reclamos.length === 0) {
+    cont.innerHTML = '<div class="lista-vacia"><i class="fa-regular fa-folder-open"></i>Sin reclamos registrados.</div>';
+    return;
+  }
+  const etiq = { pendiente: "Pendiente", en_curso: "En curso", resuelto: "Resuelto" };
+  cont.innerHTML = reclamos.map(function (r) {
+    return (
+      '<div class="reclamo-item reclamo-' + r.estado + '">' +
+        '<div class="reclamo-dot"></div>' +
+        '<div class="reclamo-body">' +
+          '<div class="reclamo-tipo">' +
+            esc(r.tipo) +
+            (r.uf ? ' <span style="font-weight:400;color:var(--gris-texto)">· ' + esc(r.uf) + '</span>' : '') +
+            (r.urgente ? ' <span class="badge-urg">URGENTE</span>' : '') +
+            ' <span class="badge-est badge-' + r.estado + '">' + etiq[r.estado] + '</span>' +
+          '</div>' +
+          '<div class="reclamo-desc">' + esc(r.descripcion) + '</div>' +
+          '<div class="reclamo-meta">' + r.fecha + '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join("");
+}
+
+/* ==================== MODALES ==================== */
+function abrirModal(id) { $(id).classList.add("visible"); }
+function cerrarModal(id) { $(id).classList.remove("visible"); }
+
+$("btn-nuevo-reclamo").addEventListener("click", function () {
+  $("mr-tipo").value = "";
+  $("mr-uf").value = "";
+  $("mr-desc").value = "";
+  $("mr-estado").value = "pendiente";
+  $("mr-urgente").checked = false;
+  abrirModal("modal-reclamo");
+});
+$("mr-cancel").addEventListener("click", function () { cerrarModal("modal-reclamo"); });
+$("modal-reclamo").addEventListener("click", function (e) { if (e.target === this) cerrarModal("modal-reclamo"); });
+
+$("mr-guardar").addEventListener("click", function () {
+  const tipo = $("mr-tipo").value;
+  const desc = $("mr-desc").value.trim();
+  if (!tipo || !desc) { alert("Completá el tipo y la descripción."); return; }
+  const arr = lsGet("reclamos");
+  arr.unshift({
+    id: Date.now().toString(),
+    tipo: tipo,
+    uf: $("mr-uf").value.trim(),
+    descripcion: desc,
+    urgente: $("mr-urgente").checked,
+    estado: $("mr-estado").value,
+    fecha: new Date().toISOString().slice(0,10)
+  });
+  lsSet("reclamos", arr);
+  cerrarModal("modal-reclamo");
+  renderReclamos();
+});
+
+$("btn-nuevo-trabajo").addEventListener("click", function () {
+  $("mt-titulo").value = "";
+  $("mt-desc").value = "";
+  $("mt-resp").value = "";
+  $("mt-estado").value = "en_curso";
+  $("mt-fecha").value = new Date().toISOString().slice(0,10);
+  abrirModal("modal-trabajo");
+});
+$("mt-cancel").addEventListener("click", function () { cerrarModal("modal-trabajo"); });
+$("modal-trabajo").addEventListener("click", function (e) { if (e.target === this) cerrarModal("modal-trabajo"); });
+
+$("mt-guardar").addEventListener("click", function () {
+  const titulo = $("mt-titulo").value.trim();
+  if (!titulo) { alert("Agregá un título al trabajo."); return; }
+  const arr = lsGet("trabajos");
+  arr.unshift({
+    id: Date.now().toString(),
+    titulo: titulo,
+    descripcion: $("mt-desc").value.trim(),
+    responsable: $("mt-resp").value.trim() || "—",
+    estado: $("mt-estado").value,
+    fecha: $("mt-fecha").value || new Date().toISOString().slice(0,10)
+  });
+  lsSet("trabajos", arr);
+  cerrarModal("modal-trabajo");
+  tabActual = $("mt-estado").value;
+  renderDetalle();
+});
 
 function renderTrabajos() {
   const cont = $("lista-trabajos");
-  const trabajos = edificioActual.trabajos.filter(function (t) { return t.estado === tabActual; });
+  const todos = getTrabajosEdificio(edificioActual);
+  const trabajos = todos.filter(function (t) { return t.estado === tabActual; });
 
   if (trabajos.length === 0) {
     const textos = {
@@ -783,47 +935,6 @@ $("btn-volver").addEventListener("click", function () {
   mostrarPantalla("screen-dashboard");
 });
 
-/* ==================== REPORTE WHATSAPP ==================== */
-$("btn-reportar").addEventListener("click", function () {
-  const tipo = $("rep-tipo").value;
-  const desc = $("rep-desc").value.trim();
-  const errBox = $("rep-error");
-
-  $("rep-tipo").classList.remove("error");
-  $("rep-desc").classList.remove("error");
-  $("rep-ok").classList.remove("visible");
-
-  if (!tipo) {
-    $("rep-error-text").textContent = "Elegí el tipo de problema.";
-    errBox.classList.add("visible");
-    $("rep-tipo").classList.add("error");
-    return;
-  }
-  if (!desc) {
-    $("rep-error-text").textContent = "Agregá una breve descripción del problema.";
-    errBox.classList.add("visible");
-    $("rep-desc").classList.add("error");
-    return;
-  }
-  errBox.classList.remove("visible");
-
-  const prefijo = modoRU === "urgencia" ? "🚨 URGENTE\n\n" : "";
-  const mensaje =
-    prefijo +
-    "Hola, soy " + adminActual.nombre + " (" + codigoActual + ").\n" +
-    (modoRU === "urgencia" ? "Necesito atención INMEDIATA:\n\n" : "Quiero reportar un problema:\n\n") +
-    "🏢 Edificio: " + edificioActual.nombre + "\n" +
-    "📍 Dirección: " + edificioActual.direccion + "\n" +
-    "🔧 Tipo de problema: " + tipo + "\n" +
-    "📝 Descripción: " + desc;
-
-  const url = "https://wa.me/" + DATA.whatsapp + "?text=" + encodeURIComponent(mensaje);
-  window.open(url, "_blank", "noopener");
-
-  $("rep-ok").classList.add("visible");
-  $("rep-tipo").value = "";
-  $("rep-desc").value = "";
-});
 
 /* ==================== INICIO ==================== */
 mostrarPantalla("screen-login");
