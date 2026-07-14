@@ -56,13 +56,13 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 .field-label{display:block;font-size:.78rem;font-weight:600;color:var(--gris-texto);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .input-wrap{position:relative}
 .input-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gris-texto);font-size:.9rem}
-#inp-cod{
+#inp-cod,#inp-pas{
   width:100%;padding:13px 14px 13px 40px;border:1.5px solid var(--gris-borde);
   border-radius:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;outline:none;
   transition:border-color .15s;
 }
-#inp-cod:focus{border-color:var(--naranja)}
-#inp-cod.error{border-color:var(--rojo)}
+#inp-cod:focus,#inp-pas:focus{border-color:var(--naranja)}
+#inp-cod.error,#inp-pas.error{border-color:var(--rojo)}
 #login-error{
   display:none;align-items:center;gap:6px;color:var(--rojo);
   font-size:.82rem;font-weight:500;margin-top:8px;
@@ -255,7 +255,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 <div id="screen-login">
   <div class="login-box">
     <div class="logo">
-      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <img src="logo.png" alt="Castaño Servicios Generales" style="height:58px;width:auto;filter:brightness(0) invert(1)">
       <div class="logo-text">
         <strong>CASTAÑO</strong>
         <span>Servicios Generales</span>
@@ -286,7 +286,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 <div id="screen-dashboard" class="hidden">
   <header class="app-header">
     <div class="header-brand">
-      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <img src="logo.png" alt="Castaño" style="height:38px;width:auto;filter:brightness(0) invert(1)">
       <div class="header-brand-text">
         <strong>CASTAÑO</strong>
         <span>Servicios Generales</span>
@@ -308,7 +308,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 <div id="screen-detalle" class="hidden">
   <header class="app-header">
     <div class="header-brand">
-      <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <img src="logo.png" alt="Castaño" style="height:38px;width:auto;filter:brightness(0) invert(1)">
       <div class="header-brand-text">
         <strong>CASTAÑO</strong>
         <span>Servicios Generales</span>
