@@ -316,6 +316,14 @@
     footer { background: var(--gris-oscuro); color: rgba(255,255,255,.55); text-align: center; padding: 28px 16px; font-size: 13px; line-height: 1.9; }
     footer strong { color: var(--blanco); }
     footer a { color: rgba(255,255,255,.55); }
+
+    /* VISOR FOTO INDIVIDUAL (galeria servicios) */
+    .srv-foto-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.95); z-index:9200; align-items:center; justify-content:center; }
+    .srv-foto-overlay.activo { display:flex; }
+    .srv-foto-overlay img { max-width:92vw; max-height:92vh; border-radius:6px; object-fit:contain; }
+    .srv-foto-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.15); border:none; color:#fff; font-size:2rem; padding:10px 16px; cursor:pointer; border-radius:6px; z-index:9300; }
+    .srv-foto-nav.izq { left:16px; }
+    .srv-foto-nav.der { right:16px; }
   </style>
 </head>
 <body>
@@ -414,35 +422,35 @@
   <p class="section-sub">Algunos de nuestros trabajos en edificios y propiedades de CABA.</p>
   <div class="galeria-grid">
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post2_Plomeria.png" alt="Plomeria" loading="lazy" />
+      <img src="imagenes_ig/Post2_Plomeria.png" alt="Plomeria" loading="eager" />
       <div class="galeria-label">Plomeria</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post3_Impermeabilizacion.png" alt="Impermeabilizacion" loading="lazy" />
+      <img src="imagenes_ig/Post3_Impermeabilizacion.png" alt="Impermeabilizacion" loading="eager" />
       <div class="galeria-label">Impermeabilizacion</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post4_Electricidad.png" alt="Electricidad" loading="lazy" />
+      <img src="imagenes_ig/Post4_Electricidad.png" alt="Electricidad" loading="eager" />
       <div class="galeria-label">Electricidad</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post5_Pintura.png" alt="Pintura" loading="lazy" />
+      <img src="imagenes_ig/Post5_Pintura.png" alt="Pintura" loading="eager" />
       <div class="galeria-label">Pintura</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post6_Garantia.png" alt="Garantia" loading="lazy" />
+      <img src="imagenes_ig/Post6_Garantia.png" alt="Garantia" loading="eager" />
       <div class="galeria-label">Garantia en cada trabajo</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post8_24hs.png" alt="Urgencias 24hs" loading="lazy" />
+      <img src="imagenes_ig/Post8_24hs.png" alt="Urgencias 24hs" loading="eager" />
       <div class="galeria-label">Urgencias 24hs</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post7_Administradores.png" alt="Consorcios" loading="lazy" />
+      <img src="imagenes_ig/Post7_Administradores.png" alt="Consorcios" loading="eager" />
       <div class="galeria-label">Consorcios</div>
     </div>
     <div class="galeria-card" onclick="abrirLightbox(this)">
-      <img src="imagenes_ig/Post1_Presentacion.png" alt="Presentacion" loading="lazy" />
+      <img src="imagenes_ig/Post1_Presentacion.png" alt="Presentacion" loading="eager" />
       <div class="galeria-label">Quienes somos</div>
     </div>
   </div>
@@ -775,18 +783,10 @@
     var dir    = document.getElementById("u-dir").value.trim();
     var desc   = document.getElementById("u-desc").value.trim();
     var urg    = tipoSel === "urgente" ? "URGENTE" : "Normal";
-    var msg = urg + " - Solicitud
-
-Nombre: " + nombre + "
-Tel: " + tel + "
-Problema: " + tipo;
-    if (dir)  msg += "
-Direccion: " + dir;
-    if (desc) msg += "
-Descripcion: " + desc;
-    if (fotosArr.length) msg += "
-
-Adjunto " + fotosArr.length + " foto(s).";
+    var msg = urg + " - Solicitud\n\nNombre: " + nombre + "\nTel: " + tel + "\nProblema: " + tipo;
+    if (dir)  msg += "\nDireccion: " + dir;
+    if (desc) msg += "\nDescripcion: " + desc;
+    if (fotosArr.length) msg += "\n\nAdjunto " + fotosArr.length + " foto(s).";
     window.open("https://wa.me/5491131606302?text=" + encodeURIComponent(msg), "_blank");
     document.getElementById("urg-overlay").classList.add("active");
   }
@@ -797,14 +797,9 @@ Adjunto " + fotosArr.length + " foto(s).";
     var tel    = document.getElementById("cf-tel").value.trim();
     var serv   = document.getElementById("cf-servicio").value;
     var desc   = document.getElementById("cf-desc").value.trim();
-    var msg = "Hola! Quiero pedir un presupuesto.
-
-Nombre: " + nombre + "
-Tel: " + tel;
-    if (serv) msg += "
-Servicio: " + serv;
-    if (desc) msg += "
-Descripcion: " + desc;
+    var msg = "Hola! Quiero pedir un presupuesto.\n\nNombre: " + nombre + "\nTel: " + tel;
+    if (serv) msg += "\nServicio: " + serv;
+    if (desc) msg += "\nDescripcion: " + desc;
     window.open("https://wa.me/5491131606302?text=" + encodeURIComponent(msg), "_blank");
   });
 
@@ -839,18 +834,24 @@ const GALERIAS = {
   }
 };
 
+var gIdx = 0;
+var gFotos = [];
+
 function abrirGaleria(servicio) {
   const data = GALERIAS[servicio];
   if (!data) return;
+  gFotos = data.fotos;
+  gIdx = 0;
   const overlay = document.getElementById("srv-modal");
   document.getElementById("srv-modal-titulo").textContent = data.titulo;
   const grid = document.getElementById("srv-modal-grid");
   grid.innerHTML = "";
-  data.fotos.forEach(function(src) {
-    const img = document.createElement("img");
+  data.fotos.forEach(function(src, i) {
+    var img = document.createElement("img");
     img.src = src;
+    img.alt = data.titulo + " " + (i+1);
     img.loading = "lazy";
-    img.onclick = function() { abrirSrvLightbox(src); };
+    img.onclick = function() { abrirSrvFoto(i); };
     grid.appendChild(img);
   });
   overlay.classList.add("activo");
@@ -859,37 +860,44 @@ function abrirGaleria(servicio) {
 
 function cerrarGaleria() {
   document.getElementById("srv-modal").classList.remove("activo");
+  document.getElementById("srv-foto").classList.remove("activo");
   document.body.style.overflow = "";
 }
 
-function abrirSrvLightbox(src) {
-  const lb = document.getElementById("srv-lightbox");
-  document.getElementById("srv-lightbox-img").src = src;
-  lb.classList.add("activo");
+function abrirSrvFoto(i) {
+  gIdx = i;
+  document.getElementById("srv-foto-img").src = gFotos[i];
+  document.getElementById("srv-foto").classList.add("activo");
 }
 
-function cerrarSrvLightbox() {
-  document.getElementById("srv-lightbox").classList.remove("activo");
+function srvFotoNav(dir) {
+  gIdx = (gIdx + dir + gFotos.length) % gFotos.length;
+  document.getElementById("srv-foto-img").src = gFotos[gIdx];
 }
 
 document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") { cerrarGaleria(); cerrarSrvLightbox(); }
+  if (e.key === "Escape") { cerrarGaleria(); cerrarLightbox(); }
+  if (document.getElementById("srv-foto").classList.contains("activo")) {
+    if (e.key === "ArrowLeft")  srvFotoNav(-1);
+    if (e.key === "ArrowRight") srvFotoNav(1);
+  }
 });
 </script>
 
 <!-- MODAL GALERIA SERVICIOS -->
-<div class="srv-modal-overlay" id="srv-modal" onclick="if(event.target===this)cerrarGaleria()">
-  <div class="srv-modal-header">
+<div class="srv-modal-overlay" id="srv-modal">
+  ass="srv-modal-header">
     <span class="srv-modal-titulo" id="srv-modal-titulo"></span>
-    <button class="srv-modal-cerrar" onclick="cerrarGaleria()">&#x2715;</button>
+    <button class="srv-modal-cerrar" onclick="cerrarGaleria()">&#10005;</button>
   </div>
   <div class="srv-modal-grid" id="srv-modal-grid"></div>
 </div>
 
-<!-- LIGHTBOX INDIVIDUAL -->
-<div class="srv-lightbox" id="srv-lightbox" onclick="cerrarSrvLightbox()">
-  <button class="srv-lightbox-cerrar" onclick="cerrarSrvLightbox()">&#x2715;</button>
-  <img id="srv-lightbox-img" src="" alt="" />
+<!-- VISOR FOTO INDIVIDUAL -->
+<div class="srv-foto-overlay" id="srv-foto" onclick="cerrarGaleria()">
+  <button class="srv-foto-nav izq" onclick="event.stopPropagation();srvFotoNav(-1)">&#10094;</button>
+  <img id="srv-foto-img" src="" alt="" onclick="event.stopPropagation()" />
+  <button class="srv-foto-nav der" onclick="event.stopPropagation();srvFotoNav(1)">&#10095;</button>
 </div>
 
 </body>
