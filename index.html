@@ -369,14 +369,14 @@
   <h2>Todo el mantenimiento de tu edificio</h2>
   <p class="section-sub">Un solo proveedor para todos los servicios. Sin buscar distintos operarios para cada problema.</p>
   <div class="servicios-grid">
-    <div class="servicio-card destacado">
+    <div class="servicio-card destacado con-galeria" onclick="abrirGaleria('plomeria')" style="cursor:pointer">
       <div class="servicio-icon"><i class="fa-solid fa-toilet"></i></div>
-      <h3 class="con-galeria" onclick="abrirGaleria('plomeria')">Destapacion</h3>
+      <h3>Destapacion</h3>
       <p>Columnas cloacales y pluviales, ramales, camaras. Servicio urgente 24hs.</p>
     </div>
-    <div class="servicio-card destacado">
+    <div class="servicio-card destacado con-galeria" onclick="abrirGaleria('plomeria')" style="cursor:pointer">
       <div class="servicio-icon"><i class="fa-solid fa-wrench"></i></div>
-      <h3 class="con-galeria" onclick="abrirGaleria('plomeria')">Plomeria</h3>
+      <h3>Plomeria</h3>
       <p>Canerias, tanques, desagotes, canillas y soldadura. Emergencias 24hs.</p>
     </div>
     <div class="servicio-card destacado">
@@ -384,19 +384,19 @@
       <h3>Electricidad</h3>
       <p>Instalaciones, tableros, reparaciones y emergencias electricas.</p>
     </div>
-    <div class="servicio-card destacado">
+    <div class="servicio-card destacado con-galeria" onclick="abrirGaleria('impermeabilizacion')" style="cursor:pointer">
       <div class="servicio-icon"><i class="fa-solid fa-water"></i></div>
-      <h3 class="con-galeria" onclick="abrirGaleria('impermeabilizacion')">Impermeabilizacion</h3>
+      <h3>Impermeabilizacion</h3>
       <p>Terrazas, techos y medianeras. Solucion definitiva a la humedad.</p>
     </div>
-    <div class="servicio-card">
+    <div class="servicio-card con-galeria" onclick="abrirGaleria('pintura')" style="cursor:pointer">
       <div class="servicio-icon"><i class="fa-solid fa-paint-roller"></i></div>
-      <h3 class="con-galeria" onclick="abrirGaleria('pintura')">Pintura</h3>
+      <h3>Pintura</h3>
       <p>Interior y exterior, enduidos, cielorrasos y reparacion de paredes.</p>
     </div>
-    <div class="servicio-card">
+    <div class="servicio-card con-galeria" onclick="abrirGaleria('albanileria')" style="cursor:pointer">
       <div class="servicio-icon"><i class="fa-solid fa-trowel"></i></div>
-      <h3 class="con-galeria" onclick="abrirGaleria('albanileria')">Albanileria</h3>
+      <h3>Albanileria</h3>
       <p>Reparaciones estructurales, revestimientos y mamposteria.</p>
     </div>
     <div class="servicio-card">
@@ -918,7 +918,7 @@ document.addEventListener("keydown", function(e) {
 
 <!-- MODAL GALERIA SERVICIOS -->
 <div class="srv-modal-overlay" id="srv-modal">
-  ass="srv-modal-header">
+  <div class="srv-modal-header">
     <span class="srv-modal-titulo" id="srv-modal-titulo"></span>
     <button class="srv-modal-cerrar" onclick="cerrarGaleria()">&#10005;</button>
   </div>
