@@ -145,6 +145,8 @@
       color: var(--blanco); padding: 28px 14px 12px; font-size: 14px; font-weight: 700;
     }
 
+    .galeria-titulo-cat { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#888; border-bottom:1px solid #eee; padding-bottom:8px; margin:32px auto 16px; max-width:1000px; }
+
     /* NOSOTROS */
     .nosotros-inner { display: flex; gap: 56px; align-items: center; max-width: 960px; margin: 0 auto; flex-wrap: wrap; }
     .nosotros-texto { flex: 1; min-width: 280px; }
@@ -420,37 +422,67 @@
   <p class="section-eyebrow">Galeria</p>
   <h2>Trabajos realizados</h2>
   <p class="section-sub">Algunos de nuestros trabajos en edificios y propiedades de CABA. Hace click para ver mas fotos.</p>
+
+  <p class="galeria-titulo-cat">Impermeabilizacion</p>
   <div class="galeria-grid">
     <div class="galeria-card" onclick="abrirGaleria('impermeabilizacion')">
       <img src="srv/imp_3.jpg" alt="Impermeabilizacion" loading="eager" />
       <div class="galeria-label">Impermeabilizacion</div>
     </div>
-    <div class="galeria-card" onclick="abrirGaleria('plomeria')">
-      <img src="srv/plo_1.jpg" alt="Plomeria" loading="eager" />
-      <div class="galeria-label">Plomeria</div>
-    </div>
-    <div class="galeria-card" onclick="abrirGaleria('albanileria')">
-      <img src="srv/alb_1.jpg" alt="Albanileria" loading="eager" />
-      <div class="galeria-label">Albanileria</div>
-    </div>
-    <div class="galeria-card" onclick="abrirGaleria('pintura')">
-      <img src="srv/pin_1.jpg" alt="Pintura" loading="eager" />
-      <div class="galeria-label">Pintura</div>
-    </div>
     <div class="galeria-card" onclick="abrirGaleria('impermeabilizacion')">
       <img src="srv/imp_10.jpg" alt="Impermeabilizacion" loading="eager" />
       <div class="galeria-label">Impermeabilizacion</div>
+    </div>
+    <div class="galeria-card" onclick="abrirGaleria('impermeabilizacion')">
+      <img src="srv/imp_5.jpg" alt="Impermeabilizacion" loading="eager" />
+      <div class="galeria-label">Impermeabilizacion</div>
+    </div>
+  </div>
+
+  <p class="galeria-titulo-cat">Plomeria</p>
+  <div class="galeria-grid">
+    <div class="galeria-card" onclick="abrirGaleria('plomeria')">
+      <img src="srv/plo_1.jpg" alt="Plomeria" loading="eager" />
+      <div class="galeria-label">Plomeria</div>
     </div>
     <div class="galeria-card" onclick="abrirGaleria('plomeria')">
       <img src="srv/plo_6.jpg" alt="Plomeria" loading="eager" />
       <div class="galeria-label">Plomeria</div>
     </div>
+    <div class="galeria-card" onclick="abrirGaleria('plomeria')">
+      <img src="srv/plo_3.jpg" alt="Plomeria" loading="eager" />
+      <div class="galeria-label">Plomeria</div>
+    </div>
+  </div>
+
+  <p class="galeria-titulo-cat">Albanileria</p>
+  <div class="galeria-grid">
     <div class="galeria-card" onclick="abrirGaleria('albanileria')">
-      <img src="srv/alb_4.jpg" alt="Albanileria" loading="eager" />
+      <img src="srv/alb_1.jpg" alt="Albanileria" loading="eager" />
       <div class="galeria-label">Albanileria</div>
+    </div>
+    <div class="galeria-card" onclick="abrirGaleria('albanileria')">
+      <img src="srv/alb_3.jpg" alt="Albanileria" loading="eager" />
+      <div class="galeria-label">Albanileria</div>
+    </div>
+    <div class="galeria-card" onclick="abrirGaleria('albanileria')">
+      <img src="srv/alb_6.jpg" alt="Albanileria" loading="eager" />
+      <div class="galeria-label">Albanileria</div>
+    </div>
+  </div>
+
+  <p class="galeria-titulo-cat">Pintura</p>
+  <div class="galeria-grid">
+    <div class="galeria-card" onclick="abrirGaleria('pintura')">
+      <img src="srv/pin_1.jpg" alt="Pintura" loading="eager" />
+      <div class="galeria-label">Pintura</div>
     </div>
     <div class="galeria-card" onclick="abrirGaleria('pintura')">
       <img src="srv/pin_5.jpg" alt="Pintura" loading="eager" />
+      <div class="galeria-label">Pintura</div>
+    </div>
+    <div class="galeria-card" onclick="abrirGaleria('pintura')">
+      <img src="srv/pin_7.jpg" alt="Pintura" loading="eager" />
       <div class="galeria-label">Pintura</div>
     </div>
   </div>
