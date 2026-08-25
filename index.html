@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0a1723" />
 
   <title>Castaño Servicios Generales | Mantenimiento Edilicio Integral en CABA</title>
-  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, destapaciones, impermeabilización, parquet, matafuegos y fumigación. Urgencias 24 hs con seguro de responsabilidad civil. Consorcios y particulares." />
-  <meta name="keywords" content="mantenimiento edilicio CABA, destapaciones Buenos Aires, plomería consorcios, impermeabilización terrazas, mantenimiento matafuegos, parquet, silletero, administración de consorcios" />
+  <meta name="description" content="Mantenimiento edilicio integral en CABA. Plomería, electricidad, pintura, albañilería, destapaciones, impermeabilización, parquet, matafuegos, limpieza de tanques, sistemas contra incendio y fumigación. Urgencias 24 hs con seguro de responsabilidad civil. Consorcios y particulares." />
+  <meta name="keywords" content="mantenimiento edilicio CABA, destapaciones Buenos Aires, plomería consorcios, impermeabilización terrazas, mantenimiento matafuegos, limpieza de tanques de agua, sistemas contra incendio, parquet, silletero, administración de consorcios" />
   <meta name="author" content="Castaño Servicios Generales" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://castanoservicios.com.ar/" />
@@ -78,6 +78,8 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arreglo y colocación de parquet" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Silletero — trabajos en altura" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mantenimiento de matafuegos" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Limpieza y desinfección de tanques de agua" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas contra incendio" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fumigación y control de plagas" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Abono mensual para consorcios" } }
       ]
@@ -854,6 +856,36 @@
       </div>
     </article>
 
+    <article class="servicio-card destacado clicable reveal" onclick="abrirGaleria('tanques')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('tanques')}" aria-label="Ver trabajos de limpieza de tanques de agua">
+      <span class="badge-nuevo">Nuevo</span>
+      <div class="servicio-card-fotos">
+        <img src="srv/tan_1.jpg" alt="Operario limpiando el interior de un tanque de agua" loading="lazy" />
+        <img src="srv/tan_2.jpg" alt="Tanque de agua en azotea durante el desagote" loading="lazy" />
+        <img src="srv/tan_3.jpg" alt="Operarios enjuagando un tanque de agua en la terraza" loading="lazy" />
+      </div>
+      <div class="servicio-card-body">
+        <div class="servicio-icon"><i class="fa-solid fa-fill-drip" aria-hidden="true"></i></div>
+        <h3>Limpieza de tanques de agua</h3>
+        <p>Limpieza y desinfección de tanques de agua potable con protocolo certificado. Frecuencia recomendada por normativa, con constancia para el consorcio.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </div>
+    </article>
+
+    <article class="servicio-card destacado clicable reveal" onclick="abrirGaleria('contraincendio')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('contraincendio')}" aria-label="Ver trabajos de sistemas contra incendio">
+      <span class="badge-nuevo">Nuevo</span>
+      <div class="servicio-card-fotos">
+        <img src="srv/cif_1.jpg" alt="Operario revisando una boca de incendio" loading="lazy" />
+        <img src="srv/cif_2.jpg" alt="Ajuste de válvula de una boca de incendio" loading="lazy" />
+        <img src="srv/cif_3.jpg" alt="Colocación de señalética de matafuego y salida de emergencia" loading="lazy" />
+      </div>
+      <div class="servicio-card-body">
+        <div class="servicio-icon"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></div>
+        <h3>Sistemas contra incendio</h3>
+        <p>Mantenimiento y control de bocas de incendio, mangueras, gabinetes y señalética. Cumplí con la normativa vigente sin gestionarlo por tu cuenta.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </div>
+    </article>
+
     <article class="servicio-card reveal">
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
@@ -1466,6 +1498,14 @@
     parquet: {
       titulo: "Parquet — pulido y plastificado",
       fotos: fotos(["par_1","par_2","par_3","par_4","par_5"])
+    },
+    tanques: {
+      titulo: "Limpieza y desinfección de tanques de agua",
+      fotos: fotos(["tan_1","tan_2","tan_3"])
+    },
+    contraincendio: {
+      titulo: "Sistemas contra incendio",
+      fotos: fotos(["cif_1","cif_2","cif_3"])
     }
   };
 
