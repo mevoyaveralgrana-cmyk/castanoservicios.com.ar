@@ -744,7 +744,12 @@
 
   <div class="servicios-grid">
 
-    <article class="servicio-card especial reveal">
+    <article class="servicio-card especial clicable reveal" onclick="abrirGaleria('destapaciones')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('destapaciones')}" aria-label="Ver trabajos de destapaciones">
+      <div class="servicio-card-fotos">
+        <img src="srv/des_1.jpg" alt="Operario destapando una columna cloacal con máquina" loading="lazy" />
+        <img src="srv/des_2.jpg" alt="Cable de la máquina destapadora ingresando a un desagüe" loading="lazy" />
+        <img src="srv/des_3.jpg" alt="Operario junto a una cámara de inspección destapada" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-toilet" aria-hidden="true"></i></div>
         <h3>Destapaciones</h3>
@@ -754,6 +759,7 @@
           <span class="cred-chip"><i class="fa-solid fa-gear" aria-hidden="true"></i> Máquina propia</span>
           <span class="cred-chip"><i class="fa-solid fa-broom" aria-hidden="true"></i> Dejamos limpio</span>
         </div>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
@@ -828,8 +834,13 @@
       </div>
     </article>
 
-    <article class="servicio-card especial reveal">
+    <article class="servicio-card especial clicable reveal" onclick="abrirGaleria('silletero')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('silletero')}" aria-label="Ver trabajos de silletero">
       <span class="badge-nuevo">Nuevo</span>
+      <div class="servicio-card-fotos">
+        <img src="srv/sil_1.jpg" alt="Operario en silleta trabajando en la fachada de un edificio" loading="lazy" />
+        <img src="srv/sil_2.jpg" alt="Detalle de arnés y mosquetones de seguridad" loading="lazy" />
+        <img src="srv/sil_3.jpg" alt="Operario pintando la fachada suspendido en silleta" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i></div>
         <h3>Silletero — trabajos en altura</h3>
@@ -839,11 +850,17 @@
           <span class="cred-chip"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Personal habilitado</span>
           <span class="cred-chip"><i class="fa-solid fa-ban" aria-hidden="true"></i> Sin andamios</span>
         </div>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
-    <article class="servicio-card especial reveal">
+    <article class="servicio-card especial clicable reveal" onclick="abrirGaleria('matafuegos')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('matafuegos')}" aria-label="Ver trabajos de mantenimiento de matafuegos">
       <span class="badge-nuevo">Nuevo</span>
+      <div class="servicio-card-fotos">
+        <img src="srv/maf_1.jpg" alt="Operario controlando un matafuego en un pasillo" loading="lazy" />
+        <img src="srv/maf_2.jpg" alt="Detalle del manómetro de un matafuego" loading="lazy" />
+        <img src="srv/maf_3.jpg" alt="Operario revisando la señalética de un matafuego" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-fire-extinguisher" aria-hidden="true"></i></div>
         <h3>Mantenimiento de matafuegos</h3>
@@ -853,6 +870,7 @@
           <span class="cred-chip"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Recarga y control</span>
           <span class="cred-chip"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Aviso de vencimiento</span>
         </div>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
@@ -886,35 +904,59 @@
       </div>
     </article>
 
-    <article class="servicio-card reveal">
+    <article class="servicio-card clicable reveal" onclick="abrirGaleria('electricidad')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('electricidad')}" aria-label="Ver trabajos de electricidad">
+      <div class="servicio-card-fotos">
+        <img src="srv/ele_1.jpg" alt="Electricista revisando un tablero eléctrico" loading="lazy" />
+        <img src="srv/ele_2.jpg" alt="Detalle de cableado en un tablero eléctrico" loading="lazy" />
+        <img src="srv/ele_3.jpg" alt="Electricista instalando un artefacto de luz en un palier" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
         <h3>Electricidad</h3>
         <p>Instalaciones, tableros, iluminación de palieres, reparaciones y emergencias eléctricas.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
-    <article class="servicio-card reveal">
+    <article class="servicio-card clicable reveal" onclick="abrirGaleria('carpinteria')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('carpinteria')}" aria-label="Ver trabajos de carpintería">
+      <div class="servicio-card-fotos">
+        <img src="srv/car_1.jpg" alt="Carpintero trabajando una puerta de madera en un caballete" loading="lazy" />
+        <img src="srv/car_2.jpg" alt="Ajuste de una cerradura en una puerta de madera" loading="lazy" />
+        <img src="srv/car_3.jpg" alt="Instalación de una ventana de aluminio" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-door-open" aria-hidden="true"></i></div>
         <h3>Carpintería</h3>
         <p>Puertas, ventanas, placares y muebles a medida. Madera y aluminio.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
-    <article class="servicio-card reveal">
+    <article class="servicio-card clicable reveal" onclick="abrirGaleria('fumigacion')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('fumigacion')}" aria-label="Ver trabajos de fumigación y desratización">
+      <div class="servicio-card-fotos">
+        <img src="srv/fum_1.jpg" alt="Operario fumigando el zócalo de un pasillo" loading="lazy" />
+        <img src="srv/fum_2.jpg" alt="Colocación de cebadero para desratización" loading="lazy" />
+        <img src="srv/fum_3.jpg" alt="Operario con equipo de protección fumigando una cocina" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-bug-slash" aria-hidden="true"></i></div>
         <h3>Fumigación y desratización</h3>
         <p>Control integral de plagas con habilitación oficial y certificado para el consorcio.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
-    <article class="servicio-card reveal">
+    <article class="servicio-card clicable reveal" onclick="abrirGaleria('abono')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirGaleria('abono')}" aria-label="Ver trabajos de abono para consorcios">
+      <div class="servicio-card-fotos">
+        <img src="srv/abo_1.jpg" alt="Encargado del abono conversando con la administradora del consorcio" loading="lazy" />
+        <img src="srv/abo_2.jpg" alt="Firma del parte mensual de trabajos del abono" loading="lazy" />
+        <img src="srv/abo_3.jpg" alt="Equipo de Castaño Servicios Generales llegando a un edificio" loading="lazy" />
+      </div>
       <div class="servicio-card-body">
         <div class="servicio-icon"><i class="fa-solid fa-building-shield" aria-hidden="true"></i></div>
         <h3>Abono para consorcios</h3>
         <p>Mantenimiento mensual con visitas preventivas, atención prioritaria y precio fijo.</p>
+        <span class="servicio-ver-fotos">Ver trabajos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </div>
     </article>
 
@@ -1506,6 +1548,34 @@
     contraincendio: {
       titulo: "Sistemas contra incendio",
       fotos: fotos(["cif_1","cif_2","cif_3"])
+    },
+    destapaciones: {
+      titulo: "Destapaciones",
+      fotos: fotos(["des_1","des_2","des_3"])
+    },
+    silletero: {
+      titulo: "Silletero — trabajos en altura",
+      fotos: fotos(["sil_1","sil_2","sil_3"])
+    },
+    matafuegos: {
+      titulo: "Mantenimiento de matafuegos",
+      fotos: fotos(["maf_1","maf_2","maf_3"])
+    },
+    electricidad: {
+      titulo: "Electricidad",
+      fotos: fotos(["ele_1","ele_2","ele_3"])
+    },
+    carpinteria: {
+      titulo: "Carpintería",
+      fotos: fotos(["car_1","car_2","car_3"])
+    },
+    fumigacion: {
+      titulo: "Fumigación y desratización",
+      fotos: fotos(["fum_1","fum_2","fum_3"])
+    },
+    abono: {
+      titulo: "Abono para consorcios",
+      fotos: fotos(["abo_1","abo_2","abo_3"])
     }
   };
 
